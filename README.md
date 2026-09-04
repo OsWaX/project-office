@@ -15,6 +15,8 @@ Primary market: Republic of Uzbekistan. Architecture portable to neighbouring CI
 | 2 | [Technical Task, Part 2 — Logistics without warehouses](docs/02-logistics-and-fulfillment.md) | Carrier aggregation, PUDO/lockers, state machines, the Promise Engine, returns routing and neutral inspection, COD reconciliation, evidence chain |
 | 3 | [Technical Task, Part 3 — Architecture and NFRs](docs/03-architecture-and-nfr.md) | Service map, data model, API contracts, external integrations, performance/availability/security/compliance requirements, data platform |
 | 4 | [Technical Task, Part 4 — Delivery plan](docs/04-roadmap-and-acceptance.md) | Phases, team and effort, risk register, critical journeys, acceptance criteria, open questions |
+| 5 | [Website TZ, Part A — Structure, pages and UX](docs/05-website-technical-task.md) | Sitemap and URL scheme, global layout, page-by-page specifications for the buyer storefront, seller acquisition site and seller cabinet, component library, responsive and content rules |
+| 6 | [Website TZ, Part B — Frontend engineering](docs/06-website-engineering-and-acceptance.md) | Stack, rendering strategy, BFF, performance budgets, SEO, i18n, accessibility, analytics taxonomy, web security, testing, delivery plan, definition of done and launch gate |
 
 ## The idea in one table
 
