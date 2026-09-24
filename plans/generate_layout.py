@@ -39,8 +39,7 @@ part_raw = [
     box(X_V3[0], 0, X_V3[1], Y_H1[0]),
     box(X_V4[0], Y_H1[0], X_V4[1], G.Y_DEPTH),
     box(X_V4[1], Y_H2[0], G.X_KITCHEN_END, Y_H2[1]),
-    box(X_V5[0], Y_H3[0], X_V4[0], Y_H3[1]),
-    box(X_V5[0], Y_H3[1], X_V5[1], G.Y_HALL),
+    box(X_V5[0], Y_H3[0], X_V5[1], G.Y_HALL),   # меҳмонхона ва даҳлиз девори ўрнида ойна девор
 ]
 
 # Эшик ўринлари (девордаги тешиклар)
@@ -49,7 +48,6 @@ OP_WC = (-300, 400)
 OP_KITCHEN = (3740, 4540)
 OP_BED = (4840, 5640)
 OP_KIDS = (2900, 3700)        # Y бўйича, V4 деворида
-OP_LIVING = (1000, 2200)      # икки табақали
 
 part_openings = [
     box(OP_BATH[0], Y_H1[0], OP_BATH[1], Y_H1[1]),
@@ -57,7 +55,6 @@ part_openings = [
     box(OP_KITCHEN[0], Y_H1[0], OP_KITCHEN[1], Y_H1[1]),
     box(OP_BED[0], Y_H1[0], OP_BED[1], Y_H1[1]),
     box(X_V4[0], OP_KIDS[0], X_V4[1], OP_KIDS[1]),
-    box(OP_LIVING[0], Y_H3[0], OP_LIVING[1], Y_H3[1]),
 ]
 PARTITIONS = unary_union(part_raw).difference(unary_union(part_openings)).difference(WALLS)
 
@@ -74,12 +71,34 @@ NEW_DOORS = [
     # болалар хонаси: хона ичига
     dict(hinge=(X_V4[1], OP_KIDS[0]), leaf_end=(X_V4[1] + 800, OP_KIDS[0]),
          arc_start=(X_V4[1], OP_KIDS[1]), r=800),
-    # меҳмонхона: икки табақа, хона ичига
-    dict(hinge=(OP_LIVING[0], ht), leaf_end=(OP_LIVING[0], ht + 600),
-         arc_start=((OP_LIVING[0] + OP_LIVING[1]) / 2, ht), r=600),
-    dict(hinge=(OP_LIVING[1], ht), leaf_end=(OP_LIVING[1], ht + 600),
-         arc_start=((OP_LIVING[0] + OP_LIVING[1]) / 2, ht), r=600),
 ]
+
+# Меҳмонхона ва даҳлиз орасидаги суриладиган ойна девор:
+# 6 табақа, 3 рельсда, ўртадан иккала томонга суриб очилади (телескопик).
+GLASS_SPAN = (X_V5[1], X_V4[0])
+GLASS_N, GLASS_OVERLAP = 6, 50
+GLASS_W = (GLASS_SPAN[1] - GLASS_SPAN[0] + (GLASS_N - 1) * GLASS_OVERLAP) / GLASS_N
+GLASS_TRACKS = [0, 1, 2, 2, 1, 0]
+GLASS_PANELS = []
+for _i, _t in enumerate(GLASS_TRACKS):
+    _x0 = GLASS_SPAN[0] + _i * (GLASS_W - GLASS_OVERLAP)
+    _yc = Y_H3[0] + 25 + _t * 25
+    GLASS_PANELS.append((_x0, _yc - 10, _x0 + GLASS_W, _yc + 10))
+GLASS_OPEN = GLASS_SPAN[1] - GLASS_SPAN[0] - 2 * GLASS_W  # очиқ ҳолатда ҳар бир томонда 3 табақа устма-уст туради
+
+
+def draw_glass(ax):
+    x0, x1 = GLASS_SPAN
+    line(ax, (x0, Y_H3[0]), (x1, Y_H3[0]), lw=LW_THIN)
+    line(ax, (x0, Y_H3[1]), (x1, Y_H3[1]), lw=LW_THIN)
+    for px0, py0, px1, py1 in GLASS_PANELS:
+        ax.add_patch(poly_patch(box(px0, py0, px1, py1), facecolor="#cfe8f5", edgecolor="black", lw=LW_MED))
+    mid = (x0 + x1) / 2
+    for a, b in ((mid - 300, mid - 1300), (mid + 300, mid + 1300)):
+        (ax_, ay_), (bx_, by_) = P(a, Y_H3[1] + 150), P(b, Y_H3[1] + 150)
+        ax.annotate("", xy=(bx_, by_), xytext=(ax_, ay_),
+                    arrowprops=dict(arrowstyle="-|>", lw=0.6, color="black", mutation_scale=6))
+
 
 SOLIDS = unary_union([WALLS, PARTITIONS] + [o for o, _ in SHAFTS.values()])
 
@@ -92,7 +111,7 @@ ROOMS = [
     # номи, полигон, ёзув нуқтаси
     ("Ванна", room((G.X_L_IN, 0, X_V1[0], Y_H1[0])), (-1050, 900)),
     ("Туалет", room((X_V1[1], 0, X_V2[0], Y_H1[0])), (100, 900)),
-    ("Ошхона", room((X_V2[1], 0, X_V3[0], Y_H1[0])), (2600, 1100)),
+    ("Ошхона", room((X_V2[1], 0, X_V3[0], Y_H1[0])), (2100, 1100)),
     ("Катталар ётоқхонаси", room((X_V3[1], 0, G.X_KITCHEN_END, Y_H1[0]),
                                   (X_V4[1], Y_H1[0], G.X_KITCHEN_END, Y_H2[0])), (7300, 1250)),
     ("Болалар хонаси", room((X_V4[1], Y_H2[1], G.X_R_IN, G.Y_DEPTH)), (7700, 4600)),
@@ -115,7 +134,7 @@ INT_DIMS = [
     ("h", [G.X_L_IN, OP_BATH[0], OP_BATH[1], OP_WC[0], OP_WC[1], OP_KITCHEN[0], OP_KITCHEN[1],
            OP_BED[0], OP_BED[1], X_V4[0]], 3500, Y_H1[1]),
     # меҳмонхона эшиги
-    ("h", [0, OP_LIVING[0], OP_LIVING[1]], 4350, None),
+    ("h", [X_V5[1], X_V4[0]], 4550, None),
     # болалар хонаси эшиги
     ("v", [Y_H2[1], OP_KIDS[0], OP_KIDS[1]], 7000, None),
     # балкон блоки
@@ -133,9 +152,9 @@ NOTES = [
     "Изоҳлар:",
     "1. Барча ўлчамлар миллиметрда.",
     "2. Янги ички деворлар 100 мм, даҳлиз кенглиги 1000 мм.",
-    "3. Эшик ўринлари: ванна ва туалет 700 мм,",
-    "    ошхона, ётоқхоналар 800 мм, меҳмонхона",
-    "    1200 мм икки табақали.",
+    "3. Эшиклар: ванна ва туалет 700 мм, ошхона ва",
+    "    ётоқхоналар 800 мм. Меҳмонхона девори ўрнида",
+    f"    суриладиган ойна девор: 6 × {GLASS_W:.0f} мм, очиқ {GLASS_OPEN:.0f} мм.",
     "4. Ванна ва туалет эшиклари даҳлизга очилади.",
     "5. Шахталар ўз ўрнида сақланган.",
     "6. Ташқи девор қалинликлари манба расмдан",
@@ -176,6 +195,10 @@ def render_sheet(name=NAME, title="КВАРТИРАНИ ҚАЙТА РЕЖАЛА�
         draw_window(ax, *w)
     for d in DOORS + NEW_DOORS:
         draw_door(ax, d)
+    draw_glass(ax)
+    if int_dims:
+        label(ax, (GLASS_SPAN[0] + GLASS_SPAN[1]) / 2, Y_H3[1] + 420,
+              "Суриладиган ойна девор, 6 табақа", fs=6.5)
     for dim in EXT_DIMS + (INT_DIMS if int_dims else []):
         draw_dim(ax, *dim)
     if extra:
@@ -289,6 +312,11 @@ def render_dxf(name=NAME, title="КВАРТИРАНИ ҚАЙТА РЕЖАЛАШ�
             msp.add_line(D(xx, y0), D(xx, y1), dxfattribs={"layer": "A-GLAZ"})
         for yy in (y0, y1):
             msp.add_line(D(x0, yy), D(x1, yy), dxfattribs={"layer": "A-GLAZ"})
+    for px0, py0, px1, py1 in GLASS_PANELS:
+        msp.add_lwpolyline([D(px0, py0), D(px1, py0), D(px1, py1), D(px0, py1)], close=True,
+                           dxfattribs={"layer": "A-GLAZ"})
+    for yy in Y_H3:
+        msp.add_line(D(GLASS_SPAN[0], yy), D(GLASS_SPAN[1], yy), dxfattribs={"layer": "A-GLAZ"})
     for d in DOORS + NEW_DOORS:
         msp.add_line(D(*d["hinge"]), D(*d["leaf_end"]), dxfattribs={"layer": "A-DOOR"})
         hx, hy = D(*d["hinge"])
