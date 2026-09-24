@@ -58,6 +58,19 @@ part_openings = [
 ]
 PARTITIONS = unary_union(part_raw).difference(unary_union(part_openings)).difference(WALLS)
 
+# Болалар хонасини иккига бўлувчи енгил девор (гипсокартон, 100 мм)
+Y_K1 = (3700, 3800)        # йўлакча | болалар хонаси 1 (H3 билан бир чизиқда)
+X_K2 = (9350, 9450)        # болалар хонаси 1 ва йўлакча | болалар хонаси 2
+OP_K1 = (6030, 6830)       # болалар хонаси 1 эшиги (X)
+OP_K2 = (2900, 3600)       # болалар хонаси 2 эшиги (Y)
+LIGHT_WALLS = unary_union([
+    box(X_V4[1], Y_K1[0], X_K2[0], Y_K1[1]),
+    box(X_K2[0], Y_H2[1], X_K2[1], G.Y_DEPTH),
+]).difference(unary_union([
+    box(OP_K1[0], Y_K1[0], OP_K1[1], Y_K1[1]),
+    box(X_K2[0], OP_K2[0], X_K2[1], OP_K2[1]),
+]))
+
 hh, ht = Y_H1[1], Y_H3[1]
 NEW_DOORS = [
     # ванна ва туалет: даҳлизга очилади
@@ -71,6 +84,12 @@ NEW_DOORS = [
     # болалар хонаси: хона ичига
     dict(hinge=(X_V4[1], OP_KIDS[0]), leaf_end=(X_V4[1] + 800, OP_KIDS[0]),
          arc_start=(X_V4[1], OP_KIDS[1]), r=800),
+    # болалар хонаси 1: хона ичига (пастга)
+    dict(hinge=(OP_K1[0], Y_K1[1]), leaf_end=(OP_K1[0], Y_K1[1] + 800),
+         arc_start=(OP_K1[1], Y_K1[1]), r=800),
+    # болалар хонаси 2: хона ичига (ўнгга)
+    dict(hinge=(X_K2[1], OP_K2[0]), leaf_end=(X_K2[1] + 700, OP_K2[0]),
+         arc_start=(X_K2[1], OP_K2[1]), r=700),
 ]
 
 # Меҳмонхона ва даҳлиз орасидаги суриладиган ойна девор:
@@ -100,7 +119,7 @@ def draw_glass(ax):
                     arrowprops=dict(arrowstyle="-|>", lw=0.6, color="black", mutation_scale=6))
 
 
-SOLIDS = unary_union([WALLS, PARTITIONS] + [o for o, _ in SHAFTS.values()])
+SOLIDS = unary_union([WALLS, PARTITIONS, LIGHT_WALLS] + [o for o, _ in SHAFTS.values()])
 
 
 def room(*rects):
@@ -114,7 +133,9 @@ ROOMS = [
     ("Ошхона", room((X_V2[1], 0, X_V3[0], Y_H1[0])), (2100, 1100)),
     ("Катталар ётоқхонаси", room((X_V3[1], 0, G.X_KITCHEN_END, Y_H1[0]),
                                   (X_V4[1], Y_H1[0], G.X_KITCHEN_END, Y_H2[0])), (7300, 1250)),
-    ("Болалар хонаси", room((X_V4[1], Y_H2[1], G.X_R_IN, G.Y_DEPTH)), (7700, 4600)),
+    ("Болалар хонаси 1", room((X_V4[1], Y_K1[1], X_K2[0], G.Y_DEPTH)), (7700, 4700)),
+    ("Болалар хонаси 2", room((X_K2[1], Y_H2[1], G.X_R_IN, G.Y_DEPTH)), (10630, 4300)),
+    ("Йўлакча", room((X_V4[1], Y_H2[1], X_K2[0], Y_K1[0])), (8100, 3150)),
     ("Меҳмонхона", room((0, Y_H3[1], X_V4[0], G.Y_DEPTH)), (2100, 4850)),
     ("Даҳлиз", room((G.X_L_IN, Y_H1[1], X_V4[0], Y_H3[0]),
                     (G.X_L_IN, Y_H3[0], X_V5[0], G.Y_HALL)), (2000, 2950)),
@@ -127,9 +148,11 @@ INT_DIMS = [
     # вертикал: ошхона → даҳлиз → меҳмонхона
     ("v", [0, Y_H1[0], Y_H1[1], Y_H3[0], Y_H3[1], G.Y_DEPTH], 3000, None),
     # вертикал: ётоқхона → болалар хонаси
-    ("v", [0, Y_H2[0], Y_H2[1], G.Y_DEPTH], 9000, None),
+    ("v", [0, Y_H2[0], Y_H2[1], Y_K1[0], Y_K1[1], G.Y_DEPTH], 9000, None),
     # горизонтал: меҳмонхона → болалар хонаси
-    ("h", [0, X_V4[0], X_V4[1], G.X_R_IN], 5700, None),
+    ("h", [0, X_V4[0], X_V4[1], X_K2[0], X_K2[1], G.X_R_IN], 5700, None),
+    ("h", [X_V4[1], OP_K1[0], OP_K1[1]], 4900, None),
+    ("v", [Y_H2[1], OP_K2[0], OP_K2[1]], 10450, None),
     # даҳлиз томондан эшиклар боғланиши
     ("h", [G.X_L_IN, OP_BATH[0], OP_BATH[1], OP_WC[0], OP_WC[1], OP_KITCHEN[0], OP_KITCHEN[1],
            OP_BED[0], OP_BED[1], X_V4[0]], 3500, Y_H1[1]),
@@ -156,7 +179,8 @@ NOTES = [
     "    ётоқхоналар 800 мм. Меҳмонхона девори ўрнида",
     f"    суриладиган ойна девор: 6 × {GLASS_W:.0f} мм, очиқ {GLASS_OPEN:.0f} мм.",
     "4. Ванна ва туалет эшиклари даҳлизга очилади.",
-    "5. Шахталар ўз ўрнида сақланган.",
+    "5. Шахталар ўз ўрнида сақланган. Болалар хонаси енгил",
+    "    девор (гипсокартон, 100 мм) билан иккига бўлинган.",
     "6. Ташқи девор қалинликлари манба расмдан",
     "    тахминий олинган, жойида текширилсин.",
 ]
@@ -183,6 +207,7 @@ def render_sheet(name=NAME, title="КВАРТИРАНИ ҚАЙТА РЕЖАЛА�
     ax.add_patch(poly_patch(WALLS, facecolor="#d9d9d9", edgecolor="none", hatch="//////"))
     ax.add_patch(poly_patch(WALLS, facecolor="none", edgecolor="black", lw=LW_WALL))
     ax.add_patch(poly_patch(PARTITIONS, facecolor="#9e9e9e", edgecolor="black", lw=LW_MED))
+    ax.add_patch(poly_patch(LIGHT_WALLS, facecolor="#ececec", edgecolor="black", lw=LW_MED, hatch="...."))
 
     for outer, void in SHAFTS.values():
         ax.add_patch(poly_patch(outer.difference(void), facecolor="#6e6e6e", edgecolor="black", lw=LW_MED))
@@ -300,6 +325,8 @@ def render_dxf(name=NAME, title="КВАРТИРАНИ ҚАЙТА РЕЖАЛАШ�
 
     add_poly(WALLS, "A-WALL", pattern="ANSI31")
     add_poly(PARTITIONS, "A-PART", color=252)
+    doc.layers.add("A-PART-LIGHT", color=6)
+    add_poly(LIGHT_WALLS, "A-PART-LIGHT", color=254)
     add_poly(BALCONY, "A-BALC")
     for outer, void in SHAFTS.values():
         add_poly(outer.difference(void), "A-SHAFT", color=251)
