@@ -132,12 +132,12 @@ class Space:
     def __init__(self):
         self.items = []
 
-    def line(self, a, b, layer, lw=None, color=None):
-        self.items.append(("line", layer, dict(a=a, b=b, lw=lw, color=color)))
+    def line(self, a, b, layer, lw=None, color=None, dash=False):
+        self.items.append(("line", layer, dict(a=a, b=b, lw=lw, color=color, dash=dash)))
 
-    def poly(self, pts, layer, closed=True, lw=None, color=None, fill=None):
+    def poly(self, pts, layer, closed=True, lw=None, color=None, fill=None, dash=False):
         self.items.append(("poly", layer, dict(pts=list(pts), closed=closed, lw=lw,
-                                               color=color, fill=fill)))
+                                               color=color, fill=fill, dash=dash)))
 
     def rect(self, x0, y0, x1, y1, layer, **kw):
         self.poly([(x0, y0), (x1, y0), (x1, y1), (x0, y1)], layer, **kw)
@@ -674,6 +674,7 @@ class PdfWriter:
         self.c.setStrokeColorRGB(*col)
         self.c.setFillColorRGB(*col)
         self.c.setLineWidth((lw if lw is not None else w) * mm)
+        self.c.setDash([])
 
     @staticmethod
     def fillcolor(fill, layer):
@@ -695,6 +696,7 @@ class PdfWriter:
             elif kind in ("poly", "line"):
                 pts = d["pts"] if kind == "poly" else [d["a"], d["b"]]
                 self.style(layer, d["lw"], d["color"])
+                c.setDash([1.5 * mm, 0.8 * mm] if d.get("dash") else [])
                 path = c.beginPath()
                 q = [self.pt(xf(p)) for p in pts]
                 path.moveTo(*q[0])
@@ -904,6 +906,9 @@ def solid_hatch(space_obj, layer, fill):
 def write_space(space_obj, items, xf, text_scale):
     for kind, layer, d in items:
         attrs = {"layer": layer}
+        if d.get("dash"):
+            attrs["linetype"] = "DASHED"
+            attrs["ltscale"] = 0.06 * text_scale
         if d.get("color") is not None:
             attrs["true_color"] = ezdxf.colors.rgb2int(rgb255(d["color"]))
         if d.get("lw") is not None:
