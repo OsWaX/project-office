@@ -68,3 +68,24 @@ Interior walls only.
   onto that wall and opens from the studio's lounge zone.
 * **2 corridor → studio (13.2 m²)** with a dining zone at the kitchen glass and a lounge zone in the
   north part of the former room 6.
+
+## Sheet 4: replanning variant 3, the client's sketch (`build_replan_v3.py`)
+
+The walls were read off the client's sketch, which was drawn over sheet 1: 1 sketch px = 0.21 mm on paper = 10.5 mm
+real. They were then snapped to 50 mm. Page 1 is the plan at 1:50; page 2 is the room and wall calculation (also in
+`output/replan-v3_calculation.csv`).
+
+| Room | Clear size, mm | Area, m² |
+|---|---|---|
+| 1 Hall | 2900 × 2000 | 5.8 |
+| 2 Studio (lounge + dining) | L-shaped, 2900 wide | 21.8 |
+| 3 Bathroom / WC (unchanged) | 1665–1900 × 2450 | 4.0 |
+| 4 Children's room for two | 4970 × 3000 | 14.3 |
+| 5 Kitchen (open plan) | 4200 × 1700 | 6.0 |
+| 6 Hidden PC + home-cinema room | 2900 × 4600 | 13.0 |
+| 7 Master bedroom | 3150 × 5800 | 18.1 |
+| 7.1 En-suite shower room | 1500 × 1150 | 1.7 |
+| 7.2 Walk-in wardrobe | 1550 × 1150 | 1.6 |
+| 8 Loggia | 3150 × 1650 | 5.1 |
+
+New walls: 11.65 m in total (200 / 100 mm). Demolition: 8.47 m (200 mm).
