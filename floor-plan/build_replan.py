@@ -347,11 +347,34 @@ dim((4550, Y_LG + T), (4550, Y_FAC), "v", 4550, 1650)
 # --------------------------------------------------------------------------------------
 # 4. Sheet
 # --------------------------------------------------------------------------------------
-def build_sheet():
+NOTES = [
+    ("ПРИМЕЧАНИЯ / NOTES", "bold"),
+    ("1. Размеры в мм, М 1:50 при печати A3 100 %.", "regular"),
+    ("   Dimensions in mm; 1:50 when printed on A3 at 100 %.", "italic"),
+    ("2. Меняются только внутренние перегородки; наружные", "regular"),
+    ("   стены, колонны, шахты и фасад - без изменений.", "regular"),
+    ("   Interior partitions only; shell, columns, shafts unchanged.", "italic"),
+    ("3. «Было» - площади исходного плана, «стало» - по чертежу", "regular"),
+    ("   (за вычетом колонн и шахт). / 'Before' = source plan,", "regular"),
+    ("   'after' = measured on this drawing, net of columns.", "italic"),
+    ("4. Детская 1 без окна: нужен свет с севера или", "regular"),
+    ("   стеклянная фрамуга. / Room 4.1 has no window.", "italic"),
+    ("5. Проект согласовать до начала работ.", "regular"),
+    ("   Approve with the authorities before building.", "italic"),
+]
+
+
+def build_sheet(rooms=None, areas=None, notes=None, sheet="2",
+                title_ru="План квартиры - вариант перепланировки",
+                title_en="Apartment floor plan - replanning proposal (interior walls only)",
+                header="ПЛАН ПЕРЕПЛАНИРОВКИ  /  REPLANNING PROPOSAL"):
+    rooms = rooms or ROOMS2
+    areas = areas or AREAS
+    notes = notes or NOTES
     x0, y0, x1, y1 = bp.FRAME
     OX, OY = bp.OX, bp.OY
     P.rect(x0, y0, x1, y1, "A-SHEET", lw=0.7)
-    P.text((OX, OY - 9), "ПЛАН ПЕРЕПЛАНИРОВКИ  /  REPLANNING PROPOSAL", 4.0, align="ml", style="bold")
+    P.text((OX, OY - 9), header, 4.0, align="ml", style="bold")
     P.text((OX, OY - 4), "М 1:50", 3.0, align="ml")
 
     sx, sy = bp.to_paper(bp.XMIN, 5400)
@@ -359,10 +382,10 @@ def build_sheet():
     cols = [0, 8, 34, 58, 72, 86]
     row_h = 6.0
     P.text((sx, sy - 3), "ЭКСПЛИКАЦИЯ / ROOM SCHEDULE", 2.5, align="ml", style="bold")
-    total_new = sum(AREAS.values())
+    total_new = sum(areas.values())
     rows = [("№", "Помещение", "Room", "было", "стало")]
-    for no, ru, en, before, _ in ROOMS2:
-        rows.append((no, ru, en, f"{before:.1f}" if before else "—", f"{AREAS[no]:.1f}"))
+    for no, ru, en, before, _ in rooms:
+        rows.append((no, ru, en, f"{before:.1f}" if before else "—", f"{areas[no]:.1f}"))
     rows.append(("", "Итого", "Total", "92.2", f"{total_new:.1f}"))
     for i, row in enumerate(rows):
         ty = sy + i * row_h
@@ -383,21 +406,6 @@ def build_sheet():
     for c in cols:
         P.line((sx + c, sy), (sx + c, bottom), "A-SHEET", lw=0.5 if c in (0, cols[-1]) else 0.18)
 
-    notes = [
-        ("ПРИМЕЧАНИЯ / NOTES", "bold"),
-        ("1. Размеры в мм, М 1:50 при печати A3 100 %.", "regular"),
-        ("   Dimensions in mm; 1:50 when printed on A3 at 100 %.", "italic"),
-        ("2. Меняются только внутренние перегородки; наружные", "regular"),
-        ("   стены, колонны, шахты и фасад - без изменений.", "regular"),
-        ("   Interior partitions only; shell, columns, shafts unchanged.", "italic"),
-        ("3. «Было» - площади исходного плана, «стало» - по чертежу", "regular"),
-        ("   (за вычетом колонн и шахт). / 'Before' = source plan,", "regular"),
-        ("   'after' = measured on this drawing, net of columns.", "italic"),
-        ("4. Детская 1 без окна: нужен свет с севера или", "regular"),
-        ("   стеклянная фрамуга. / Room 4.1 has no window.", "italic"),
-        ("5. Проект согласовать до начала работ.", "regular"),
-        ("   Approve with the authorities before building.", "italic"),
-    ]
     ny = bottom + 8
     for k, (s, st) in enumerate(notes):
         P.text((sx, ny + k * 4.2), s, 1.9, align="ml", style=st)
@@ -440,11 +448,10 @@ def build_sheet():
     P.line((tx0, ty0 + 27), (tx1, ty0 + 27), "A-SHEET", lw=0.5)
     for cx in (tx0 + 120, tx0 + 150):
         P.line((cx, ty0 + 14), (cx, ty1), "A-SHEET", lw=0.5)
-    P.text((tx0 + 4, ty0 + 5), "План квартиры - вариант перепланировки", 3.2, align="ml", style="bold")
-    P.text((tx0 + 4, ty0 + 10), "Apartment floor plan - replanning proposal (interior walls only)",
-           2.4, align="ml", style="italic")
+    P.text((tx0 + 4, ty0 + 5), title_ru, 3.2, align="ml", style="bold")
+    P.text((tx0 + 4, ty0 + 10), title_en, 2.4, align="ml", style="italic")
     P.text((tx0 + 4, ty0 + 18.5), "Общая площадь / Total area (по чертежу / measured):", 2.2, align="ml")
-    P.text((tx0 + 4, ty0 + 23), f"{total_new:.1f} м² (в т.ч. лоджия / incl. loggia {AREAS['8']:.1f} м²)",
+    P.text((tx0 + 4, ty0 + 23), f"{total_new:.1f} м² (в т.ч. лоджия / incl. loggia {areas['8']:.1f} м²)",
            2.2, align="ml", style="bold")
     P.text((tx0 + 135, ty0 + 17.5), "Масштаб / Scale", 1.8)
     P.text((tx0 + 135, ty0 + 23), "1:50", 3.5, style="bold")
@@ -453,7 +460,7 @@ def build_sheet():
     P.text((tx0 + 4, ty0 + 31.5), "Размеры в мм / Dimensions in mm", 2.2, align="ml")
     P.text((tx0 + 4, ty0 + 36), "Основа / Base: output/flat-plan_1-50_A3.pdf", 1.8, align="ml")
     P.text((tx0 + 135, ty0 + 30.5), "Лист / Sheet", 1.8)
-    P.text((tx0 + 135, ty0 + 35.5), "2", 3.0, style="bold")
+    P.text((tx0 + 135, ty0 + 35.5), sheet, 3.0, style="bold")
     P.text((tx0 + 167.5, ty0 + 30.5), "Дата / Date", 1.8)
     P.text((tx0 + 167.5, ty0 + 35.5), "27.09.2026", 2.4)
 

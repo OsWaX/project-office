@@ -50,3 +50,21 @@ New partitions are drawn orange, demolished ones dashed.
 
 Areas on sheet 2 are measured from the drawing (net of columns and shafts), next to the source
 values ("было"), so unchanged rooms show small differences.
+
+## Sheet 3: replanning, variant 2 (`build_replan_v2.py`)
+
+Interior walls only.
+
+* **4 → 4.1 daughter's room (6.6 m²) and 4.2 son's room (8.0 m²)**, separate rooms with separate doors
+  off a 900 mm passage. The block's south-west corner is squared off. 4.2 gets the facade window;
+  **4.1 has no window of its own**.
+* **3 → 3.1 bathroom (4.4 m², rectangular: the 45° corner is squared)** with its own door, plus a separate
+  **3.2 WC (1.0 m²)** in the hall corner with its own door.
+* **6 → 6 PC and home-cinema room (12.4 m²)**: screen, three recliners, projector and PC desk. The only
+  way in is a hidden bookcase door from the loggia.
+* **5 kitchen (12.1 m²)**: the west wall is glazed. The south wall now starts at bedroom 7's west wall,
+  so the kitchen gains a nook for the fridge and a pantry.
+* **7 → master bedroom (18.3 m²)**: its west wall runs straight up to the kitchen wall. The door moves
+  onto that wall and opens from the studio's lounge zone.
+* **2 corridor → studio (13.2 m²)** with a dining zone at the kitchen glass and a lounge zone in the
+  north part of the former room 6.
