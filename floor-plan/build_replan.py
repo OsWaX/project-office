@@ -367,7 +367,7 @@ NOTES = [
 def build_sheet(rooms=None, areas=None, notes=None, sheet="2",
                 title_ru="План квартиры - вариант перепланировки",
                 title_en="Apartment floor plan - replanning proposal (interior walls only)",
-                header="ПЛАН ПЕРЕПЛАНИРОВКИ  /  REPLANNING PROPOSAL"):
+                header="ПЛАН ПЕРЕПЛАНИРОВКИ  /  REPLANNING PROPOSAL", legend=None):
     rooms = rooms or ROOMS2
     areas = areas or AREAS
     notes = notes or NOTES
@@ -412,13 +412,15 @@ def build_sheet(rooms=None, areas=None, notes=None, sheet="2",
 
     ly = ny + len(notes) * 4.2 + 4
     P.text((sx, ly), "УСЛОВНЫЕ ОБОЗНАЧЕНИЯ / LEGEND", 2.1, align="ml", style="bold")
-    items = [("wall", "Стена сущ. / Existing wall"), ("new", "Новая перегородка / New partition"),
-             ("demo", "Демонтаж / Demolished"), ("col", "Колонна / Column"),
-             ("glass", "Остекление / Glazing")]
+    items = legend or [("wall", "Стена сущ. / Existing wall"), ("new", "Новая перегородка / New partition"),
+                       ("demo", "Демонтаж / Demolished"), ("col", "Колонна / Column"),
+                       ("glass", "Остекление / Glazing")]
     for k, (kind, label) in enumerate(items):
         yy = ly + 5 + k * 5
         bx0, by0, bx1, by1 = sx, yy - 1.6, sx + 10, yy + 1.6
-        if kind == "wall":
+        if isinstance(kind, tuple):
+            P.rect(bx0, by0, bx1, by1, "A-SHEET", fill=kind, lw=0.2)
+        elif kind == "wall":
             P.rect(bx0, by0, bx1, by1, "A-WALL", fill="wall", lw=0.35)
         elif kind == "new":
             P.rect(bx0, by0, bx1, by1, "A-WALL-NEW-FILL", fill="solid", lw=0.35, color=(0, 0, 0))

@@ -890,6 +890,8 @@ def write_dxf(path):
 
 
 def fill_rgb(fill, layer):
+    if isinstance(fill, tuple):
+        return fill
     if fill == "wall":
         return LAYERS["A-WALL-FILL"][0]
     if fill == "glass":

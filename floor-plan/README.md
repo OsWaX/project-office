@@ -89,3 +89,14 @@ real. They were then snapped to 50 mm. Page 1 is the plan at 1:50; page 2 is the
 | 8 Loggia | 3150 × 1650 | 5.1 |
 
 New walls: 11.65 m in total (200 / 100 mm). Demolition: 8.47 m (200 mm).
+
+## Sheet 5: colour furnished design of variant 3 (`build_design_v3.py`)
+
+The same walls, doors, dimensions and areas as sheet 4, still at 1:50, with floor finishes added:
+- oak parquet in the living rooms,
+- porcelain tile in the hall and kitchen,
+- bathroom tile in both bathrooms,
+- dark carpet in the cinema room,
+- decking on the loggia.
+
+Coloured furniture and décor are added too. Outputs: `output/design-v3_1-50_A3.pdf`, `.png` (200 dpi), `.dxf`.
