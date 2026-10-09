@@ -1,0 +1,66 @@
+{% extends "base.html" %}{% load i18n office %}
+{% block title %}{{ member|person }}{% endblock %}
+{% block page_name %}{% translate "Team" %}{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div>
+    <h1>{{ member|person }}</h1>
+    <div class="sub">{{ member.profile.position|default:"" }}{% if member.profile.department %} · {{ member.profile.department }}{% endif %} · {{ member.profile.get_role_display }}{% if not member.is_active %} · {% translate "inactive" %}{% endif %}</div>
+  </div>
+  <div class="page-actions">
+    <a class="btn" href="{% url 'kpi:employee' member.pk %}">{% icon "kpi" %}{% translate "KPI details" %}</a>
+    {% if is_manager %}
+      <a class="btn" href="{% url 'accounts:member_edit' member.pk %}">{% icon "edit" %}{% translate "Edit" %}</a>
+      <a class="btn btn-primary" href="{% url 'tasks:create' %}">{% icon "plus" %}{% translate "New task" %}</a>
+    {% endif %}
+  </div>
+</div>
+
+<div class="tiles">
+  <div class="card tile"><div class="label">{% translate "KPI this month" %}</div><div class="value">{{ current.score|pct }}</div><div class="foot">{{ current.grade|grade_label }}</div></div>
+  <div class="card tile"><div class="label">{% translate "Unfinished tasks" %}</div><div class="value">{{ active_tasks|length }}</div><div class="foot">{% translate "right now" %}</div></div>
+  <div class="card tile {% if stats.overdue %}alert{% endif %}"><div class="label">{% translate "Overdue" %}</div><div class="value">{{ stats.overdue }}</div><div class="foot">{% translate "right now" %}</div></div>
+  <div class="card tile"><div class="label">{% translate "Completed in total" %}</div><div class="value">{{ stats.done }}</div><div class="foot">{% blocktranslate with total=stats.total %}of {{ total }} assigned{% endblocktranslate %}</div></div>
+</div>
+
+<div class="grid grid-main">
+  <div class="stack">
+    <div class="card">
+      <div class="card-head"><h2>{% translate "Unfinished tasks" %}</h2></div>
+      <div class="card-body flush">{% translate "No unfinished tasks." as empty %}{% include "includes/task_mini_list.html" with tasks=active_tasks empty_text=empty %}</div>
+    </div>
+    <div class="card">
+      <div class="card-head"><h2>{% translate "Recently completed" %}</h2></div>
+      <div class="card-body flush">
+        {% if recent_done %}
+        <table class="table"><tbody>
+          {% for t in recent_done %}
+          <tr>
+            <td class="title-cell"><a href="{{ t.get_absolute_url }}">{{ t.title|truncatechars:70 }}</a><div class="meta">#{{ t.pk }} · {% complexity t.complexity %}</div></td>
+            <td class="num small">{% if t.completed_on_time %}<span class="muted">{% translate "on time" %}</span>{% else %}<span class="flag critical">{% translate "late" %}</span>{% endif %}<div class="muted">{{ t.quality_rating|default:"—" }} / 5</div></td>
+          </tr>
+          {% endfor %}
+        </tbody></table>
+        {% else %}<div class="empty">{% translate "Nothing completed yet." %}</div>{% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="stack">
+    <div class="card">
+      <div class="card-head"><h2>{% translate "KPI for the last 6 months" %}</h2></div>
+      <div class="card-body">{% include "includes/kpi_history.html" %}</div>
+    </div>
+    <div class="card">
+      <div class="card-head"><h2>{% translate "Contacts" %}</h2></div>
+      <div class="card-body">
+        <dl class="facts">
+          <dt>{% translate "Login" %}</dt><dd>{{ member.username }}</dd>
+          <dt>{% translate "Phone" %}</dt><dd>{{ member.profile.phone|default:"—" }}</dd>
+          <dt>{% translate "Email" %}</dt><dd>{{ member.email|default:"—" }}</dd>
+          <dt>{% translate "Monthly norm" %}</dt><dd>{% if member.profile.monthly_norm is not None %}{{ member.profile.monthly_norm }}{% else %}{% translate "default" %}{% endif %}</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

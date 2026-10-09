@@ -1,0 +1,6 @@
+{% load i18n %}
+<nav class="month-nav" aria-label="{% translate 'Month' %}">
+  <a href="?month={{ prev_month }}" title="{% translate 'Previous month' %}">←</a>
+  <strong>{{ month_label }}</strong>
+  {% if next_month %}<a href="?month={{ next_month }}" title="{% translate 'Next month' %}">→</a>{% else %}<span class="disabled">→</span>{% endif %}
+</nav>

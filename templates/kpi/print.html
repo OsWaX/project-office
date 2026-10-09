@@ -1,0 +1,54 @@
+{% load i18n static office %}<!doctype html>
+{% get_current_language as LANG %}
+<html lang="{{ LANG }}">
+<head>
+  <meta charset="utf-8">
+  <title>{% translate "KPI" %} {{ month_label }}</title>
+  <style>
+    body { font: 12px/1.4 "Times New Roman", Times, serif; color: #000; margin: 24px; background: #fff; }
+    h1 { font-size: 16px; text-align: center; margin: 0 0 4px; }
+    .org { text-align: center; font-size: 13px; margin-bottom: 4px; }
+    .meta { text-align: center; margin-bottom: 16px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border: 1px solid #000; padding: 4px 6px; }
+    th { background: #eee; font-weight: bold; }
+    td.n { text-align: right; white-space: nowrap; }
+    .sign { margin-top: 40px; display: flex; justify-content: space-between; gap: 40px; }
+    .sign div { flex: 1; }
+    .line { border-bottom: 1px solid #000; height: 28px; }
+    .toolbar { margin-bottom: 16px; font-family: system-ui, sans-serif; }
+    @media print { .toolbar { display: none; } body { margin: 0; } @page { size: A4 landscape; margin: 12mm; } }
+  </style>
+</head>
+<body>
+  <div class="toolbar"><button onclick="window.print()">{% translate "Print" %}</button></div>
+  {% if ORGANIZATION_NAME %}<div class="org">{{ ORGANIZATION_NAME }}</div>{% endif %}
+  <h1>{% blocktranslate %}Employee performance (KPI) for {{ month_label }}{% endblocktranslate %}</h1>
+  <div class="meta">
+    {% if period %}{% blocktranslate with date=period.finalized_at|date:"d.m.Y" %}Final results, approved {{ date }}{% endblocktranslate %}{% else %}{% translate "Preliminary results" %}{% endif %}
+    · {% blocktranslate with avg=summary.average|pct %}team average {{ avg }}{% endblocktranslate %}
+  </div>
+  <table>
+    <thead><tr>
+      <th>№</th><th>{% translate "Employee" %}</th><th>{% translate "Position" %}</th>
+      <th>{% translate "Tasks assessed" %}</th><th>{% translate "Completed" %}</th><th>{% translate "On time" %}</th>
+      <th>{% translate "Execution, %" %}</th><th>{% translate "Timeliness, %" %}</th><th>{% translate "Quality, %" %}</th><th>{% translate "Workload, %" %}</th>
+      <th>{% translate "Adjustment" %}</th><th>{% translate "KPI" %}</th><th>{% translate "Grade" %}</th>
+    </tr></thead>
+    <tbody>
+    {% for row in rows %}
+      <tr>
+        <td class="n">{{ forloop.counter }}</td><td>{{ row.name }}</td><td>{{ row.position }}</td>
+        <td class="n">{{ row.assessed }}</td><td class="n">{{ row.done }}</td><td class="n">{{ row.on_time }}</td>
+        <td class="n">{{ row.completion|pct }}</td><td class="n">{{ row.timeliness|pct }}</td><td class="n">{{ row.quality|pct }}</td><td class="n">{{ row.workload|pct }}</td>
+        <td class="n">{{ row.adjustment|signed }}</td><td class="n"><b>{{ row.score|pct }}</b></td><td>{% if row.grade %}{{ row.grade|grade_label }}{% else %}—{% endif %}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <div class="sign">
+    <div>{% translate "Prepared by" %}<div class="line"></div></div>
+    <div>{% translate "Approved by" %}<div class="line"></div>{{ user|person }}</div>
+  </div>
+</body>
+</html>

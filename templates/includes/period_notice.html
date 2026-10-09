@@ -1,0 +1,19 @@
+{% load i18n office %}
+{% if period %}
+  <div class="notice">
+    <span>{% icon "lock" %} {% blocktranslate with date=period.finalized_at|date:"d.m.Y" who=period.finalized_by|person %}Finalised on {{ date }} by {{ who }}. Results are frozen and no longer change.{% endblocktranslate %}</span>
+    {% if is_manager and show_actions %}
+      <form method="post" action="{% url 'kpi:reopen' %}" onsubmit="return confirm('{{ reopen_month_msg|escapejs }}')">{% csrf_token %}<input type="hidden" name="month" value="{{ month_param }}"><button class="btn btn-sm">{% translate "Reopen month" %}</button></form>
+    {% endif %}
+  </div>
+{% else %}
+  <div class="notice {% if pending %}warn{% endif %}">
+    <span>
+      {% if is_current_month %}{% translate "Preliminary: the month is still running and results update as tasks are completed." %}{% else %}{% translate "Not finalised yet: results still change if tasks of this month are edited." %}{% endif %}
+      {% if pending %}<br><strong>{% blocktranslate count n=pending %}{{ n }} task of this month is awaiting review and is not counted yet.{% plural %}{{ n }} tasks of this month are awaiting review and are not counted yet.{% endblocktranslate %}</strong>{% endif %}
+    </span>
+    {% if is_manager and show_actions and not is_current_month %}
+      <form method="post" action="{% url 'kpi:finalize' %}" onsubmit="return confirm('{{ finalize_msg|escapejs }}')">{% csrf_token %}<input type="hidden" name="month" value="{{ month_param }}"><button class="btn btn-sm btn-primary">{% icon "lock" %}{% translate "Finalise month" %}</button></form>
+    {% endif %}
+  </div>
+{% endif %}

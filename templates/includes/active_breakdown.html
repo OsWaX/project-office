@@ -1,0 +1,18 @@
+{% load i18n %}
+<div class="card">
+  <div class="card-head"><h2>{% translate "Work in progress by status" %}</h2><span class="hint">{% blocktranslate count n=active_total %}{{ n }} unfinished task{% plural %}{{ n }} unfinished tasks{% endblocktranslate %}</span></div>
+  <div class="card-body">
+    {% if active_total %}
+      <div class="stacked" role="img" aria-label="{% translate 'Work in progress by status' %}">
+        {% for item in active_breakdown %}{% if item.count %}<span style="flex: {{ item.count }}; background: var(--st-{{ item.status }})" title="{{ item.label }}: {{ item.count }}"></span>{% endif %}{% endfor %}
+      </div>
+      <div class="legend">
+        {% for item in active_breakdown %}
+          <a class="legend-item" href="{% url 'tasks:list' %}?state={{ item.status }}"><span class="swatch" style="--c: var(--st-{{ item.status }})"></span>{{ item.label }} <b>{{ item.count }}</b></a>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="muted">{% translate "No unfinished tasks." %}</div>
+    {% endif %}
+  </div>
+</div>

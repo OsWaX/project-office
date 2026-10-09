@@ -1,0 +1,138 @@
+{% extends "base.html" %}{% load i18n office %}
+{% block title %}{% translate "KPI" %} · {{ member|person }}{% endblock %}
+{% block page_name %}{% translate "KPI" %}{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div>
+    {% if is_manager %}<div class="small" style="margin-bottom:6px"><a href="{% url 'kpi:month' %}?month={{ month_param }}">← {% translate "Team KPI" %}</a></div>{% endif %}
+    <h1>{{ member|person }}</h1>
+    <div class="sub">{{ member.profile.position|default:"" }}{% if member.profile.department %} · {{ member.profile.department }}{% endif %}</div>
+  </div>
+  <div class="page-actions">{% include "includes/month_nav.html" %}</div>
+</div>
+
+{% include "includes/period_notice.html" with pending=row.pending show_actions=False %}
+
+<div class="grid grid-main" style="margin-bottom:20px">
+  <div class="card">
+    <div class="card-head"><h2>{% blocktranslate %}KPI for {{ month_label }}{% endblocktranslate %}</h2></div>
+    <div class="card-body">
+      <div class="hero">
+        {% if row.score is not None %}<div class="figure">{{ row.score|pct }}<small> / 100</small></div>{% else %}<div class="figure none">—</div>{% endif %}
+        <div>
+          {% if row.grade %}<span class="grade grade-{{ row.grade }}">{{ row.grade|grade_label }}</span>{% else %}<span class="muted">{% translate "No assessed tasks in this month" %}</span>{% endif %}
+          {% if row.base_score is not None %}
+            <div class="muted small" style="margin-top:6px">{% blocktranslate with base=row.base_score|pct adj=row.adjustment|signed %}Base score {{ base }}, manager adjustment {{ adj }}{% endblocktranslate %}</div>
+          {% endif %}
+          <div class="muted small">{% blocktranslate with total=row.tasks_total assessed=row.assessed done=row.done pending=row.pending upcoming=row.upcoming %}{{ total }} tasks this month: {{ assessed }} assessed, {{ done }} completed, {{ pending }} awaiting review, {{ upcoming }} not yet due{% endblocktranslate %}</div>
+        </div>
+      </div>
+      <div style="border-top:1px solid var(--line); margin-top:18px; padding-top:14px">
+        <h3 style="margin-bottom:10px">{% translate "Manager adjustments" %}</h3>
+      {% if row.adjustments %}
+        <ul class="timeline" style="margin-bottom:14px">
+          {% for a in row.adjustments %}
+            <li><div><strong>{{ a.points|signed }}</strong> — {{ a.reason }}
+              <div class="when">{{ a.by }} · {{ a.at }}
+                {% if is_manager and not period %}
+                  · <form method="post" action="{% url 'kpi:adjust_delete' a.id %}" style="display:inline">{% csrf_token %}<button class="btn-link small">{% translate "Remove" %}</button></form>
+                {% endif %}
+              </div></div></li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="muted small">{% translate "No adjustments this month." %}</p>
+      {% endif %}
+      {% if is_manager and not period %}
+        <form method="post" action="{% url 'kpi:adjust' member.pk %}" class="stack" style="gap:10px">
+          {% csrf_token %}
+          <input type="hidden" name="month" value="{{ month_param }}">
+          {% include "includes/field.html" with field=adjustment_form.points %}
+          {% include "includes/field.html" with field=adjustment_form.reason %}
+          <div class="help muted small">{% translate "Use for work outside the portal (initiative, extra assignments) or discipline issues. The reason is visible to the employee." %}</div>
+          <div><button class="btn">{% translate "Add adjustment" %}</button></div>
+        </form>
+      {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-head"><h2>{% translate "Last 6 months" %}</h2></div>
+    <div class="card-body">{% include "includes/kpi_history.html" %}</div>
+  </div>
+</div>
+
+<div class="components" style="margin-bottom:20px">
+  <div class="card component">
+    <div class="label">{{ component_labels.completion }}</div>
+    <div class="value">{{ row.completion|pct }}{% if row.completion is not None %}<small class="muted">%</small>{% endif %}</div>
+    {% include "includes/meter.html" with score=row.completion kpi_settings=None %}
+    <div class="formula">{% blocktranslate with a=row.points_done b=row.points_assessed %}{{ a }} of {{ b }} points completed{% endblocktranslate %}</div>
+    <div class="weight">{% blocktranslate with w=kpi_settings.weight_completion %}weight {{ w }}%{% endblocktranslate %}</div>
+  </div>
+  <div class="card component">
+    <div class="label">{{ component_labels.timeliness }}</div>
+    <div class="value">{{ row.timeliness|pct }}{% if row.timeliness is not None %}<small class="muted">%</small>{% endif %}</div>
+    {% include "includes/meter.html" with score=row.timeliness kpi_settings=None %}
+    <div class="formula">{% blocktranslate with a=row.points_on_time b=row.points_assessed %}{{ a }} of {{ b }} points handed in on time{% endblocktranslate %}</div>
+    <div class="weight">{% blocktranslate with w=kpi_settings.weight_timeliness %}weight {{ w }}%{% endblocktranslate %}</div>
+  </div>
+  <div class="card component">
+    <div class="label">{{ component_labels.quality }}</div>
+    <div class="value">{{ row.quality|pct }}{% if row.quality is not None %}<small class="muted">%</small>{% endif %}</div>
+    {% include "includes/meter.html" with score=row.quality kpi_settings=None %}
+    <div class="formula">{% if row.quality_avg %}{% blocktranslate with a=row.quality_avg %}average rating {{ a }} of 5{% endblocktranslate %}{% else %}{% translate "no rated tasks" %}{% endif %}</div>
+    <div class="weight">{% blocktranslate with w=kpi_settings.weight_quality %}weight {{ w }}%{% endblocktranslate %}</div>
+  </div>
+  <div class="card component">
+    <div class="label">{{ component_labels.workload }}</div>
+    <div class="value">{{ row.workload|pct }}{% if row.workload is not None %}<small class="muted">%</small>{% endif %}</div>
+    {% include "includes/meter.html" with score=row.workload kpi_settings=None %}
+    <div class="formula">{% if row.norm %}{% blocktranslate with a=row.points_done n=row.norm|pct %}{{ a }} points completed of a norm of {{ n }}{% endblocktranslate %}{% else %}{% translate "no workload norm" %}{% endif %}</div>
+    <div class="weight">{% blocktranslate with w=kpi_settings.weight_workload %}weight {{ w }}%{% endblocktranslate %}</div>
+  </div>
+</div>
+
+<div>
+  <div class="card">
+    <div class="card-head"><h2>{% translate "Tasks of the month" %}</h2><span class="hint">{% translate "by deadline" %}</span></div>
+    <div class="table-wrap">
+    {% if row.tasks %}
+    <table class="table">
+      <thead><tr>
+        <th>{% translate "Task" %}</th>
+        <th class="hide-sm">{% translate "Complexity" %}</th>
+        <th class="num">{% translate "Points" %}</th>
+        <th class="num">{% translate "Deadline" %}</th>
+        <th class="num hide-sm">{% translate "Handed in" %}</th>
+        <th>{% translate "Result" %}</th>
+        <th class="num">{% translate "Quality" %}</th>
+      </tr></thead>
+      <tbody>
+      {% for t in row.tasks %}
+        <tr>
+          <td class="title-cell"><a href="{% url 'tasks:detail' t.id %}">{{ t.title|truncatechars:60 }}</a><div class="meta">#{{ t.id }}</div></td>
+          <td class="hide-sm">{% complexity t.complexity %}</td>
+          <td class="num">{{ t.points }}</td>
+          <td class="num">{{ t.deadline|iso_date|date:"d.m.Y" }}</td>
+          <td class="num hide-sm">{% if t.submitted %}{{ t.submitted|iso_date|date:"d.m.Y" }}{% else %}—{% endif %}</td>
+          <td>
+            {% if t.outcome == "on_time" %}<span class="badge st-done">{{ t.outcome|outcome_label }}</span>
+            {% elif t.outcome == "late" %}<span class="badge st-returned">{{ t.outcome|outcome_label }}</span>
+            {% elif t.outcome == "failed" %}<span class="flag critical">{% icon "alert" %}{{ t.outcome|outcome_label }}</span>
+            {% elif t.outcome == "pending" %}<span class="badge st-on_review">{{ t.outcome|outcome_label }}</span>
+            {% else %}<span class="muted small">{{ t.outcome|outcome_label }}</span>{% endif %}
+          </td>
+          <td class="num">{% if t.rating %}{{ t.rating }}/5{% else %}—{% endif %}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+      <div class="empty">{% translate "No tasks with a deadline in this month." %}</div>
+    {% endif %}
+    </div>
+  </div>
+
+</div>
+{% endblock %}

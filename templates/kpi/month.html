@@ -1,0 +1,65 @@
+{% extends "base.html" %}{% load i18n office %}
+{% block title %}{% translate "KPI" %} {{ month_label }}{% endblock %}
+{% block page_name %}{% translate "KPI" %}{% endblock %}
+{% block content %}
+{% translate "Reopen this month? Results will be recalculated from current data." as reopen_month_msg %}
+{% translate "Finalise this month? Results will be frozen." as finalize_msg %}
+<div class="page-head">
+  <div>
+    <h1>{% blocktranslate %}Team KPI — {{ month_label }}{% endblocktranslate %}</h1>
+    <div class="sub">{% translate "Tasks are counted in the month of their deadline." %} <a href="{% url 'kpi:methodology' %}">{% translate "How KPI is calculated" %}</a></div>
+  </div>
+  <div class="page-actions">
+    {% include "includes/month_nav.html" %}
+    <a class="btn" href="{% url 'kpi:export' %}?month={{ month_param }}">{% icon "download" %}Excel</a>
+    <a class="btn" href="{% url 'kpi:print' %}?month={{ month_param }}" target="_blank">{% icon "print" %}{% translate "Print" %}</a>
+  </div>
+</div>
+
+{% include "includes/period_notice.html" with pending=summary.pending show_actions=True %}
+
+<div class="tiles">
+  <div class="card tile"><div class="label">{% translate "Team average KPI" %}</div><div class="value">{{ summary.average|pct }}</div><div class="foot">{% blocktranslate count n=summary.people %}{{ n }} employee assessed{% plural %}{{ n }} employees assessed{% endblocktranslate %}</div></div>
+  <div class="card tile"><div class="label"><span class="grade grade-excellent">{{ grade_labels.excellent }}</span></div><div class="value">{{ summary.grades.excellent }}</div><div class="foot">{% blocktranslate with t=kpi_settings.grade_excellent %}KPI ≥ {{ t }}{% endblocktranslate %}</div></div>
+  <div class="card tile"><div class="label"><span class="grade grade-good">{{ grade_labels.good }}</span> / <span class="grade grade-satisfactory">{{ grade_labels.satisfactory }}</span></div><div class="value">{{ summary.grades.good }} / {{ summary.grades.satisfactory }}</div><div class="foot">{% blocktranslate with g=kpi_settings.grade_good s=kpi_settings.grade_satisfactory %}KPI ≥ {{ g }} / ≥ {{ s }}{% endblocktranslate %}</div></div>
+  <div class="card tile {% if summary.grades.unsatisfactory %}alert{% endif %}"><div class="label"><span class="grade grade-unsatisfactory">{{ grade_labels.unsatisfactory }}</span></div><div class="value">{{ summary.grades.unsatisfactory }}</div><div class="foot">{% blocktranslate with s=kpi_settings.grade_satisfactory %}KPI below {{ s }}{% endblocktranslate %}</div></div>
+</div>
+
+<div class="card">
+  <div class="table-wrap">
+  <table class="table">
+    <thead><tr>
+      <th class="num">№</th>
+      <th>{% translate "Employee" %}</th>
+      <th class="num" title="{% translate 'Completed / assessed tasks' %}">{% translate "Tasks" %}</th>
+      <th class="num">{% translate "Execution" %}</th>
+      <th class="num">{% translate "Timeliness" %}</th>
+      <th class="num">{% translate "Quality" %}</th>
+      <th class="num">{% translate "Workload" %}</th>
+      <th class="num">{% translate "Adj." %}</th>
+      <th style="min-width:170px">{% translate "KPI" %}</th>
+      <th>{% translate "Grade" %}</th>
+    </tr></thead>
+    <tbody>
+    {% for row in rows %}
+      <tr>
+        <td class="num muted">{{ forloop.counter }}</td>
+        <td class="title-cell"><a href="{% url 'kpi:employee' row.user_id %}?month={{ month_param }}">{{ row.name }}</a><div class="meta">{{ row.position|default:row.department }}</div></td>
+        <td class="num">{{ row.done }} / {{ row.assessed }}{% if row.pending %}<div class="muted small">+{{ row.pending }} {% translate "on review" %}</div>{% endif %}</td>
+        <td class="num">{{ row.completion|pct }}</td>
+        <td class="num">{{ row.timeliness|pct }}</td>
+        <td class="num">{{ row.quality|pct }}</td>
+        <td class="num">{{ row.workload|pct }}</td>
+        <td class="num">{% if row.adjustment %}{{ row.adjustment|signed }}{% else %}<span class="muted">0</span>{% endif %}</td>
+        <td>{% include "includes/meter.html" with score=row.score %}</td>
+        <td>{% if row.grade %}<span class="grade grade-{{ row.grade }}">{{ row.grade|grade_label }}</span>{% else %}<span class="muted small">{% translate "No data" %}</span>{% endif %}</td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="10" class="empty">{% translate "No employees or tasks for this month." %}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>
+<p class="muted small" style="margin-top:12px">{% blocktranslate with c=kpi_settings.weight_completion t=kpi_settings.weight_timeliness q=kpi_settings.weight_quality w=kpi_settings.weight_workload %}Weights: execution {{ c }}%, timeliness {{ t }}%, quality {{ q }}%, workload {{ w }}%.{% endblocktranslate %}{% if period %} {% translate "This finalised month uses the settings that applied when it was finalised." %}{% endif %}</p>
+{% endblock %}

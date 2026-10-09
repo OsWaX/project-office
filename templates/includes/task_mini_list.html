@@ -1,0 +1,21 @@
+{% load i18n office %}
+{% if tasks %}
+<table class="table">
+  <tbody>
+  {% for task in tasks %}
+    <tr class="{% if task.is_overdue %}is-overdue{% endif %}">
+      <td class="title-cell">
+        <a href="{{ task.get_absolute_url }}">{{ task.title|truncatechars:70 }}</a>
+        <div class="meta">#{{ task.pk }}{% if show_assignee %} · {{ task.assignee|person }}{% endif %}{% if task.category %} · {{ task.category }}{% endif %}</div>
+      </td>
+      <td class="num">
+        <div>{{ task.deadline|date:"d.m.Y" }}</div>
+        {% with hint=task|deadline_hint %}{% if hint %}<div class="small {% if task.is_overdue %}flag critical{% else %}muted{% endif %}">{{ hint }}</div>{% endif %}{% endwith %}
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<div class="empty">{{ empty_text }}</div>
+{% endif %}

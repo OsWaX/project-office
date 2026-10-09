@@ -1,0 +1,124 @@
+{% extends "base.html" %}{% load i18n office %}
+{% block title %}{% translate "Dashboard" %}{% endblock %}
+{% block page_name %}{% translate "Dashboard" %}{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div>
+    <h1>{% blocktranslate with name=user.first_name|default:user.username %}Welcome, {{ name }}{% endblocktranslate %}</h1>
+    <div class="sub">{{ today|date:"l, d.m.Y" }}</div>
+  </div>
+  {% if is_manager %}
+  <div class="page-actions"><a class="btn btn-primary" href="{% url 'tasks:create' %}">{% icon "plus" %}{% translate "New task" %}</a></div>
+  {% endif %}
+</div>
+
+<div class="tiles">
+  <a class="card tile" href="{% url 'tasks:list' %}?state=active">
+    <div class="label">{% if is_manager %}{% translate "Unfinished tasks" %}{% else %}{% translate "My unfinished tasks" %}{% endif %}</div>
+    <div class="value">{{ active_total }}</div>
+    <div class="foot">{% translate "new, in progress, on review, returned" %}</div>
+  </a>
+  <a class="card tile {% if overdue_count %}alert{% endif %}" href="{% url 'tasks:list' %}?state=overdue">
+    <div class="label">{% if overdue_count %}<span class="flag critical">{% icon "alert" %}</span>{% endif %}{% translate "Overdue" %}</div>
+    <div class="value">{{ overdue_count }}</div>
+    <div class="foot">{% translate "deadline passed, not handed in" %}</div>
+  </a>
+  <a class="card tile" href="{% url 'tasks:list' %}?state=on_review">
+    <div class="label">{% if is_manager %}{% translate "Awaiting your review" %}{% else %}{% translate "On review" %}{% endif %}</div>
+    <div class="value">{{ review_count }}</div>
+    <div class="foot">{% if is_manager %}{% translate "handed in by executors" %}{% else %}{% translate "waiting for the manager's decision" %}{% endif %}</div>
+  </a>
+  <a class="card tile" href="{% url 'tasks:list' %}?state=done">
+    <div class="label">{% translate "Completed this month" %}</div>
+    <div class="value">{{ done_this_month }}</div>
+    <div class="foot">{{ month|date:"F Y" }}</div>
+  </a>
+</div>
+
+{% if is_manager %}
+<div class="stack">
+  {% include "includes/active_breakdown.html" %}
+  <div class="card">
+    <div class="card-head">
+      <h2>{% blocktranslate with month=month|date:"F Y" %}Team KPI — {{ month }}{% endblocktranslate %}</h2>
+      <a class="small" href="{% url 'kpi:month' %}">{% translate "Full KPI report" %} →</a>
+    </div>
+    <div class="card-body flush table-wrap">
+      {% if team_rows %}
+      <table class="table">
+        <thead><tr>
+          <th>{% translate "Employee" %}</th>
+          <th class="num">{% translate "Unfinished" %}</th>
+          <th class="num">{% translate "Overdue" %}</th>
+          <th class="num hide-sm">{% translate "On review" %}</th>
+          <th style="min-width:200px">{% translate "KPI so far" %}</th>
+          <th class="hide-sm">{% translate "Grade" %}</th>
+        </tr></thead>
+        <tbody>
+        {% for row in team_rows %}
+          <tr>
+            <td class="title-cell"><a href="{% url 'kpi:employee' row.user_id %}">{{ row.name }}</a><div class="meta">{{ row.position|default:row.department }}</div></td>
+            <td class="num">{{ row.active_now }}</td>
+            <td class="num">{% if row.overdue_now %}<span class="flag critical">{% icon "alert" %}{{ row.overdue_now }}</span>{% else %}0{% endif %}</td>
+            <td class="num hide-sm">{{ row.review_now }}</td>
+            <td>{% include "includes/meter.html" with score=row.score %}</td>
+            <td class="hide-sm">{% if row.grade %}<span class="grade grade-{{ row.grade }}">{{ row.grade|grade_label }}</span>{% else %}<span class="muted small">{% translate "No data" %}</span>{% endif %}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+        <div class="empty">{% translate "No team members yet." %} <a href="{% url 'accounts:member_create' %}">{% translate "Add a team member" %}</a></div>
+      {% endif %}
+    </div>
+  </div>
+  <div class="grid grid-3">
+    <div class="card">
+      <div class="card-head"><h2>{% translate "Awaiting your review" %}</h2><span class="hint">{{ review_count }}</span></div>
+      <div class="card-body flush">{% translate "Nothing is waiting for review." as empty %}{% include "includes/task_mini_list.html" with tasks=review_tasks show_assignee=True empty_text=empty %}</div>
+    </div>
+    <div class="card">
+      <div class="card-head"><h2>{% translate "Overdue" %}</h2><span class="hint">{{ overdue_count }}</span></div>
+      <div class="card-body flush">{% translate "No overdue tasks." as empty %}{% include "includes/task_mini_list.html" with tasks=overdue_tasks show_assignee=True empty_text=empty %}</div>
+    </div>
+    <div class="card">
+      <div class="card-head"><h2>{% translate "Due in the next 7 days" %}</h2></div>
+      <div class="card-body flush">{% translate "No deadlines this week." as empty %}{% include "includes/task_mini_list.html" with tasks=upcoming_tasks show_assignee=True empty_text=empty %}</div>
+    </div>
+  </div>
+</div>
+
+{% else %}
+<div class="grid grid-main">
+  <div class="stack">
+    <div class="card">
+      <div class="card-head"><h2>{% blocktranslate with month=month|date:"F Y" %}My KPI — {{ month }}{% endblocktranslate %}</h2><a class="small" href="{% url 'kpi:employee' user.pk %}">{% translate "Details" %} →</a></div>
+      <div class="card-body">
+        <div class="hero">
+          {% if my_kpi.score is not None %}<div class="figure">{{ my_kpi.score|pct }}<small> / 100</small></div>{% else %}<div class="figure none">—</div>{% endif %}
+          <div>
+            {% if my_kpi.grade %}<span class="grade grade-{{ my_kpi.grade }}">{{ my_kpi.grade|grade_label }}</span>{% else %}<span class="muted">{% translate "No assessed tasks yet this month" %}</span>{% endif %}
+            <div class="muted small" style="margin-top:6px">{% blocktranslate with done=my_kpi.done assessed=my_kpi.assessed pending=my_kpi.pending %}{{ done }} of {{ assessed }} assessed tasks completed · {{ pending }} awaiting review{% endblocktranslate %}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% include "includes/active_breakdown.html" %}
+    <div class="card">
+      <div class="card-head"><h2>{% translate "My unfinished tasks" %}</h2><a class="small" href="{% url 'tasks:list' %}?state=active">{% translate "All" %} →</a></div>
+      <div class="card-body flush">{% translate "You have no unfinished tasks." as empty %}{% include "includes/task_mini_list.html" with tasks=my_tasks empty_text=empty %}</div>
+    </div>
+  </div>
+  <div class="stack">
+    <div class="card">
+      <div class="card-head"><h2>{% translate "Overdue" %}</h2><span class="hint">{{ overdue_count }}</span></div>
+      <div class="card-body flush">{% translate "No overdue tasks." as empty %}{% include "includes/task_mini_list.html" with tasks=overdue_tasks empty_text=empty %}</div>
+    </div>
+    <div class="card">
+      <div class="card-head"><h2>{% translate "Due in the next 7 days" %}</h2></div>
+      <div class="card-body flush">{% translate "No deadlines this week." as empty %}{% include "includes/task_mini_list.html" with tasks=upcoming_tasks empty_text=empty %}</div>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

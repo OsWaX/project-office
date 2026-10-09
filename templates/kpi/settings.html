@@ -1,0 +1,44 @@
+{% extends "base.html" %}{% load i18n %}
+{% block title %}{% translate "KPI settings" %}{% endblock %}
+{% block page_name %}{% translate "KPI settings" %}{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div>
+    <h1>{% translate "KPI settings" %}</h1>
+    <div class="sub">{% translate "Changes apply to all months that are not finalised." %} <a href="{% url 'kpi:methodology' %}">{% translate "How KPI is calculated" %}</a></div>
+  </div>
+</div>
+<form method="post" class="stack" style="max-width:860px">
+  {% csrf_token %}
+  {% if form.non_field_errors %}<ul class="errorlist nonfield">{% for e in form.non_field_errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+  <div class="card">
+    <div class="card-head"><h2>{% translate "Component weights" %}</h2><span class="hint">{% translate "must add up to 100" %}</span></div>
+    <div class="card-body form-grid">
+      {% include "includes/field.html" with field=form.weight_completion %}
+      {% include "includes/field.html" with field=form.weight_timeliness %}
+      {% include "includes/field.html" with field=form.weight_quality %}
+      {% include "includes/field.html" with field=form.weight_workload %}
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-head"><h2>{% translate "Points by complexity" %}</h2></div>
+    <div class="card-body form-grid">
+      {% include "includes/field.html" with field=form.points_simple %}
+      {% include "includes/field.html" with field=form.points_medium %}
+      {% include "includes/field.html" with field=form.points_complex %}
+      {% include "includes/field.html" with field=form.points_very_complex %}
+      {% include "includes/field.html" with field=form.default_monthly_norm full=True %}
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-head"><h2>{% translate "Grades and adjustments" %}</h2></div>
+    <div class="card-body form-grid">
+      {% include "includes/field.html" with field=form.grade_excellent %}
+      {% include "includes/field.html" with field=form.grade_good %}
+      {% include "includes/field.html" with field=form.grade_satisfactory %}
+      {% include "includes/field.html" with field=form.max_adjustment %}
+    </div>
+  </div>
+  <div class="form-actions"><button class="btn btn-primary">{% translate "Save settings" %}</button></div>
+</form>
+{% endblock %}

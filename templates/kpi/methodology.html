@@ -1,0 +1,65 @@
+{% extends "base.html" %}{% load i18n %}
+{% block title %}{% translate "How KPI is calculated" %}{% endblock %}
+{% block page_name %}{% translate "How KPI is calculated" %}{% endblock %}
+{% block content %}
+{% with s=kpi_settings %}
+<div class="page-head"><h1>{% translate "How KPI is calculated" %}</h1></div>
+<div class="card"><div class="card-body prose">
+  <p>{% translate "Every employee's KPI is calculated once a month from the tasks in this portal. The rules are the same for everyone and every number can be checked on the employee's KPI page." %}</p>
+
+  <h2>1. {% translate "Which tasks count" %}</h2>
+  <ul>
+    <li>{% translate "A task belongs to the month in which its deadline falls." %}</li>
+    <li>{% translate "Cancelled tasks are not counted." %}</li>
+    <li>{% translate "A task is assessed when it has been accepted by the manager, or when its deadline has passed and it has not been handed in (then it counts as not done)." %}</li>
+    <li>{% translate "Tasks handed in and waiting for the manager's review are not counted until they are reviewed, so a slow review never lowers the employee's score." %}</li>
+    <li>{% translate "Timeliness is judged by the date the executor handed the work in, not by the date the manager accepted it." %}</li>
+  </ul>
+
+  <h2>2. {% translate "Task weight by complexity" %}</h2>
+  <p>{% translate "Harder tasks weigh more in every component:" %}</p>
+  <table class="table" style="max-width:420px">
+    <tbody>
+      <tr><td>{% translate "Simple" %}</td><td class="num">{{ s.points_simple }}</td></tr>
+      <tr><td>{% translate "Medium" %}</td><td class="num">{{ s.points_medium }}</td></tr>
+      <tr><td>{% translate "Complex" %}</td><td class="num">{{ s.points_complex }}</td></tr>
+      <tr><td>{% translate "Very complex" %}</td><td class="num">{{ s.points_very_complex }}</td></tr>
+    </tbody>
+  </table>
+
+  <h2>3. {% translate "Four components (each from 0 to 100)" %}</h2>
+  <ol>
+    <li><strong>{% translate "Execution" %}</strong> ({{ s.weight_completion }}%) — {% translate "points of completed tasks ÷ points of all assessed tasks." %}</li>
+    <li><strong>{% translate "Timeliness" %}</strong> ({{ s.weight_timeliness }}%) — {% translate "points of tasks handed in by the deadline ÷ points of all assessed tasks." %}</li>
+    <li><strong>{% translate "Quality" %}</strong> ({{ s.weight_quality }}%) — {% translate "the manager's average rating (1–5) of completed tasks, weighted by points, as a share of 5." %}</li>
+    <li><strong>{% translate "Workload" %}</strong> ({{ s.weight_workload }}%) — {% blocktranslate with norm=s.default_monthly_norm %}points of completed tasks ÷ monthly norm (default {{ norm }} points, can be set per person), at most 100. During the current month the norm is reduced in proportion to the days that have passed.{% endblocktranslate %}</li>
+  </ol>
+
+  <h2>4. {% translate "Final score" %}</h2>
+  <div class="formula-box">{% translate "Base score" %} = {{ s.weight_completion }}% × {% translate "Execution" %} + {{ s.weight_timeliness }}% × {% translate "Timeliness" %} + {{ s.weight_quality }}% × {% translate "Quality" %} + {{ s.weight_workload }}% × {% translate "Workload" %}<br>{% translate "KPI" %} = {% translate "Base score" %} + {% translate "manager adjustments" %} ({% translate "from 0 to 100" %})</div>
+  <p style="margin-top:10px">{% blocktranslate with m=s.max_adjustment %}A manager may add a bonus or penalty of up to ±{{ m }} points per entry with a written reason, for work that is not in the portal or for discipline issues. The reason is visible to the employee.{% endblocktranslate %}</p>
+  <p>{% translate "If a component cannot be measured (for example, nothing was completed, so there is nothing to rate), its weight is shared among the other components." %}</p>
+
+  <h2>5. {% translate "Grades" %}</h2>
+  <ul>
+    <li><span class="grade grade-excellent">{{ grade_labels.excellent }}</span> — {% blocktranslate with t=s.grade_excellent %}{{ t }} and above{% endblocktranslate %}</li>
+    <li><span class="grade grade-good">{{ grade_labels.good }}</span> — {% blocktranslate with t=s.grade_good %}{{ t }} and above{% endblocktranslate %}</li>
+    <li><span class="grade grade-satisfactory">{{ grade_labels.satisfactory }}</span> — {% blocktranslate with t=s.grade_satisfactory %}{{ t }} and above{% endblocktranslate %}</li>
+    <li><span class="grade grade-unsatisfactory">{{ grade_labels.unsatisfactory }}</span> — {% blocktranslate with t=s.grade_satisfactory %}below {{ t }}{% endblocktranslate %}</li>
+  </ul>
+
+  <h2>6. {% translate "Closing the month" %}</h2>
+  <p>{% translate "After the month ends the manager reviews the remaining tasks and finalises the month. Finalised results are frozen: later edits to tasks or settings do not change them. A finalised month can be reopened if a correction is needed." %}</p>
+
+  <h2>{% translate "Example" %}</h2>
+  <p>{% translate "An employee had 4 tasks due in the month: two medium (2 points each), one complex (3) and one simple (1) — 8 points in total. The complex task was handed in a day late, the simple one was not done. Ratings: 5, 4 and 4." %}</p>
+  <ul>
+    <li>{% translate "Execution = 7 ÷ 8 = 87.5" %}</li>
+    <li>{% translate "Timeliness = 4 ÷ 8 = 50" %}</li>
+    <li>{% translate "Quality = (2×5 + 2×4 + 3×4) ÷ 7 = 4.29 of 5 = 85.7" %}</li>
+    <li>{% translate "Workload with a norm of 20 = 7 ÷ 20 = 35" %}</li>
+    <li>{% translate "KPI = 0.35×87.5 + 0.25×50 + 0.25×85.7 + 0.15×35 = 69.8 (Satisfactory) with the default weights" %}</li>
+  </ul>
+</div></div>
+{% endwith %}
+{% endblock %}

@@ -1,0 +1,211 @@
+{% extends "base.html" %}{% load i18n office humanize %}
+{% block title %}#{{ task.pk }} {{ task.title|truncatechars:40 }}{% endblock %}
+{% block page_name %}{% translate "Task" %} #{{ task.pk }}{% endblock %}
+{% block content %}
+{% translate "Delete this file?" as delete_file_msg %}{% translate "Reopen this task? Its quality rating will be cleared." as reopen_msg %}
+<div class="page-head">
+  <div>
+    <div class="detail-title">
+      <h1><span class="id">#{{ task.pk }}</span> {{ task.title }}</h1>
+    </div>
+    <div class="sub" style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top:8px">
+      {% status_badge task.status %}
+      {% if task.is_overdue %}<span class="flag critical">{% icon "alert" %}{% translate "Overdue" %} · {{ task|deadline_hint }}</span>{% endif %}
+      {% priority_flag task.priority %}
+    </div>
+  </div>
+  <div class="page-actions">
+    {% if is_manager %}<a class="btn" href="{% url 'tasks:edit' task.pk %}">{% icon "edit" %}{% translate "Edit" %}</a>{% endif %}
+  </div>
+</div>
+
+<div class="grid grid-main">
+  <div class="stack">
+    <div class="card">
+      <div class="card-body">
+        {% if task.review_comment and task.status == "returned" %}
+          <div class="review-note"><strong>{% translate "Returned for revision:" %}</strong> {{ task.review_comment }}</div>
+        {% endif %}
+        {% if task.description %}
+          <div class="description">{{ task.description|urlize }}</div>
+        {% else %}
+          <div class="muted">{% translate "No description." %}</div>
+        {% endif %}
+        <div style="margin-top:18px">
+          <div class="small secondary" style="display:flex; justify-content:space-between"><span>{% translate "Progress" %}</span><span>{{ task.progress }}%</span></div>
+          <div class="progress-line" style="margin-top:4px"><div style="width: {{ task.progress }}%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="files">
+      <div class="card-head"><h2>{% translate "Files" %}</h2><span class="hint">{{ attachments|length }}</span></div>
+      <div class="card-body">
+        {% if attachments %}
+          <ul class="files">
+            {% for a in attachments %}
+              <li>
+                <span class="file-name">{% icon "clip" %}<a href="{% url 'tasks:attachment' a.pk %}">{{ a.original_name }}</a> <span class="muted small nowrap">{{ a.size|filesizeformat }} · {{ a.uploaded_by|person }} · {{ a.created_at|date:"d.m.Y H:i" }}</span></span>
+                {% if is_manager or a.uploaded_by_id == user.pk and not task.is_closed %}
+                  <form method="post" action="{% url 'tasks:attachment_delete' a.pk %}" onsubmit="return confirm('{{ delete_file_msg|escapejs }}')">{% csrf_token %}<button class="btn-link small">{% translate "Delete" %}</button></form>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <div class="muted small">{% translate "No files yet." %}</div>
+        {% endif %}
+        {% if not task.is_closed or is_manager %}
+          <form method="post" action="{% url 'tasks:attach' task.pk %}" enctype="multipart/form-data" style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; align-items:center">
+            {% csrf_token %}
+            {{ attachment_form.files }}
+            <button class="btn btn-sm" type="submit">{% translate "Upload" %}</button>
+          </form>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="card" id="comments">
+      <div class="card-head"><h2>{% translate "Comments" %}</h2><span class="hint">{{ comments|length }}</span></div>
+      <div class="card-body">
+        <div class="comments">
+          {% for c in comments %}
+            <div class="comment">
+              <div class="avatar">{{ c.author|initials }}</div>
+              <div>
+                <div class="meta"><strong class="secondary">{{ c.author|person }}</strong> · {{ c.created_at|date:"d.m.Y H:i" }}</div>
+                <div class="text">{{ c.text|urlize }}</div>
+              </div>
+            </div>
+          {% empty %}
+            <div class="muted small">{% translate "No comments yet." %}</div>
+          {% endfor %}
+        </div>
+        <form method="post" action="{% url 'tasks:comment' task.pk %}" style="margin-top:16px">
+          {% csrf_token %}
+          {{ comment_form.text }}
+          <div class="form-actions" style="margin-top:8px"><button class="btn btn-sm btn-primary" type="submit">{% translate "Send" %}</button></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="stack">
+    {% if actions or progress_form %}
+    <div class="card">
+      <div class="card-head"><h2>{% translate "Actions" %}</h2></div>
+      <div class="card-body action-panel">
+        {% if "start" in actions %}
+          <form method="post" action="{% url 'tasks:action' task.pk 'start' %}">{% csrf_token %}
+            <button class="btn btn-primary" style="width:100%">{{ action_labels.start }}</button>
+          </form>
+        {% endif %}
+        {% if "submit" in actions %}
+          <details {% if task.status != "new" and task.status != "returned" %}open{% endif %}>
+            <summary>{{ action_labels.submit }}</summary>
+            <form method="post" action="{% url 'tasks:action' task.pk 'submit' %}" class="panel-body">{% csrf_token %}
+              <div class="field"><label for="submit-comment">{% translate "Report on the work done (optional)" %}</label><textarea id="submit-comment" name="comment" rows="3"></textarea></div>
+              <div class="help muted small">{% translate "Attach the result files above before submitting." %}</div>
+              <button class="btn btn-primary">{{ action_labels.submit }}</button>
+            </form>
+          </details>
+        {% endif %}
+        {% if progress_form %}
+          <details>
+            <summary>{% translate "Update progress" %}</summary>
+            <form method="post" action="{% url 'tasks:progress' task.pk %}" class="panel-body">{% csrf_token %}
+              <div class="field">
+                <label for="{{ progress_form.progress.id_for_label }}">{{ progress_form.progress.label }}: <output id="progress-out">{{ task.progress }}</output>%</label>
+                {{ progress_form.progress }}
+              </div>
+              <button class="btn">{% translate "Save" %}</button>
+            </form>
+          </details>
+        {% endif %}
+        {% if "approve" in actions %}
+          <details {% if task.status == "on_review" %}open{% endif %}>
+            <summary>{{ action_labels.approve }}</summary>
+            <form method="post" action="{% url 'tasks:action' task.pk 'approve' %}" class="panel-body">{% csrf_token %}
+              <div class="field">
+                <span class="label">{{ approve_form.rating.label }}</span>
+                <div class="radio-row">{% for radio in approve_form.rating %}<label for="{{ radio.id_for_label }}">{{ radio.tag }} {{ radio.choice_label }}</label>{% endfor %}</div>
+              </div>
+              {% if task.status != "on_review" %}<div class="help small muted">{% translate "The task was not submitted through the portal; it will be recorded as handed in today." %}</div>{% endif %}
+              <div class="field"><label for="approve-comment">{{ approve_form.comment.label }}</label><textarea id="approve-comment" name="comment" rows="2"></textarea></div>
+              <button class="btn btn-good">{{ action_labels.approve }}</button>
+            </form>
+          </details>
+        {% endif %}
+        {% if "return" in actions %}
+          <details>
+            <summary>{{ action_labels.return }}</summary>
+            <form method="post" action="{% url 'tasks:action' task.pk 'return' %}" class="panel-body">{% csrf_token %}
+              <div class="field"><label for="return-comment">{{ return_form.comment.label }} <span class="muted">*</span></label><textarea id="return-comment" name="comment" rows="3" required></textarea></div>
+              <button class="btn">{{ action_labels.return }}</button>
+            </form>
+          </details>
+        {% endif %}
+        {% if "cancel" in actions %}
+          <details>
+            <summary>{{ action_labels.cancel }}</summary>
+            <form method="post" action="{% url 'tasks:action' task.pk 'cancel' %}" class="panel-body">{% csrf_token %}
+              <div class="help small muted">{% translate "Cancelled tasks are not counted in KPI." %}</div>
+              <div class="field"><label for="cancel-comment">{% translate "Reason (optional)" %}</label><textarea id="cancel-comment" name="comment" rows="2"></textarea></div>
+              <button class="btn btn-danger">{{ action_labels.cancel }}</button>
+            </form>
+          </details>
+        {% endif %}
+        {% if "reopen" in actions %}
+          <form method="post" action="{% url 'tasks:action' task.pk 'reopen' %}" onsubmit="return confirm('{{ reopen_msg|escapejs }}')">{% csrf_token %}
+            <button class="btn" style="width:100%">{{ action_labels.reopen }}</button>
+          </form>
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="card">
+      <div class="card-head"><h2>{% translate "Details" %}</h2></div>
+      <div class="card-body">
+        <dl class="facts">
+          <dt>{% translate "Executor" %}</dt>
+          <dd>{% if is_manager %}<a href="{% url 'accounts:member' task.assignee_id %}">{{ task.assignee|person }}</a>{% else %}{{ task.assignee|person }}{% endif %}{% if task.assignee.profile.position %}<div class="muted small">{{ task.assignee.profile.position }}</div>{% endif %}</dd>
+          <dt>{% translate "Assigned by" %}</dt><dd>{{ task.created_by|person }}</dd>
+          <dt>{% translate "Task type" %}</dt><dd>{{ task.category|default:"—" }}</dd>
+          <dt>{% translate "Complexity" %}</dt><dd>{% complexity task.complexity %} <span class="muted small">· {% blocktranslate count points=complexity_points %}{{ points }} point{% plural %}{{ points }} points{% endblocktranslate %}</span></dd>
+          <dt>{% translate "Deadline" %}</dt>
+          <dd>{{ task.deadline|date:"d.m.Y" }}{% if task.deadline_extended %}<div class="muted small">{% blocktranslate with date=task.original_deadline|date:"d.m.Y" %}originally {{ date }}{% endblocktranslate %}</div>{% endif %}</dd>
+          <dt>{% translate "Assigned" %}</dt><dd>{{ task.created_at|date:"d.m.Y H:i" }}</dd>
+          {% if task.submitted_at %}
+            <dt>{% translate "Handed in" %}</dt>
+            <dd>{{ task.submitted_at|date:"d.m.Y H:i" }}
+              <div class="small">{% if task.submitted_on_time %}<span class="muted">{% translate "on time" %}</span>{% else %}<span class="flag critical">{% translate "after the deadline" %}</span>{% endif %}</div>
+            </dd>
+          {% endif %}
+          {% if task.completed_at %}<dt>{% translate "Accepted" %}</dt><dd>{{ task.completed_at|date:"d.m.Y H:i" }}</dd>{% endif %}
+          {% if task.quality_rating %}<dt>{% translate "Quality rating" %}</dt><dd>{{ task.quality_rating }} / 5</dd>{% endif %}
+          {% if task.revision_count %}<dt>{% translate "Returned" %}</dt><dd>{% blocktranslate count n=task.revision_count %}{{ n }} time{% plural %}{{ n }} times{% endblocktranslate %}</dd>{% endif %}
+        </dl>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><h2>{% translate "History" %}</h2></div>
+      <div class="card-body">
+        <ul class="timeline">
+          {% for e in events %}
+            <li><div>{{ e.describe }}<div class="when">{{ e.actor|person }} · {{ e.created_at|date:"d.m.Y H:i" }}</div></div></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  (function () {
+    var range = document.getElementById("{{ progress_form.progress.id_for_label|default:'none' }}");
+    var out = document.getElementById("progress-out");
+    if (range && out) range.addEventListener("input", function () { out.textContent = range.value; });
+  })();
+</script>
+{% endblock %}

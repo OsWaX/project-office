@@ -1,0 +1,67 @@
+{% load i18n static office %}<!doctype html>
+{% get_current_language as LANG %}
+<html lang="{{ LANG }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{% endblock %} · {% translate "Project Office" %}</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231c5cab'/%3E%3Cpath d='M9 16l5 5 9-10' stroke='white' stroke-width='3.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="{% static 'css/app.css' %}">
+</head>
+<body>
+<input type="checkbox" id="nav-toggle" class="visually-hidden" aria-hidden="true">
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <a href="{% url 'dashboard' %}" class="brand-name"><span class="brand-mark">✓</span>{% translate "Project Office" %}</a>
+      {% if ORGANIZATION_NAME %}<div class="brand-org">{{ ORGANIZATION_NAME }}</div>{% endif %}
+    </div>
+    <nav class="nav">
+      <a href="{% url 'dashboard' %}" class="{% nav_active '/' %}">{% icon "dashboard" %}{% translate "Dashboard" %}</a>
+      <a href="{% url 'tasks:list' %}{% if not is_manager %}?state=active{% endif %}" class="{% nav_active '/tasks/' %}">{% icon "tasks" %}{% if is_manager %}{% translate "All tasks" %}{% else %}{% translate "My tasks" %}{% endif %}</a>
+      {% if is_manager %}
+        <a href="{% url 'tasks:create' %}">{% icon "plus" %}{% translate "New task" %}</a>
+        <a href="{% url 'accounts:team' %}" class="{% nav_active '/team/' %}">{% icon "team" %}{% translate "Team" %}</a>
+        <a href="{% url 'kpi:month' %}" class="{% nav_active '/kpi/' %}">{% icon "kpi" %}{% translate "KPI" %}</a>
+      {% else %}
+        <a href="{% url 'kpi:employee' user.pk %}" class="{% nav_active '/kpi/employee/' %}">{% icon "kpi" %}{% translate "My KPI" %}</a>
+      {% endif %}
+      <div class="nav-section">{% translate "Reference" %}</div>
+      <a href="{% url 'kpi:methodology' %}" class="{% nav_active '/kpi/methodology/' %}">{% icon "book" %}{% translate "How KPI is calculated" %}</a>
+      {% if is_manager %}
+        <a href="{% url 'kpi:settings' %}" class="{% nav_active '/kpi/settings/' %}">{% icon "settings" %}{% translate "KPI settings" %}</a>
+      {% endif %}
+      {% if user.is_staff %}
+        <a href="{% url 'admin:index' %}">{% icon "lock" %}{% translate "Administration" %}</a>
+      {% endif %}
+    </nav>
+    <div class="sidebar-foot">
+      <div class="who">{{ user|person }}</div>
+      <div>{{ user.profile.position|default:"" }}</div>
+      <div style="margin-top:8px; display:flex; gap:12px;">
+        <a href="{% url 'password_change' %}" style="color:inherit">{% translate "Password" %}</a>
+        <form method="post" action="{% url 'logout' %}">{% csrf_token %}<button class="btn-link" style="color:inherit">{% translate "Log out" %}</button></form>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <label for="nav-toggle" class="menu-toggle" aria-label="{% translate 'Menu' %}">{% icon "menu" %}</label>
+      <strong class="page-name">{% block page_name %}{% endblock %}</strong>
+      <span class="spacer"></span>
+      {% include "includes/lang_switch.html" %}
+      <a href="{% url 'tasks:notifications' %}" class="bell" aria-label="{% translate 'Notifications' %}">
+        {% icon "bell" %}{% if unread_notifications %}<span class="dot">{{ unread_notifications }}</span>{% endif %}
+      </a>
+    </header>
+    <main class="content">
+      {% if messages %}
+        <ul class="messages">{% for message in messages %}<li class="{{ message.tags }}">{{ message }}</li>{% endfor %}</ul>
+      {% endif %}
+      {% block content %}{% endblock %}
+    </main>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,5 @@
+{% load office %}{% if score is None or score == '' %}<span class="muted small">—</span>{% else %}
+<div class="meter {{ score|meter_level:kpi_settings }}" title="{{ score|pct }} / 100">
+  <div class="meter-track"><div class="meter-fill" style="width: {{ score|stringformat:'.1f' }}%"></div></div>
+  <span class="meter-value">{{ score|pct }}</span>
+</div>{% endif %}

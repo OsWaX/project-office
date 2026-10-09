@@ -1,0 +1,2107 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Project Office\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-09 10:03+0500\n"
+"PO-Revision-Date: 2026-10-09 12:00+0500\n"
+"Last-Translator: Project Office team\n"
+"Language-Team: Russian\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: accounts/forms.py:14 templates/accounts/team_list.html:21
+msgid "Role"
+msgstr "Роль"
+
+#: accounts/forms.py:16 kpi/export.py:49 tasks/forms.py:218
+#: templates/accounts/team_list.html:20
+msgid "Department"
+msgstr "Отдел"
+
+#: accounts/forms.py:18 kpi/export.py:48 templates/kpi/print.html:33
+msgid "Position"
+msgstr "Должность"
+
+#: accounts/forms.py:19 templates/accounts/member_detail.html:58
+msgid "Phone"
+msgstr "Телефон"
+
+#: accounts/forms.py:21
+msgid "Monthly workload norm, points"
+msgstr "Месячная норма нагрузки, баллы"
+
+#: accounts/forms.py:24
+msgid "Leave empty to use the default from KPI settings."
+msgstr "Оставьте пустым, чтобы использовать значение из настроек KPI."
+
+#: accounts/forms.py:27 templates/base.html:42
+#: templates/registration/login.html:24
+msgid "Password"
+msgstr "Пароль"
+
+#: accounts/forms.py:36 templates/accounts/member_detail.html:57
+#: templates/registration/login.html:20
+msgid "Login"
+msgstr "Логин"
+
+#: accounts/forms.py:51
+msgid "Leave empty to keep the current password."
+msgstr "Оставьте пустым, чтобы сохранить текущий пароль."
+
+#: accounts/models.py:9 tasks/models.py:17
+msgid "name"
+msgstr "название"
+
+#: accounts/models.py:13 accounts/models.py:37
+msgid "department"
+msgstr "отдел"
+
+#: accounts/models.py:14
+msgid "departments"
+msgstr "отделы"
+
+#: accounts/models.py:22
+msgid "Manager"
+msgstr "Руководитель"
+
+#: accounts/models.py:23 kpi/export.py:47 kpi/export.py:94
+#: templates/kpi/month.html:33 templates/kpi/print.html:33
+#: templates/tasks/dashboard.html:50
+msgid "Employee"
+msgstr "Сотрудник"
+
+#: accounts/models.py:29
+msgid "role"
+msgstr "роль"
+
+#: accounts/models.py:33
+msgid "Managers assign and review tasks and see everyone's KPI."
+msgstr "Руководители дают и принимают поручения и видят KPI всех сотрудников."
+
+#: accounts/models.py:43
+msgid "position"
+msgstr "должность"
+
+#: accounts/models.py:44
+msgid "phone"
+msgstr "телефон"
+
+#: accounts/models.py:46
+msgid "monthly workload norm"
+msgstr "месячная норма нагрузки"
+
+#: accounts/models.py:50
+msgid ""
+"Complexity points this person is expected to complete per month. Leave empty"
+" to use the default from KPI settings."
+msgstr ""
+"Баллы сложности, которые сотрудник должен выполнить за месяц. Оставьте "
+"пустым, чтобы использовать значение из настроек KPI."
+
+#: accounts/models.py:56
+msgid "profile"
+msgstr "профиль"
+
+#: accounts/models.py:57
+msgid "profiles"
+msgstr "профили"
+
+#: accounts/views.py:97
+msgid "Team member added. Give them their login and password."
+msgstr "Сотрудник добавлен. Передайте ему логин и пароль."
+
+#: accounts/views.py:110
+msgid "Changes saved."
+msgstr "Изменения сохранены."
+
+#: accounts/views.py:117
+msgid "Department added."
+msgstr "Отдел добавлен."
+
+#: accounts/views.py:122
+msgid "Task type added."
+msgstr "Вид поручения добавлен."
+
+#: kpi/export.py:33
+#, python-format
+msgid "Employee KPI for %(month)s"
+msgstr "KPI сотрудников за %(month)s"
+
+#: kpi/export.py:38
+#, python-format
+msgid "Finalised on %(date)s"
+msgstr "Закрыт %(date)s"
+
+#: kpi/export.py:40
+msgid "Preliminary (month not finalised)"
+msgstr "Предварительно (месяц не закрыт)"
+
+#: kpi/export.py:42
+#, python-format
+msgid "Generated %(date)s"
+msgstr "Сформировано %(date)s"
+
+#: kpi/export.py:50 templates/kpi/print.html:34
+msgid "Tasks assessed"
+msgstr "Оценено поручений"
+
+#: kpi/export.py:51 tasks/models.py:49 templates/kpi/print.html:34
+msgid "Completed"
+msgstr "Выполнено"
+
+#: kpi/export.py:52 templates/kpi/print.html:34
+msgid "On time"
+msgstr "В срок"
+
+#: kpi/export.py:53 kpi/services.py:57
+msgid "Not done by deadline"
+msgstr "Не выполнено в срок"
+
+#: kpi/export.py:54 kpi/services.py:58
+msgid "Awaiting review"
+msgstr "Ожидает проверки"
+
+#: kpi/export.py:55
+msgid "Execution, %"
+msgstr "Исполнение, %"
+
+#: kpi/export.py:56
+msgid "Timeliness, %"
+msgstr "Своевременность, %"
+
+#: kpi/export.py:57
+msgid "Quality, %"
+msgstr "Качество, %"
+
+#: kpi/export.py:58
+msgid "Workload, %"
+msgstr "Объём работы, %"
+
+#: kpi/export.py:59 templates/kpi/methodology.html:39
+msgid "Base score"
+msgstr "Базовый балл"
+
+#: kpi/export.py:60 templates/kpi/print.html:36
+msgid "Adjustment"
+msgstr "Корректировка"
+
+#: kpi/export.py:61 templates/base.html:25
+#: templates/includes/kpi_history.html:21 templates/kpi/employee.html:2
+#: templates/kpi/employee.html:3 templates/kpi/methodology.html:39
+#: templates/kpi/month.html:2 templates/kpi/month.html:3
+#: templates/kpi/month.html:40 templates/kpi/print.html:6
+#: templates/kpi/print.html:36
+msgid "KPI"
+msgstr "KPI"
+
+#: kpi/export.py:62 templates/includes/kpi_history.html:21
+#: templates/kpi/month.html:41 templates/kpi/print.html:36
+#: templates/tasks/dashboard.html:55
+msgid "Grade"
+msgstr "Оценка"
+
+#: kpi/export.py:91 templates/kpi/month.html:34
+#: templates/tasks/task_form.html:3 templates/tasks/task_list.html:2
+#: templates/tasks/task_list.html:3
+msgid "Tasks"
+msgstr "Поручения"
+
+#: kpi/export.py:96 templates/kpi/employee.html:103
+#: templates/tasks/task_detail.html:3 templates/tasks/task_list.html:44
+msgid "Task"
+msgstr "Поручение"
+
+#: kpi/export.py:97 tasks/forms.py:224 templates/kpi/employee.html:104
+#: templates/tasks/task_detail.html:175 templates/tasks/task_list.html:47
+msgid "Complexity"
+msgstr "Сложность"
+
+#: kpi/export.py:98 templates/kpi/employee.html:105
+msgid "Points"
+msgstr "Баллы"
+
+#: kpi/export.py:99 templates/kpi/employee.html:106
+#: templates/tasks/task_detail.html:176 templates/tasks/task_list.html:49
+msgid "Deadline"
+msgstr "Срок"
+
+#: kpi/export.py:100
+msgid "Submitted"
+msgstr "Сдано"
+
+#: kpi/export.py:101 templates/kpi/employee.html:108
+msgid "Result"
+msgstr "Результат"
+
+#: kpi/export.py:102 templates/tasks/task_detail.html:186
+msgid "Quality rating"
+msgstr "Оценка качества"
+
+#: kpi/forms.py:14
+msgid "Points (+ bonus / − penalty)"
+msgstr "Баллы (+ поощрение / − взыскание)"
+
+#: kpi/forms.py:15
+msgid "Reason"
+msgstr "Основание"
+
+#: kpi/forms.py:27
+msgid "Enter a non-zero number of points."
+msgstr "Введите ненулевое количество баллов."
+
+#: kpi/forms.py:30
+#, python-format
+msgid "Adjustment must be between −%(max)s and +%(max)s."
+msgstr "Корректировка должна быть от −%(max)s до +%(max)s."
+
+#: kpi/models.py:12
+msgid "weight: execution"
+msgstr "вес: исполнение"
+
+#: kpi/models.py:15
+msgid "weight: timeliness"
+msgstr "вес: своевременность"
+
+#: kpi/models.py:18
+msgid "weight: quality"
+msgstr "вес: качество"
+
+#: kpi/models.py:21
+msgid "weight: workload"
+msgstr "вес: объём работы"
+
+#: kpi/models.py:25
+msgid "points: simple task"
+msgstr "баллы: простое поручение"
+
+#: kpi/models.py:28
+msgid "points: medium task"
+msgstr "баллы: поручение средней сложности"
+
+#: kpi/models.py:31
+msgid "points: complex task"
+msgstr "баллы: сложное поручение"
+
+#: kpi/models.py:34
+msgid "points: very complex task"
+msgstr "баллы: очень сложное поручение"
+
+#: kpi/models.py:38
+msgid "default monthly workload norm, points"
+msgstr "стандартная месячная норма, баллы"
+
+#: kpi/models.py:40
+msgid ""
+"Used for people without their own norm. 0 switches the workload component "
+"off."
+msgstr ""
+"Применяется к сотрудникам без индивидуальной нормы. 0 отключает показатель "
+"объёма работы."
+
+#: kpi/models.py:44
+msgid "“Excellent” from"
+msgstr "«Отлично» от"
+
+#: kpi/models.py:47
+msgid "“Good” from"
+msgstr "«Хорошо» от"
+
+#: kpi/models.py:50
+msgid "“Satisfactory” from"
+msgstr "«Удовлетворительно» от"
+
+#: kpi/models.py:54
+msgid "maximum manual adjustment, ± points"
+msgstr "максимальная ручная корректировка, ± баллов"
+
+#: kpi/models.py:60 kpi/models.py:61 kpi/models.py:64 templates/base.html:32
+#: templates/kpi/settings.html:2 templates/kpi/settings.html:3
+#: templates/kpi/settings.html:7
+msgid "KPI settings"
+msgstr "Настройки KPI"
+
+#: kpi/models.py:77
+#, python-format
+msgid "Component weights must add up to 100 (now %(total)s)."
+msgstr "Сумма весов показателей должна быть равна 100 (сейчас %(total)s)."
+
+#: kpi/models.py:80
+msgid "Grade thresholds must decrease: Excellent > Good > Satisfactory."
+msgstr "Пороги оценок должны убывать: Отлично > Хорошо > Удовлетворительно."
+
+#: kpi/models.py:104 kpi/models.py:122
+msgid "month"
+msgstr "месяц"
+
+#: kpi/models.py:104
+msgid "First day of the month."
+msgstr "Первый день месяца."
+
+#: kpi/models.py:105
+msgid "points"
+msgstr "баллы"
+
+#: kpi/models.py:106
+msgid "reason"
+msgstr "основание"
+
+#: kpi/models.py:112
+msgid "KPI adjustment"
+msgstr "Корректировка KPI"
+
+#: kpi/models.py:113
+msgid "KPI adjustments"
+msgstr "Корректировки KPI"
+
+#: kpi/models.py:132
+msgid "finalised KPI month"
+msgstr "закрытый месяц KPI"
+
+#: kpi/models.py:133
+msgid "finalised KPI months"
+msgstr "закрытые месяцы KPI"
+
+#: kpi/services.py:41 templates/kpi/methodology.html:32
+#: templates/kpi/methodology.html:39 templates/kpi/month.html:35
+msgid "Execution"
+msgstr "Исполнение"
+
+#: kpi/services.py:42 templates/kpi/methodology.html:33
+#: templates/kpi/methodology.html:39 templates/kpi/month.html:36
+msgid "Timeliness"
+msgstr "Своевременность"
+
+#: kpi/services.py:43 templates/kpi/employee.html:109
+#: templates/kpi/methodology.html:34 templates/kpi/methodology.html:39
+#: templates/kpi/month.html:37
+msgid "Quality"
+msgstr "Качество"
+
+#: kpi/services.py:44 templates/kpi/methodology.html:35
+#: templates/kpi/methodology.html:39 templates/kpi/month.html:38
+msgid "Workload"
+msgstr "Объём работы"
+
+#: kpi/services.py:48
+msgid "Excellent"
+msgstr "Отлично"
+
+#: kpi/services.py:49
+msgid "Good"
+msgstr "Хорошо"
+
+#: kpi/services.py:50
+msgid "Satisfactory"
+msgstr "Удовлетворительно"
+
+#: kpi/services.py:51
+msgid "Unsatisfactory"
+msgstr "Неудовлетворительно"
+
+#: kpi/services.py:55
+msgid "Done on time"
+msgstr "Выполнено в срок"
+
+#: kpi/services.py:56
+msgid "Done late"
+msgstr "Выполнено с опозданием"
+
+#: kpi/services.py:59
+msgid "Deadline not reached"
+msgstr "Срок не наступил"
+
+#: kpi/views.py:99 kpi/views.py:123
+msgid "This month is finalised. Reopen it to make changes."
+msgstr "Этот месяц закрыт. Чтобы внести изменения, откройте его повторно."
+
+#: kpi/views.py:110
+msgid "Adjustment saved."
+msgstr "Корректировка сохранена."
+
+#: kpi/views.py:126
+msgid "Adjustment removed."
+msgstr "Корректировка удалена."
+
+#: kpi/views.py:135
+msgid "This month is already finalised."
+msgstr "Этот месяц уже закрыт."
+
+#: kpi/views.py:137
+msgid "The current month can be finalised once it is over."
+msgstr "Текущий месяц можно закрыть только после его окончания."
+
+#: kpi/views.py:140
+#, python-format
+msgid "KPI for %(month)s finalised."
+msgstr "KPI за %(month)s закрыт."
+
+#: kpi/views.py:150
+#, python-format
+msgid "%(month)s reopened: results are live again."
+msgstr "%(month)s открыт повторно: результаты снова пересчитываются."
+
+#: kpi/views.py:183
+msgid ""
+"KPI settings saved. Finalised months keep the settings they were calculated "
+"with."
+msgstr ""
+"Настройки KPI сохранены. Закрытые месяцы сохраняют настройки, по которым они"
+" были рассчитаны."
+
+#: office/settings.py:130
+msgid "Uzbek"
+msgstr "Узбекский"
+
+#: office/settings.py:131
+msgid "Russian"
+msgstr "Русский"
+
+#: office/settings.py:132
+msgid "English"
+msgstr "Английский"
+
+#: tasks/forms.py:45
+#, python-format
+msgid "File type .%(ext)s is not allowed."
+msgstr "Файлы типа .%(ext)s не допускаются."
+
+#: tasks/forms.py:49
+#, python-format
+msgid "File %(name)s is larger than %(max)s MB."
+msgstr "Файл %(name)s больше %(max)s МБ."
+
+#: tasks/forms.py:91
+msgid ""
+"Routine work, up to one day: a short letter, a reference, a phone survey."
+msgstr ""
+"Рутинная работа до одного дня: короткое письмо, справка, телефонный опрос."
+
+#: tasks/forms.py:92
+msgid "A few days of work: a report from available data, preparing a meeting."
+msgstr ""
+"Работа на несколько дней: отчёт по имеющимся данным, подготовка совещания."
+
+#: tasks/forms.py:93
+msgid ""
+"Analysis or coordination with other bodies: a draft regulation, a sector "
+"study."
+msgstr ""
+"Анализ или согласование с другими ведомствами: проект нормативного акта, "
+"отраслевое исследование."
+
+#: tasks/forms.py:94
+msgid ""
+"Multi-week strategic work: a programme, an investment project, a large "
+"inspection."
+msgstr ""
+"Стратегическая работа на несколько недель: программа, инвестиционный проект,"
+" крупная проверка."
+
+#: tasks/forms.py:121
+msgid "Executors"
+msgstr "Исполнители"
+
+#: tasks/forms.py:123
+msgid ""
+"Choose several people to give each of them their own copy of this task."
+msgstr ""
+"Выберите несколько сотрудников, чтобы каждому было создано своё поручение."
+
+#: tasks/forms.py:126
+msgid "Attachments"
+msgstr "Вложения"
+
+#: tasks/forms.py:138
+msgid "The deadline cannot be in the past."
+msgstr "Срок не может быть в прошлом."
+
+#: tasks/forms.py:143 tasks/forms.py:216 templates/tasks/task_detail.html:171
+#: templates/tasks/task_list.html:45
+msgid "Executor"
+msgstr "Исполнитель"
+
+#: tasks/forms.py:158
+msgid "Quality of the work"
+msgstr "Качество работы"
+
+#: tasks/forms.py:161
+msgid "5 — excellent"
+msgstr "5 — отлично"
+
+#: tasks/forms.py:162
+msgid "4 — good"
+msgstr "4 — хорошо"
+
+#: tasks/forms.py:163
+msgid "3 — acceptable"
+msgstr "3 — приемлемо"
+
+#: tasks/forms.py:164
+msgid "2 — weak"
+msgstr "2 — слабо"
+
+#: tasks/forms.py:165
+msgid "1 — poor"
+msgstr "1 — плохо"
+
+#: tasks/forms.py:171 tasks/forms.py:183
+msgid "Comment (optional)"
+msgstr "Комментарий (необязательно)"
+
+#: tasks/forms.py:177
+msgid "What needs to be corrected"
+msgstr "Что нужно исправить"
+
+#: tasks/forms.py:189
+msgid "Progress, %"
+msgstr "Ход выполнения, %"
+
+#: tasks/forms.py:198
+msgid "Comment"
+msgstr "Комментарий"
+
+#: tasks/forms.py:199
+msgid "Write a comment…"
+msgstr "Напишите комментарий…"
+
+#: tasks/forms.py:204 templates/tasks/task_detail.html:42
+msgid "Files"
+msgstr "Файлы"
+
+#: tasks/forms.py:209 templates/tasks/dashboard.html:108
+msgid "All"
+msgstr "Все"
+
+#: tasks/forms.py:210
+msgid "Not finished"
+msgstr "Не завершённые"
+
+#: tasks/forms.py:211 templates/accounts/member_detail.html:22
+#: templates/accounts/team_list.html:23 templates/tasks/dashboard.html:22
+#: templates/tasks/dashboard.html:52 templates/tasks/dashboard.html:81
+#: templates/tasks/dashboard.html:114 templates/tasks/task_detail.html:13
+msgid "Overdue"
+msgstr "Просрочено"
+
+#: tasks/forms.py:214
+msgid "Search"
+msgstr "Поиск"
+
+#: tasks/forms.py:215 templates/tasks/task_list.html:46
+msgid "Status"
+msgstr "Статус"
+
+#: tasks/forms.py:221 templates/tasks/task_detail.html:174
+msgid "Task type"
+msgstr "Вид поручения"
+
+#: tasks/forms.py:225 tasks/forms.py:232
+msgid "Any"
+msgstr "Все"
+
+#: tasks/forms.py:231 templates/tasks/task_list.html:48
+msgid "Priority"
+msgstr "Приоритет"
+
+#: tasks/forms.py:237
+msgid "Deadline from"
+msgstr "Срок с"
+
+#: tasks/forms.py:238
+msgid "Deadline to"
+msgstr "Срок по"
+
+#: tasks/models.py:18
+msgid "active"
+msgstr "активен"
+
+#: tasks/models.py:22 tasks/models.py:74
+msgid "task type"
+msgstr "вид поручения"
+
+#: tasks/models.py:23
+msgid "task types"
+msgstr "виды поручений"
+
+#: tasks/models.py:45
+msgid "New"
+msgstr "Новое"
+
+#: tasks/models.py:46
+msgid "In progress"
+msgstr "В работе"
+
+#: tasks/models.py:47 templates/tasks/dashboard.html:27
+#: templates/tasks/dashboard.html:53
+msgid "On review"
+msgstr "На проверке"
+
+#: tasks/models.py:48
+msgid "Returned for revision"
+msgstr "Возвращено на доработку"
+
+#: tasks/models.py:50
+msgid "Cancelled"
+msgstr "Отменено"
+
+#: tasks/models.py:53 templates/kpi/methodology.html:23
+msgid "Simple"
+msgstr "Простая"
+
+#: tasks/models.py:54 templates/kpi/methodology.html:24
+msgid "Medium"
+msgstr "Средняя"
+
+#: tasks/models.py:55 templates/kpi/methodology.html:25
+msgid "Complex"
+msgstr "Сложная"
+
+#: tasks/models.py:56 templates/kpi/methodology.html:26
+msgid "Very complex"
+msgstr "Очень сложная"
+
+#: tasks/models.py:59
+msgid "Low"
+msgstr "Низкий"
+
+#: tasks/models.py:60
+msgid "Normal"
+msgstr "Обычный"
+
+#: tasks/models.py:61
+msgid "High"
+msgstr "Высокий"
+
+#: tasks/models.py:62
+msgid "Urgent"
+msgstr "Срочный"
+
+#: tasks/models.py:70
+msgid "title"
+msgstr "название"
+
+#: tasks/models.py:71
+msgid "description"
+msgstr "описание"
+
+#: tasks/models.py:82
+msgid "executor"
+msgstr "исполнитель"
+
+#: tasks/models.py:88
+msgid "assigned by"
+msgstr "кем дано"
+
+#: tasks/models.py:93
+msgid "complexity"
+msgstr "сложность"
+
+#: tasks/models.py:96
+msgid "priority"
+msgstr "приоритет"
+
+#: tasks/models.py:99
+msgid "status"
+msgstr "статус"
+
+#: tasks/models.py:101
+msgid "deadline"
+msgstr "срок"
+
+#: tasks/models.py:102
+msgid "original deadline"
+msgstr "первоначальный срок"
+
+#: tasks/models.py:104
+msgid "progress, %"
+msgstr "ход выполнения, %"
+
+#: tasks/models.py:106
+msgid "started at"
+msgstr "начато"
+
+#: tasks/models.py:108
+msgid "submitted at"
+msgstr "сдано"
+
+#: tasks/models.py:111
+msgid "When the executor last handed the work in. Used to judge timeliness."
+msgstr ""
+"Когда исполнитель последний раз сдал работу. Используется для оценки "
+"своевременности."
+
+#: tasks/models.py:113
+msgid "completed at"
+msgstr "принято"
+
+#: tasks/models.py:115
+msgid "quality rating"
+msgstr "оценка качества"
+
+#: tasks/models.py:120
+msgid "review comment"
+msgstr "замечания при проверке"
+
+#: tasks/models.py:121
+msgid "times returned"
+msgstr "количество возвратов"
+
+#: tasks/models.py:122
+msgid "created at"
+msgstr "создано"
+
+#: tasks/models.py:123
+msgid "updated at"
+msgstr "обновлено"
+
+#: tasks/models.py:129
+msgid "task"
+msgstr "поручение"
+
+#: tasks/models.py:130
+msgid "tasks"
+msgstr "поручения"
+
+#: tasks/models.py:192
+msgid "file"
+msgstr "файл"
+
+#: tasks/models.py:193
+msgid "file name"
+msgstr "имя файла"
+
+#: tasks/models.py:194
+msgid "size"
+msgstr "размер"
+
+#: tasks/models.py:195
+msgid "uploaded at"
+msgstr "загружено"
+
+#: tasks/models.py:199
+msgid "attachment"
+msgstr "вложение"
+
+#: tasks/models.py:200
+msgid "attachments"
+msgstr "вложения"
+
+#: tasks/models.py:209 tasks/models.py:214
+msgid "comment"
+msgstr "комментарий"
+
+#: tasks/models.py:215
+msgid "comments"
+msgstr "комментарии"
+
+#: tasks/models.py:225
+msgid "Created"
+msgstr "Создано"
+
+#: tasks/models.py:226
+msgid "Status changed"
+msgstr "Статус изменён"
+
+#: tasks/models.py:227
+msgid "Deadline changed"
+msgstr "Срок изменён"
+
+#: tasks/models.py:228
+msgid "Executor changed"
+msgstr "Исполнитель изменён"
+
+#: tasks/models.py:229
+msgid "Progress updated"
+msgstr "Ход выполнения обновлён"
+
+#: tasks/models.py:230
+msgid "Edited"
+msgstr "Изменено"
+
+#: tasks/models.py:231
+msgid "File attached"
+msgstr "Файл прикреплён"
+
+#: tasks/models.py:248
+msgid "Task created"
+msgstr "Поручение создано"
+
+#: tasks/models.py:250
+#, python-format
+msgid "Status: %(old)s → %(new)s"
+msgstr "Статус: %(old)s → %(new)s"
+
+#: tasks/models.py:255
+#, python-format
+msgid "quality %(rating)s/5"
+msgstr "качество %(rating)s/5"
+
+#: tasks/models.py:258
+#, python-format
+msgid "Deadline: %(old)s → %(new)s"
+msgstr "Срок: %(old)s → %(new)s"
+
+#: tasks/models.py:260
+#, python-format
+msgid "Executor: %(old)s → %(new)s"
+msgstr "Исполнитель: %(old)s → %(new)s"
+
+#: tasks/models.py:262
+#, python-format
+msgid "Progress: %(old)s%% → %(new)s%%"
+msgstr "Ход выполнения: %(old)s%% → %(new)s%%"
+
+#: tasks/models.py:264
+#, python-format
+msgid "File attached: %(name)s"
+msgstr "Прикреплён файл: %(name)s"
+
+#: tasks/models.py:266
+msgid "Task details edited"
+msgstr "Данные поручения изменены"
+
+#: tasks/models.py:272
+msgid "assigned"
+msgstr "назначено"
+
+#: tasks/models.py:273
+msgid "submitted"
+msgstr "сдано"
+
+#: tasks/models.py:274
+msgid "approved"
+msgstr "принято"
+
+#: tasks/models.py:275
+msgid "returned"
+msgstr "возвращено"
+
+#: tasks/models.py:276
+msgid "cancelled"
+msgstr "отменено"
+
+#: tasks/models.py:277
+msgid "reopened"
+msgstr "открыто повторно"
+
+#: tasks/models.py:278
+msgid "commented"
+msgstr "прокомментировано"
+
+#: tasks/models.py:279
+msgid "deadline changed"
+msgstr "срок изменён"
+
+#: tasks/models.py:280
+msgid "due soon"
+msgstr "срок скоро"
+
+#: tasks/models.py:281
+msgid "overdue"
+msgstr "просрочено"
+
+#: tasks/models.py:300
+#, python-format
+msgid "%(actor)s assigned you a new task"
+msgstr "%(actor)s дал(а) вам новое поручение"
+
+#: tasks/models.py:301
+#, python-format
+msgid "%(actor)s submitted a task for review"
+msgstr "%(actor)s отправил(а) поручение на проверку"
+
+#: tasks/models.py:302
+#, python-format
+msgid "%(actor)s accepted your task"
+msgstr "%(actor)s принял(а) ваше поручение"
+
+#: tasks/models.py:303
+#, python-format
+msgid "%(actor)s returned your task for revision"
+msgstr "%(actor)s вернул(а) ваше поручение на доработку"
+
+#: tasks/models.py:304
+#, python-format
+msgid "%(actor)s cancelled a task"
+msgstr "%(actor)s отменил(а) поручение"
+
+#: tasks/models.py:305
+#, python-format
+msgid "%(actor)s reopened a task"
+msgstr "%(actor)s открыл(а) поручение повторно"
+
+#: tasks/models.py:306
+#, python-format
+msgid "%(actor)s commented on a task"
+msgstr "%(actor)s оставил(а) комментарий к поручению"
+
+#: tasks/models.py:307
+#, python-format
+msgid "%(actor)s changed the deadline of a task"
+msgstr "%(actor)s изменил(а) срок поручения"
+
+#: tasks/models.py:308
+msgid "Task deadline is tomorrow"
+msgstr "Срок поручения — завтра"
+
+#: tasks/models.py:309
+msgid "Task is overdue"
+msgstr "Поручение просрочено"
+
+#: tasks/services.py:22
+msgid "Start work"
+msgstr "Начать работу"
+
+#: tasks/services.py:23
+msgid "Submit for review"
+msgstr "Отправить на проверку"
+
+#: tasks/services.py:24
+msgid "Accept"
+msgstr "Принять"
+
+#: tasks/services.py:25
+msgid "Return for revision"
+msgstr "Вернуть на доработку"
+
+#: tasks/services.py:26
+msgid "Cancel task"
+msgstr "Отменить поручение"
+
+#: tasks/services.py:27
+msgid "Reopen"
+msgstr "Открыть повторно"
+
+#: tasks/services.py:75
+msgid "This action is not available for the task in its current state."
+msgstr "Это действие недоступно для поручения в текущем статусе."
+
+#: tasks/services.py:93
+msgid "Please rate the quality of the work from 1 to 5."
+msgstr "Оцените, пожалуйста, качество работы от 1 до 5."
+
+#: tasks/services.py:106
+msgid "Please explain what needs to be corrected."
+msgstr "Укажите, пожалуйста, что нужно исправить."
+
+#: tasks/services.py:142
+msgid "Only the executor can update progress."
+msgstr "Ход выполнения может обновлять только исполнитель."
+
+#: tasks/services.py:144
+msgid "Progress can only be updated while the task is in work."
+msgstr "Ход выполнения можно обновлять, только пока поручение в работе."
+
+#: tasks/templatetags/office.py:87 templates/includes/kpi_history.html:12
+#: templates/kpi/month.html:55 templates/tasks/dashboard.html:65
+msgid "No data"
+msgstr "Нет данных"
+
+#: tasks/templatetags/office.py:171
+#, python-format
+msgid "%(n)s d overdue"
+msgstr "просрочено на %(n)s дн."
+
+#: tasks/templatetags/office.py:173
+msgid "today"
+msgstr "сегодня"
+
+#: tasks/templatetags/office.py:175
+msgid "tomorrow"
+msgstr "завтра"
+
+#: tasks/templatetags/office.py:176
+#, python-format
+msgid "in %(n)s d"
+msgstr "через %(n)s дн."
+
+#: tasks/views.py:150
+msgid "Task created and sent to the executor."
+msgstr "Поручение создано и направлено исполнителю."
+
+#: tasks/views.py:153
+#, python-format
+msgid "%(count)s tasks created, one for each executor."
+msgstr "Создано поручений: %(count)s — по одному на каждого исполнителя."
+
+#: tasks/views.py:209
+msgid "Task updated."
+msgstr "Поручение обновлено."
+
+#: tasks/views.py:246
+#, python-format
+msgid "Done: %(action)s."
+msgstr "Выполнено: %(action)s."
+
+#: tasks/views.py:258
+msgid "Progress saved."
+msgstr "Ход выполнения сохранён."
+
+#: tasks/views.py:282
+msgid "Files attached."
+msgstr "Файлы прикреплены."
+
+#: tasks/views.py:313
+msgid "File deleted."
+msgstr "Файл удалён."
+
+#: templates/403.html:2
+msgid "You do not have access to this page."
+msgstr "У вас нет доступа к этой странице."
+
+#: templates/403.html:2 templates/404.html:2
+#: templates/registration/password_change_done.html:5
+msgid "Back to dashboard"
+msgstr "Вернуться на главную"
+
+#: templates/404.html:2
+msgid "Page not found."
+msgstr "Страница не найдена."
+
+#: templates/accounts/member_detail.html:3
+#: templates/accounts/member_form.html:3 templates/accounts/team_list.html:2
+#: templates/accounts/team_list.html:3 templates/accounts/team_list.html:7
+#: templates/base.html:24
+msgid "Team"
+msgstr "Команда"
+
+#: templates/accounts/member_detail.html:8
+#: templates/accounts/team_list.html:30
+msgid "inactive"
+msgstr "неактивен"
+
+#: templates/accounts/member_detail.html:11
+msgid "KPI details"
+msgstr "Подробнее о KPI"
+
+#: templates/accounts/member_detail.html:13
+#: templates/tasks/task_detail.html:18
+msgid "Edit"
+msgstr "Изменить"
+
+#: templates/accounts/member_detail.html:14 templates/base.html:23
+#: templates/tasks/dashboard.html:11 templates/tasks/task_form.html:2
+#: templates/tasks/task_form.html:7 templates/tasks/task_list.html:10
+msgid "New task"
+msgstr "Новое поручение"
+
+#: templates/accounts/member_detail.html:20
+msgid "KPI this month"
+msgstr "KPI в этом месяце"
+
+#: templates/accounts/member_detail.html:21
+#: templates/accounts/member_detail.html:29 templates/tasks/dashboard.html:17
+msgid "Unfinished tasks"
+msgstr "Незавершённые поручения"
+
+#: templates/accounts/member_detail.html:21
+#: templates/accounts/member_detail.html:22
+msgid "right now"
+msgstr "на данный момент"
+
+#: templates/accounts/member_detail.html:23
+msgid "Completed in total"
+msgstr "Всего выполнено"
+
+#: templates/accounts/member_detail.html:23
+#, python-format
+msgid "of %(total)s assigned"
+msgstr "из %(total)s поручений"
+
+#: templates/accounts/member_detail.html:30
+#: templates/includes/active_breakdown.html:15
+msgid "No unfinished tasks."
+msgstr "Незавершённых поручений нет."
+
+#: templates/accounts/member_detail.html:33
+msgid "Recently completed"
+msgstr "Недавно выполненные"
+
+#: templates/accounts/member_detail.html:40
+#: templates/tasks/task_detail.html:182
+msgid "on time"
+msgstr "в срок"
+
+#: templates/accounts/member_detail.html:40
+msgid "late"
+msgstr "с опозданием"
+
+#: templates/accounts/member_detail.html:44
+msgid "Nothing completed yet."
+msgstr "Пока ничего не выполнено."
+
+#: templates/accounts/member_detail.html:50
+msgid "KPI for the last 6 months"
+msgstr "KPI за последние 6 месяцев"
+
+#: templates/accounts/member_detail.html:54
+msgid "Contacts"
+msgstr "Контакты"
+
+#: templates/accounts/member_detail.html:59
+msgid "Email"
+msgstr "Эл. почта"
+
+#: templates/accounts/member_detail.html:60
+msgid "Monthly norm"
+msgstr "Месячная норма"
+
+#: templates/accounts/member_detail.html:60
+msgid "default"
+msgstr "по умолчанию"
+
+#: templates/accounts/member_form.html:2 templates/accounts/member_form.html:5
+#: templates/accounts/team_list.html:12
+msgid "Add team member"
+msgstr "Добавить сотрудника"
+
+#: templates/accounts/member_form.html:5
+msgid "Edit team member"
+msgstr "Изменить данные сотрудника"
+
+#: templates/accounts/member_form.html:24
+#: templates/registration/password_change_form.html:10
+#: templates/tasks/task_detail.html:121 templates/tasks/task_form.html:48
+msgid "Save"
+msgstr "Сохранить"
+
+#: templates/accounts/member_form.html:25 templates/tasks/task_form.html:49
+msgid "Cancel"
+msgstr "Отмена"
+
+#: templates/accounts/team_list.html:8
+#, python-format
+msgid "Current workload and KPI for %(month)s"
+msgstr "Текущая нагрузка и KPI за %(month)s"
+
+#: templates/accounts/team_list.html:11
+msgid "Hide inactive"
+msgstr "Скрыть неактивных"
+
+#: templates/accounts/team_list.html:11
+msgid "Show inactive"
+msgstr "Показать неактивных"
+
+#: templates/accounts/team_list.html:19
+msgid "Name"
+msgstr "Ф.И.О."
+
+#: templates/accounts/team_list.html:22 templates/tasks/dashboard.html:51
+msgid "Unfinished"
+msgstr "Не завершено"
+
+#: templates/accounts/team_list.html:24
+msgid "Done this month"
+msgstr "Выполнено в этом месяце"
+
+#: templates/accounts/team_list.html:25 templates/tasks/dashboard.html:54
+msgid "KPI so far"
+msgstr "KPI на сегодня"
+
+#: templates/accounts/team_list.html:39 templates/tasks/dashboard.html:71
+msgid "No team members yet."
+msgstr "Сотрудников пока нет."
+
+#: templates/accounts/team_list.html:48
+msgid "Departments"
+msgstr "Отделы"
+
+#: templates/accounts/team_list.html:57
+msgid "New department name"
+msgstr "Название нового отдела"
+
+#: templates/accounts/team_list.html:58 templates/accounts/team_list.html:73
+msgid "Add"
+msgstr "Добавить"
+
+#: templates/accounts/team_list.html:63
+msgid "Task types"
+msgstr "Виды поручений"
+
+#: templates/accounts/team_list.html:72
+msgid "New task type, e.g. Analytical report"
+msgstr "Новый вид поручения, например: Аналитическая справка"
+
+#: templates/base.html:7 templates/base.html:16
+#: templates/registration/login.html:7 templates/registration/login.html:13
+msgid "Project Office"
+msgstr "Проектный офис"
+
+#: templates/base.html:20 templates/tasks/dashboard.html:2
+#: templates/tasks/dashboard.html:3
+msgid "Dashboard"
+msgstr "Главная"
+
+#: templates/base.html:21 templates/tasks/task_list.html:7
+msgid "All tasks"
+msgstr "Все поручения"
+
+#: templates/base.html:21 templates/tasks/task_list.html:7
+msgid "My tasks"
+msgstr "Мои поручения"
+
+#: templates/base.html:27
+msgid "My KPI"
+msgstr "Мой KPI"
+
+#: templates/base.html:29
+msgid "Reference"
+msgstr "Справка"
+
+#: templates/base.html:30 templates/kpi/methodology.html:2
+#: templates/kpi/methodology.html:3 templates/kpi/methodology.html:6
+#: templates/kpi/month.html:10 templates/kpi/settings.html:8
+msgid "How KPI is calculated"
+msgstr "Как рассчитывается KPI"
+
+#: templates/base.html:35
+msgid "Administration"
+msgstr "Администрирование"
+
+#: templates/base.html:43
+msgid "Log out"
+msgstr "Выйти"
+
+#: templates/base.html:50
+msgid "Menu"
+msgstr "Меню"
+
+#: templates/base.html:54 templates/tasks/notifications.html:2
+#: templates/tasks/notifications.html:3 templates/tasks/notifications.html:6
+msgid "Notifications"
+msgstr "Уведомления"
+
+#: templates/includes/active_breakdown.html:3
+#: templates/includes/active_breakdown.html:6
+msgid "Work in progress by status"
+msgstr "Поручения в работе по статусам"
+
+#: templates/includes/active_breakdown.html:3
+#, python-format
+msgid "%(n)s unfinished task"
+msgid_plural "%(n)s unfinished tasks"
+msgstr[0] "%(n)s незавершённое поручение"
+msgstr[1] "%(n)s незавершённых поручения"
+msgstr[2] "%(n)s незавершённых поручений"
+msgstr[3] "%(n)s незавершённого поручения"
+
+#: templates/includes/kpi_history.html:3
+msgid "KPI by month"
+msgstr "KPI по месяцам"
+
+#: templates/includes/kpi_history.html:19
+msgid "Show as table"
+msgstr "Показать таблицей"
+
+#: templates/includes/kpi_history.html:21 templates/includes/month_nav.html:2
+msgid "Month"
+msgstr "Месяц"
+
+#: templates/includes/lang_switch.html:2
+msgid "Language"
+msgstr "Язык"
+
+#: templates/includes/month_nav.html:3
+msgid "Previous month"
+msgstr "Предыдущий месяц"
+
+#: templates/includes/month_nav.html:5
+msgid "Next month"
+msgstr "Следующий месяц"
+
+#: templates/includes/pagination.html:3
+#, python-format
+msgid "%(start)s–%(end)s of %(total)s"
+msgstr "%(start)s–%(end)s из %(total)s"
+
+#: templates/includes/pagination.html:5
+msgid "Previous"
+msgstr "Назад"
+
+#: templates/includes/pagination.html:6
+msgid "Next"
+msgstr "Далее"
+
+#: templates/includes/period_notice.html:4
+#, python-format
+msgid ""
+"Finalised on %(date)s by %(who)s. Results are frozen and no longer change."
+msgstr ""
+"Закрыт %(date)s, %(who)s. Результаты зафиксированы и больше не меняются."
+
+#: templates/includes/period_notice.html:6
+msgid "Reopen month"
+msgstr "Открыть месяц повторно"
+
+#: templates/includes/period_notice.html:12
+msgid ""
+"Preliminary: the month is still running and results update as tasks are "
+"completed."
+msgstr ""
+"Предварительно: месяц ещё идёт, результаты обновляются по мере выполнения "
+"поручений."
+
+#: templates/includes/period_notice.html:12
+msgid ""
+"Not finalised yet: results still change if tasks of this month are edited."
+msgstr ""
+"Месяц не закрыт: результаты меняются при изменении поручений этого месяца."
+
+#: templates/includes/period_notice.html:13
+#, python-format
+msgid "%(n)s task of this month is awaiting review and is not counted yet."
+msgid_plural ""
+"%(n)s tasks of this month are awaiting review and are not counted yet."
+msgstr[0] "%(n)s поручение этого месяца ожидает проверки и пока не учтено."
+msgstr[1] "%(n)s поручения этого месяца ожидают проверки и пока не учтены."
+msgstr[2] "%(n)s поручений этого месяца ожидают проверки и пока не учтены."
+msgstr[3] "%(n)s поручения этого месяца ожидают проверки и пока не учтены."
+
+#: templates/includes/period_notice.html:16
+msgid "Finalise month"
+msgstr "Закрыть месяц"
+
+#: templates/kpi/employee.html:7
+msgid "Team KPI"
+msgstr "KPI команды"
+
+#: templates/kpi/employee.html:18
+#, python-format
+msgid "KPI for %(month_label)s"
+msgstr "KPI за %(month_label)s"
+
+#: templates/kpi/employee.html:23
+msgid "No assessed tasks in this month"
+msgstr "В этом месяце нет оценённых поручений"
+
+#: templates/kpi/employee.html:25
+#, python-format
+msgid "Base score %(base)s, manager adjustment %(adj)s"
+msgstr "Базовый балл %(base)s, корректировка руководителя %(adj)s"
+
+#: templates/kpi/employee.html:27
+#, python-format
+msgid ""
+"%(total)s tasks this month: %(assessed)s assessed, %(done)s completed, "
+"%(pending)s awaiting review, %(upcoming)s not yet due"
+msgstr ""
+"Поручений в месяце: %(total)s; оценено %(assessed)s, выполнено %(done)s, на "
+"проверке %(pending)s, срок не наступил %(upcoming)s"
+
+#: templates/kpi/employee.html:31
+msgid "Manager adjustments"
+msgstr "Корректировки руководителя"
+
+#: templates/kpi/employee.html:38
+msgid "Remove"
+msgstr "Удалить"
+
+#: templates/kpi/employee.html:44
+msgid "No adjustments this month."
+msgstr "В этом месяце корректировок нет."
+
+#: templates/kpi/employee.html:52
+msgid ""
+"Use for work outside the portal (initiative, extra assignments) or "
+"discipline issues. The reason is visible to the employee."
+msgstr ""
+"Используйте для работы вне портала (инициатива, дополнительные задания) или "
+"вопросов дисциплины. Основание видно сотруднику."
+
+#: templates/kpi/employee.html:53
+msgid "Add adjustment"
+msgstr "Добавить корректировку"
+
+#: templates/kpi/employee.html:60
+msgid "Last 6 months"
+msgstr "Последние 6 месяцев"
+
+#: templates/kpi/employee.html:70
+#, python-format
+msgid "%(a)s of %(b)s points completed"
+msgstr "выполнено %(a)s из %(b)s баллов"
+
+#: templates/kpi/employee.html:71 templates/kpi/employee.html:78
+#: templates/kpi/employee.html:85 templates/kpi/employee.html:92
+#, python-format
+msgid "weight %(w)s%%"
+msgstr "вес %(w)s%%"
+
+#: templates/kpi/employee.html:77
+#, python-format
+msgid "%(a)s of %(b)s points handed in on time"
+msgstr "%(a)s из %(b)s баллов сдано в срок"
+
+#: templates/kpi/employee.html:84
+#, python-format
+msgid "average rating %(a)s of 5"
+msgstr "средняя оценка %(a)s из 5"
+
+#: templates/kpi/employee.html:84
+msgid "no rated tasks"
+msgstr "нет оценённых поручений"
+
+#: templates/kpi/employee.html:91
+#, python-format
+msgid "%(a)s points completed of a norm of %(n)s"
+msgstr "выполнено %(a)s баллов при норме %(n)s"
+
+#: templates/kpi/employee.html:91
+msgid "no workload norm"
+msgstr "норма нагрузки не задана"
+
+#: templates/kpi/employee.html:98
+msgid "Tasks of the month"
+msgstr "Поручения месяца"
+
+#: templates/kpi/employee.html:98
+msgid "by deadline"
+msgstr "по сроку"
+
+#: templates/kpi/employee.html:107 templates/tasks/task_detail.html:180
+msgid "Handed in"
+msgstr "Сдано"
+
+#: templates/kpi/employee.html:132
+msgid "No tasks with a deadline in this month."
+msgstr "Нет поручений со сроком в этом месяце."
+
+#: templates/kpi/methodology.html:8
+msgid ""
+"Every employee's KPI is calculated once a month from the tasks in this "
+"portal. The rules are the same for everyone and every number can be checked "
+"on the employee's KPI page."
+msgstr ""
+"KPI каждого сотрудника рассчитывается раз в месяц по поручениям в этом "
+"портале. Правила одинаковы для всех, каждую цифру можно проверить на "
+"странице KPI сотрудника."
+
+#: templates/kpi/methodology.html:10
+msgid "Which tasks count"
+msgstr "Какие поручения учитываются"
+
+#: templates/kpi/methodology.html:12
+msgid "A task belongs to the month in which its deadline falls."
+msgstr "Поручение относится к месяцу, на который приходится его срок."
+
+#: templates/kpi/methodology.html:13
+msgid "Cancelled tasks are not counted."
+msgstr "Отменённые поручения не учитываются."
+
+#: templates/kpi/methodology.html:14
+msgid ""
+"A task is assessed when it has been accepted by the manager, or when its "
+"deadline has passed and it has not been handed in (then it counts as not "
+"done)."
+msgstr ""
+"Поручение оценивается, когда его принял руководитель, или когда срок прошёл,"
+" а работа не сдана (тогда оно считается невыполненным)."
+
+#: templates/kpi/methodology.html:15
+msgid ""
+"Tasks handed in and waiting for the manager's review are not counted until "
+"they are reviewed, so a slow review never lowers the employee's score."
+msgstr ""
+"Сданные и ожидающие проверки поручения не учитываются до проверки, поэтому "
+"задержка проверки не снижает оценку сотрудника."
+
+#: templates/kpi/methodology.html:16
+msgid ""
+"Timeliness is judged by the date the executor handed the work in, not by the"
+" date the manager accepted it."
+msgstr ""
+"Своевременность оценивается по дате сдачи работы исполнителем, а не по дате "
+"её принятия руководителем."
+
+#: templates/kpi/methodology.html:19
+msgid "Task weight by complexity"
+msgstr "Вес поручения по сложности"
+
+#: templates/kpi/methodology.html:20
+msgid "Harder tasks weigh more in every component:"
+msgstr "Более сложные поручения весят больше во всех показателях:"
+
+#: templates/kpi/methodology.html:30
+msgid "Four components (each from 0 to 100)"
+msgstr "Четыре показателя (каждый от 0 до 100)"
+
+#: templates/kpi/methodology.html:32
+msgid "points of completed tasks ÷ points of all assessed tasks."
+msgstr "баллы выполненных поручений ÷ баллы всех оценённых поручений."
+
+#: templates/kpi/methodology.html:33
+msgid ""
+"points of tasks handed in by the deadline ÷ points of all assessed tasks."
+msgstr "баллы поручений, сданных в срок ÷ баллы всех оценённых поручений."
+
+#: templates/kpi/methodology.html:34
+msgid ""
+"the manager's average rating (1–5) of completed tasks, weighted by points, "
+"as a share of 5."
+msgstr ""
+"средняя оценка руководителя (1–5) по выполненным поручениям, взвешенная по "
+"баллам, в доле от 5."
+
+#: templates/kpi/methodology.html:35
+#, python-format
+msgid ""
+"points of completed tasks ÷ monthly norm (default %(norm)s points, can be "
+"set per person), at most 100. During the current month the norm is reduced "
+"in proportion to the days that have passed."
+msgstr ""
+"баллы выполненных поручений ÷ месячная норма (по умолчанию %(norm)s баллов, "
+"можно задать каждому сотруднику), не более 100. В текущем месяце норма "
+"уменьшается пропорционально прошедшим дням."
+
+#: templates/kpi/methodology.html:38
+msgid "Final score"
+msgstr "Итоговый балл"
+
+#: templates/kpi/methodology.html:39
+msgid "manager adjustments"
+msgstr "корректировки руководителя"
+
+#: templates/kpi/methodology.html:39
+msgid "from 0 to 100"
+msgstr "от 0 до 100"
+
+#: templates/kpi/methodology.html:40
+#, python-format
+msgid ""
+"A manager may add a bonus or penalty of up to ±%(m)s points per entry with a"
+" written reason, for work that is not in the portal or for discipline "
+"issues. The reason is visible to the employee."
+msgstr ""
+"Руководитель может добавить поощрение или взыскание до ±%(m)s баллов за "
+"запись с письменным основанием — за работу вне портала или вопросы "
+"дисциплины. Основание видно сотруднику."
+
+#: templates/kpi/methodology.html:41
+msgid ""
+"If a component cannot be measured (for example, nothing was completed, so "
+"there is nothing to rate), its weight is shared among the other components."
+msgstr ""
+"Если показатель нельзя измерить (например, ничего не выполнено и оценивать "
+"нечего), его вес распределяется между остальными показателями."
+
+#: templates/kpi/methodology.html:43
+msgid "Grades"
+msgstr "Оценки"
+
+#: templates/kpi/methodology.html:45 templates/kpi/methodology.html:46
+#: templates/kpi/methodology.html:47
+#, python-format
+msgid "%(t)s and above"
+msgstr "%(t)s и выше"
+
+#: templates/kpi/methodology.html:48
+#, python-format
+msgid "below %(t)s"
+msgstr "ниже %(t)s"
+
+#: templates/kpi/methodology.html:51
+msgid "Closing the month"
+msgstr "Закрытие месяца"
+
+#: templates/kpi/methodology.html:52
+msgid ""
+"After the month ends the manager reviews the remaining tasks and finalises "
+"the month. Finalised results are frozen: later edits to tasks or settings do"
+" not change them. A finalised month can be reopened if a correction is "
+"needed."
+msgstr ""
+"После окончания месяца руководитель проверяет оставшиеся поручения и "
+"закрывает месяц. Результаты закрытого месяца фиксируются: последующие "
+"изменения поручений или настроек на них не влияют. При необходимости "
+"исправления месяц можно открыть повторно."
+
+#: templates/kpi/methodology.html:54
+msgid "Example"
+msgstr "Пример"
+
+#: templates/kpi/methodology.html:55
+msgid ""
+"An employee had 4 tasks due in the month: two medium (2 points each), one "
+"complex (3) and one simple (1) — 8 points in total. The complex task was "
+"handed in a day late, the simple one was not done. Ratings: 5, 4 and 4."
+msgstr ""
+"У сотрудника в месяце 4 поручения: два средних (по 2 балла), одно сложное "
+"(3) и одно простое (1) — всего 8 баллов. Сложное сдано на день позже срока, "
+"простое не выполнено. Оценки: 5, 4 и 4."
+
+#: templates/kpi/methodology.html:57
+msgid "Execution = 7 ÷ 8 = 87.5"
+msgstr "Исполнение = 7 ÷ 8 = 87,5"
+
+#: templates/kpi/methodology.html:58
+msgid "Timeliness = 4 ÷ 8 = 50"
+msgstr "Своевременность = 4 ÷ 8 = 50"
+
+#: templates/kpi/methodology.html:59
+msgid "Quality = (2×5 + 2×4 + 3×4) ÷ 7 = 4.29 of 5 = 85.7"
+msgstr "Качество = (2×5 + 2×4 + 3×4) ÷ 7 = 4,29 из 5 = 85,7"
+
+#: templates/kpi/methodology.html:60
+msgid "Workload with a norm of 20 = 7 ÷ 20 = 35"
+msgstr "Объём работы при норме 20 = 7 ÷ 20 = 35"
+
+#: templates/kpi/methodology.html:61
+msgid ""
+"KPI = 0.35×87.5 + 0.25×50 + 0.25×85.7 + 0.15×35 = 69.8 (Satisfactory) with "
+"the default weights"
+msgstr ""
+"KPI = 0,35×87,5 + 0,25×50 + 0,25×85,7 + 0,15×35 = 69,8 (Удовлетворительно) "
+"при стандартных весах"
+
+#: templates/kpi/month.html:5
+msgid "Reopen this month? Results will be recalculated from current data."
+msgstr ""
+"Открыть месяц повторно? Результаты будут пересчитаны по текущим данным."
+
+#: templates/kpi/month.html:6
+msgid "Finalise this month? Results will be frozen."
+msgstr "Закрыть месяц? Результаты будут зафиксированы."
+
+#: templates/kpi/month.html:9
+#, python-format
+msgid "Team KPI — %(month_label)s"
+msgstr "KPI команды — %(month_label)s"
+
+#: templates/kpi/month.html:10
+msgid "Tasks are counted in the month of their deadline."
+msgstr "Поручения учитываются в месяце их срока."
+
+#: templates/kpi/month.html:15 templates/kpi/print.html:24
+msgid "Print"
+msgstr "Печать"
+
+#: templates/kpi/month.html:22
+msgid "Team average KPI"
+msgstr "Средний KPI команды"
+
+#: templates/kpi/month.html:22
+#, python-format
+msgid "%(n)s employee assessed"
+msgid_plural "%(n)s employees assessed"
+msgstr[0] "оценён %(n)s сотрудник"
+msgstr[1] "оценено %(n)s сотрудника"
+msgstr[2] "оценено %(n)s сотрудников"
+msgstr[3] "оценено %(n)s сотрудника"
+
+#: templates/kpi/month.html:23
+#, python-format
+msgid "KPI ≥ %(t)s"
+msgstr "KPI ≥ %(t)s"
+
+#: templates/kpi/month.html:24
+#, python-format
+msgid "KPI ≥ %(g)s / ≥ %(s)s"
+msgstr "KPI ≥ %(g)s / ≥ %(s)s"
+
+#: templates/kpi/month.html:25
+#, python-format
+msgid "KPI below %(s)s"
+msgstr "KPI ниже %(s)s"
+
+#: templates/kpi/month.html:34
+msgid "Completed / assessed tasks"
+msgstr "Выполнено / оценено поручений"
+
+#: templates/kpi/month.html:39
+msgid "Adj."
+msgstr "Корр."
+
+#: templates/kpi/month.html:48
+msgid "on review"
+msgstr "на проверке"
+
+#: templates/kpi/month.html:58
+msgid "No employees or tasks for this month."
+msgstr "Нет сотрудников или поручений за этот месяц."
+
+#: templates/kpi/month.html:64
+#, python-format
+msgid ""
+"Weights: execution %(c)s%%, timeliness %(t)s%%, quality %(q)s%%, workload "
+"%(w)s%%."
+msgstr ""
+"Веса: исполнение %(c)s%%, своевременность %(t)s%%, качество %(q)s%%, объём "
+"работы %(w)s%%."
+
+#: templates/kpi/month.html:64
+msgid ""
+"This finalised month uses the settings that applied when it was finalised."
+msgstr ""
+"Для закрытого месяца используются настройки, действовавшие на момент "
+"закрытия."
+
+#: templates/kpi/print.html:26
+#, python-format
+msgid "Employee performance (KPI) for %(month_label)s"
+msgstr "Показатели эффективности (KPI) сотрудников за %(month_label)s"
+
+#: templates/kpi/print.html:28
+#, python-format
+msgid "Final results, approved %(date)s"
+msgstr "Итоговые результаты, утверждены %(date)s"
+
+#: templates/kpi/print.html:28
+msgid "Preliminary results"
+msgstr "Предварительные результаты"
+
+#: templates/kpi/print.html:29
+#, python-format
+msgid "team average %(avg)s"
+msgstr "средний по команде %(avg)s"
+
+#: templates/kpi/print.html:35
+#, python-format
+msgid "Execution, %%"
+msgstr "Исполнение, %%"
+
+#: templates/kpi/print.html:35
+#, python-format
+msgid "Timeliness, %%"
+msgstr "Своевременность, %%"
+
+#: templates/kpi/print.html:35
+#, python-format
+msgid "Quality, %%"
+msgstr "Качество, %%"
+
+#: templates/kpi/print.html:35
+#, python-format
+msgid "Workload, %%"
+msgstr "Объём работы, %%"
+
+#: templates/kpi/print.html:50
+msgid "Prepared by"
+msgstr "Подготовил"
+
+#: templates/kpi/print.html:51
+msgid "Approved by"
+msgstr "Утвердил"
+
+#: templates/kpi/settings.html:8
+msgid "Changes apply to all months that are not finalised."
+msgstr "Изменения применяются ко всем незакрытым месяцам."
+
+#: templates/kpi/settings.html:15
+msgid "Component weights"
+msgstr "Веса показателей"
+
+#: templates/kpi/settings.html:15
+msgid "must add up to 100"
+msgstr "в сумме должно быть 100"
+
+#: templates/kpi/settings.html:24
+msgid "Points by complexity"
+msgstr "Баллы по сложности"
+
+#: templates/kpi/settings.html:34
+msgid "Grades and adjustments"
+msgstr "Оценки и корректировки"
+
+#: templates/kpi/settings.html:42
+msgid "Save settings"
+msgstr "Сохранить настройки"
+
+#: templates/registration/login.html:7 templates/registration/login.html:27
+msgid "Log in"
+msgstr "Войти"
+
+#: templates/registration/login.html:14
+msgid "Task and KPI management portal"
+msgstr "Портал управления поручениями и KPI"
+
+#: templates/registration/password_change_done.html:2
+#: templates/registration/password_change_form.html:2
+#: templates/registration/password_change_form.html:4
+msgid "Change password"
+msgstr "Сменить пароль"
+
+#: templates/registration/password_change_done.html:4
+msgid "Password changed"
+msgstr "Пароль изменён"
+
+#: templates/registration/password_change_done.html:5
+msgid "Your password has been changed."
+msgstr "Ваш пароль изменён."
+
+#: templates/tasks/dashboard.html:7
+#, python-format
+msgid "Welcome, %(name)s"
+msgstr "Добро пожаловать, %(name)s"
+
+#: templates/tasks/dashboard.html:17 templates/tasks/dashboard.html:108
+msgid "My unfinished tasks"
+msgstr "Мои незавершённые поручения"
+
+#: templates/tasks/dashboard.html:19
+msgid "new, in progress, on review, returned"
+msgstr "новые, в работе, на проверке, возвращённые"
+
+#: templates/tasks/dashboard.html:24
+msgid "deadline passed, not handed in"
+msgstr "срок прошёл, работа не сдана"
+
+#: templates/tasks/dashboard.html:27 templates/tasks/dashboard.html:77
+msgid "Awaiting your review"
+msgstr "Ожидают вашей проверки"
+
+#: templates/tasks/dashboard.html:29
+msgid "handed in by executors"
+msgstr "сданы исполнителями"
+
+#: templates/tasks/dashboard.html:29
+msgid "waiting for the manager's decision"
+msgstr "ожидают решения руководителя"
+
+#: templates/tasks/dashboard.html:32
+msgid "Completed this month"
+msgstr "Выполнено в этом месяце"
+
+#: templates/tasks/dashboard.html:43
+#, python-format
+msgid "Team KPI — %(month)s"
+msgstr "KPI команды — %(month)s"
+
+#: templates/tasks/dashboard.html:44
+msgid "Full KPI report"
+msgstr "Полный отчёт KPI"
+
+#: templates/tasks/dashboard.html:71
+msgid "Add a team member"
+msgstr "Добавьте сотрудника"
+
+#: templates/tasks/dashboard.html:78
+msgid "Nothing is waiting for review."
+msgstr "Нет поручений, ожидающих проверки."
+
+#: templates/tasks/dashboard.html:82 templates/tasks/dashboard.html:115
+msgid "No overdue tasks."
+msgstr "Просроченных поручений нет."
+
+#: templates/tasks/dashboard.html:85 templates/tasks/dashboard.html:118
+msgid "Due in the next 7 days"
+msgstr "Срок в ближайшие 7 дней"
+
+#: templates/tasks/dashboard.html:86 templates/tasks/dashboard.html:119
+msgid "No deadlines this week."
+msgstr "На этой неделе сроков нет."
+
+#: templates/tasks/dashboard.html:95
+#, python-format
+msgid "My KPI — %(month)s"
+msgstr "Мой KPI — %(month)s"
+
+#: templates/tasks/dashboard.html:95 templates/tasks/task_detail.html:168
+msgid "Details"
+msgstr "Подробнее"
+
+#: templates/tasks/dashboard.html:100
+msgid "No assessed tasks yet this month"
+msgstr "В этом месяце пока нет оценённых поручений"
+
+#: templates/tasks/dashboard.html:101
+#, python-format
+msgid ""
+"%(done)s of %(assessed)s assessed tasks completed · %(pending)s awaiting "
+"review"
+msgstr ""
+"Выполнено %(done)s из %(assessed)s оценённых поручений · на проверке "
+"%(pending)s"
+
+#: templates/tasks/dashboard.html:109
+msgid "You have no unfinished tasks."
+msgstr "У вас нет незавершённых поручений."
+
+#: templates/tasks/notifications.html:9
+msgid "Mark all as read"
+msgstr "Отметить все как прочитанные"
+
+#: templates/tasks/notifications.html:19
+msgid "Unread"
+msgstr "Не прочитано"
+
+#: templates/tasks/notifications.html:30
+msgid "No notifications yet."
+msgstr "Уведомлений пока нет."
+
+#: templates/tasks/task_detail.html:5
+msgid "Delete this file?"
+msgstr "Удалить этот файл?"
+
+#: templates/tasks/task_detail.html:5
+msgid "Reopen this task? Its quality rating will be cleared."
+msgstr "Открыть поручение повторно? Оценка качества будет сброшена."
+
+#: templates/tasks/task_detail.html:27
+msgid "Returned for revision:"
+msgstr "Возвращено на доработку:"
+
+#: templates/tasks/task_detail.html:32
+msgid "No description."
+msgstr "Описания нет."
+
+#: templates/tasks/task_detail.html:35 templates/tasks/task_list.html:50
+msgid "Progress"
+msgstr "Ход выполнения"
+
+#: templates/tasks/task_detail.html:50
+msgid "Delete"
+msgstr "Удалить"
+
+#: templates/tasks/task_detail.html:56
+msgid "No files yet."
+msgstr "Файлов пока нет."
+
+#: templates/tasks/task_detail.html:62
+msgid "Upload"
+msgstr "Загрузить"
+
+#: templates/tasks/task_detail.html:69
+msgid "Comments"
+msgstr "Комментарии"
+
+#: templates/tasks/task_detail.html:81
+msgid "No comments yet."
+msgstr "Комментариев пока нет."
+
+#: templates/tasks/task_detail.html:87
+msgid "Send"
+msgstr "Отправить"
+
+#: templates/tasks/task_detail.html:96
+msgid "Actions"
+msgstr "Действия"
+
+#: templates/tasks/task_detail.html:107
+msgid "Report on the work done (optional)"
+msgstr "Отчёт о проделанной работе (необязательно)"
+
+#: templates/tasks/task_detail.html:108
+msgid "Attach the result files above before submitting."
+msgstr "Перед отправкой прикрепите файлы с результатом выше."
+
+#: templates/tasks/task_detail.html:115
+msgid "Update progress"
+msgstr "Обновить ход выполнения"
+
+#: templates/tasks/task_detail.html:133
+msgid ""
+"The task was not submitted through the portal; it will be recorded as handed"
+" in today."
+msgstr ""
+"Поручение не было сдано через портал; оно будет отмечено как сданное "
+"сегодня."
+
+#: templates/tasks/task_detail.html:152
+msgid "Cancelled tasks are not counted in KPI."
+msgstr "Отменённые поручения не учитываются в KPI."
+
+#: templates/tasks/task_detail.html:153
+msgid "Reason (optional)"
+msgstr "Причина (необязательно)"
+
+#: templates/tasks/task_detail.html:173
+msgid "Assigned by"
+msgstr "Кем дано"
+
+#: templates/tasks/task_detail.html:175
+#, python-format
+msgid "%(points)s point"
+msgid_plural "%(points)s points"
+msgstr[0] "%(points)s балл"
+msgstr[1] "%(points)s балла"
+msgstr[2] "%(points)s баллов"
+msgstr[3] "%(points)s балла"
+
+#: templates/tasks/task_detail.html:177
+#, python-format
+msgid "originally %(date)s"
+msgstr "первоначально %(date)s"
+
+#: templates/tasks/task_detail.html:178
+msgid "Assigned"
+msgstr "Дата поручения"
+
+#: templates/tasks/task_detail.html:182
+msgid "after the deadline"
+msgstr "после срока"
+
+#: templates/tasks/task_detail.html:185
+msgid "Accepted"
+msgstr "Принято"
+
+#: templates/tasks/task_detail.html:187
+msgid "Returned"
+msgstr "Возвращалось"
+
+#: templates/tasks/task_detail.html:187
+#, python-format
+msgid "%(n)s time"
+msgid_plural "%(n)s times"
+msgstr[0] "%(n)s раз"
+msgstr[1] "%(n)s раза"
+msgstr[2] "%(n)s раз"
+msgstr[3] "%(n)s раза"
+
+#: templates/tasks/task_detail.html:193
+msgid "History"
+msgstr "История"
+
+#: templates/tasks/task_form.html:2 templates/tasks/task_form.html:7
+msgid "Edit task"
+msgstr "Изменить поручение"
+
+#: templates/tasks/task_form.html:8
+msgid "The executor is notified as soon as you save."
+msgstr "Исполнитель получит уведомление сразу после сохранения."
+
+#: templates/tasks/task_form.html:33
+#, python-format
+msgid "%(points)s KPI point"
+msgid_plural "%(points)s KPI points"
+msgstr[0] "%(points)s балл KPI"
+msgstr[1] "%(points)s балла KPI"
+msgstr[2] "%(points)s баллов KPI"
+msgstr[3] "%(points)s балла KPI"
+
+#: templates/tasks/task_form.html:48
+msgid "Assign task"
+msgstr "Дать поручение"
+
+#: templates/tasks/task_list.html:8
+#, python-format
+msgid "%(n)s task found"
+msgid_plural "%(n)s tasks found"
+msgstr[0] "найдено %(n)s поручение"
+msgstr[1] "найдено %(n)s поручения"
+msgstr[2] "найдено %(n)s поручений"
+msgstr[3] "найдено %(n)s поручения"
+
+#: templates/tasks/task_list.html:21
+msgid "Apply"
+msgstr "Применить"
+
+#: templates/tasks/task_list.html:22
+msgid "Reset"
+msgstr "Сбросить"
+
+#: templates/tasks/task_list.html:25
+msgid "More filters"
+msgstr "Дополнительные фильтры"
+
+#: templates/tasks/task_list.html:73
+msgid "No tasks match the filters."
+msgstr "Нет поручений, подходящих под фильтры."

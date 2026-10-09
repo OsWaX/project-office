@@ -1,0 +1,78 @@
+{% extends "base.html" %}{% load i18n office %}
+{% block title %}{% translate "Tasks" %}{% endblock %}
+{% block page_name %}{% translate "Tasks" %}{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div>
+    <h1>{% if is_manager %}{% translate "All tasks" %}{% else %}{% translate "My tasks" %}{% endif %}</h1>
+    <div class="sub">{% blocktranslate count n=total %}{{ n }} task found{% plural %}{{ n }} tasks found{% endblocktranslate %}</div>
+  </div>
+  {% if is_manager %}<div class="page-actions"><a class="btn btn-primary" href="{% url 'tasks:create' %}">{% icon "plus" %}{% translate "New task" %}</a></div>{% endif %}
+</div>
+
+<form method="get" class="card" style="margin-bottom:16px">
+  <div class="card-body">
+    <div class="filters">
+      <div class="field"><label for="{{ form.q.id_for_label }}">{{ form.q.label }}</label>{{ form.q }}</div>
+      <div class="field"><label for="{{ form.state.id_for_label }}">{{ form.state.label }}</label>{{ form.state }}</div>
+      {% if form.assignee %}<div class="field"><label for="{{ form.assignee.id_for_label }}">{{ form.assignee.label }}</label>{{ form.assignee }}</div>{% endif %}
+      <div class="field"><label for="{{ form.complexity.id_for_label }}">{{ form.complexity.label }}</label>{{ form.complexity }}</div>
+      <div class="filter-actions">
+        <button class="btn btn-primary" type="submit">{% translate "Apply" %}</button>
+        <a class="btn" href="{% url 'tasks:list' %}">{% translate "Reset" %}</a>
+      </div>
+      <details {% if form.department.value or form.category.value or form.priority.value or form.deadline_from.value or form.deadline_to.value %}open{% endif %}>
+        <summary>{% translate "More filters" %}</summary>
+        <div class="more">
+          {% if form.department %}<div class="field"><label for="{{ form.department.id_for_label }}">{{ form.department.label }}</label>{{ form.department }}</div>{% endif %}
+          <div class="field"><label for="{{ form.category.id_for_label }}">{{ form.category.label }}</label>{{ form.category }}</div>
+          <div class="field"><label for="{{ form.priority.id_for_label }}">{{ form.priority.label }}</label>{{ form.priority }}</div>
+          <div class="field"><label for="{{ form.deadline_from.id_for_label }}">{{ form.deadline_from.label }}</label>{{ form.deadline_from }}</div>
+          <div class="field"><label for="{{ form.deadline_to.id_for_label }}">{{ form.deadline_to.label }}</label>{{ form.deadline_to }}</div>
+        </div>
+      </details>
+    </div>
+    <input type="hidden" name="sort" value="{{ sort }}">
+  </div>
+</form>
+
+<div class="card">
+  <div class="table-wrap">
+  {% if page.object_list %}
+  <table class="table">
+    <thead><tr>
+      <th>{% translate "Task" %}</th>
+      {% if is_manager %}<th><a href="?{{ query_without_sort }}&amp;sort=assignee">{% translate "Executor" %}</a></th>{% endif %}
+      <th>{% translate "Status" %}</th>
+      <th class="hide-sm"><a href="?{{ query_without_sort }}&amp;sort=complexity">{% translate "Complexity" %}</a></th>
+      <th class="hide-sm"><a href="?{{ query_without_sort }}&amp;sort=priority">{% translate "Priority" %}</a></th>
+      <th class="num"><a href="?{{ query_without_sort }}&amp;sort={% if sort == 'deadline' %}-deadline{% else %}deadline{% endif %}">{% translate "Deadline" %} {% if sort == 'deadline' %}↑{% elif sort == '-deadline' %}↓{% endif %}</a></th>
+      <th class="num hide-sm">{% translate "Progress" %}</th>
+    </tr></thead>
+    <tbody>
+    {% for task in page.object_list %}
+      <tr class="{% if task.is_overdue %}is-overdue{% endif %}">
+        <td class="title-cell">
+          <a href="{{ task.get_absolute_url }}">{{ task.title|truncatechars:90 }}</a>
+          <div class="meta">#{{ task.pk }}{% if task.category %} · {{ task.category }}{% endif %}</div>
+        </td>
+        {% if is_manager %}<td>{{ task.assignee|person }}<div class="muted small">{{ task.assignee.profile.position|truncatechars:40 }}</div></td>{% endif %}
+        <td>{% status_badge task.status %}</td>
+        <td class="hide-sm">{% complexity task.complexity %}</td>
+        <td class="hide-sm">{% priority_flag task.priority %}</td>
+        <td class="num">
+          {{ task.deadline|date:"d.m.Y" }}
+          {% with hint=task|deadline_hint %}{% if hint %}<div class="small {% if task.is_overdue %}flag critical{% else %}muted{% endif %}">{{ hint }}</div>{% endif %}{% endwith %}
+        </td>
+        <td class="num hide-sm">{{ task.progress }}%</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+    <div class="empty">{% translate "No tasks match the filters." %}</div>
+  {% endif %}
+  </div>
+  {% include "includes/pagination.html" %}
+</div>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "base.html" %}{% load i18n office %}
+{% block title %}{% if creating %}{% translate "New task" %}{% else %}{% translate "Edit task" %}{% endif %}{% endblock %}
+{% block page_name %}{% translate "Tasks" %}{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div>
+    <h1>{% if creating %}{% translate "New task" %}{% else %}{% translate "Edit task" %} #{{ task.pk }}{% endif %}</h1>
+    {% if creating %}<div class="sub">{% translate "The executor is notified as soon as you save." %}</div>{% endif %}
+  </div>
+</div>
+<form method="post" enctype="multipart/form-data" class="card">
+  {% csrf_token %}
+  <div class="card-body">
+    {% if form.non_field_errors %}<ul class="errorlist nonfield">{% for e in form.non_field_errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+    <div class="form-grid">
+      {% include "includes/field.html" with field=form.title full=True %}
+      {% include "includes/field.html" with field=form.description full=True %}
+      {% if creating %}
+        {% include "includes/field.html" with field=form.assignees %}
+      {% else %}
+        {% include "includes/field.html" with field=form.assignee %}
+      {% endif %}
+      <div class="stack" style="gap:16px">
+        {% include "includes/field.html" with field=form.category %}
+        {% include "includes/field.html" with field=form.deadline %}
+      </div>
+      <div class="field full">
+        <span class="label">{{ form.complexity.label }} <span class="muted">*</span></span>
+        <div class="radio-cards">
+          {% for radio in form.complexity %}
+            <label for="{{ radio.id_for_label }}">
+              <span class="rc-title">{{ radio.tag }} {{ radio.choice_label }}</span>
+              <span class="muted small">{% blocktranslate count points=complexity_points|get_item:radio.data.value %}{{ points }} KPI point{% plural %}{{ points }} KPI points{% endblocktranslate %}</span>
+              <span class="rc-desc">{{ complexity_help|get_item:radio.data.value }}</span>
+            </label>
+          {% endfor %}
+        </div>
+        {{ form.complexity.errors }}
+      </div>
+      <div class="field full">
+        <span class="label">{{ form.priority.label }}</span>
+        <div class="radio-row">{% for radio in form.priority %}<label for="{{ radio.id_for_label }}">{{ radio.tag }} {{ radio.choice_label }}</label>{% endfor %}</div>
+        {{ form.priority.errors }}
+      </div>
+      {% if creating %}{% include "includes/field.html" with field=form.files full=True %}{% endif %}
+    </div>
+    <div class="form-actions">
+      <button class="btn btn-primary" type="submit">{% if creating %}{% translate "Assign task" %}{% else %}{% translate "Save" %}{% endif %}</button>
+      <a class="btn" href="{% if task %}{{ task.get_absolute_url }}{% else %}{% url 'tasks:list' %}{% endif %}">{% translate "Cancel" %}</a>
+    </div>
+  </div>
+</form>
+{% endblock %}

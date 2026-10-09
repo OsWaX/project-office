@@ -1,0 +1,29 @@
+{% extends "base.html" %}{% load i18n office %}
+{% block title %}{% if member %}{{ member|person }}{% else %}{% translate "Add team member" %}{% endif %}{% endblock %}
+{% block page_name %}{% translate "Team" %}{% endblock %}
+{% block content %}
+<div class="page-head"><h1>{% if member %}{% translate "Edit team member" %}{% else %}{% translate "Add team member" %}{% endif %}</h1></div>
+<form method="post" class="card" style="max-width:860px" autocomplete="off">
+  {% csrf_token %}
+  <div class="card-body">
+    {% if form.non_field_errors %}<ul class="errorlist nonfield">{% for e in form.non_field_errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+    <div class="form-grid">
+      {% include "includes/field.html" with field=form.last_name %}
+      {% include "includes/field.html" with field=form.first_name %}
+      {% include "includes/field.html" with field=form.position %}
+      {% include "includes/field.html" with field=form.department %}
+      {% include "includes/field.html" with field=form.role %}
+      {% include "includes/field.html" with field=form.monthly_norm %}
+      {% include "includes/field.html" with field=form.phone %}
+      {% include "includes/field.html" with field=form.email %}
+      {% include "includes/field.html" with field=form.username %}
+      {% include "includes/field.html" with field=form.password %}
+      {% if form.is_active %}{% include "includes/field.html" with field=form.is_active %}{% endif %}
+    </div>
+    <div class="form-actions">
+      <button class="btn btn-primary" type="submit">{% translate "Save" %}</button>
+      <a class="btn" href="{% if member %}{% url 'accounts:member' member.pk %}{% else %}{% url 'accounts:team' %}{% endif %}">{% translate "Cancel" %}</a>
+    </div>
+  </div>
+</form>
+{% endblock %}

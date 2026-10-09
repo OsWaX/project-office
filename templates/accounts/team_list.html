@@ -1,0 +1,78 @@
+{% extends "base.html" %}{% load i18n office %}
+{% block title %}{% translate "Team" %}{% endblock %}
+{% block page_name %}{% translate "Team" %}{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div>
+    <h1>{% translate "Team" %}</h1>
+    <div class="sub">{% blocktranslate with month=month|date:"F Y" %}Current workload and KPI for {{ month }}{% endblocktranslate %}</div>
+  </div>
+  <div class="page-actions">
+    {% if show_inactive %}<a class="btn" href="{% url 'accounts:team' %}">{% translate "Hide inactive" %}</a>{% else %}<a class="btn" href="?inactive=1">{% translate "Show inactive" %}</a>{% endif %}
+    <a class="btn btn-primary" href="{% url 'accounts:member_create' %}">{% icon "plus" %}{% translate "Add team member" %}</a>
+  </div>
+</div>
+<div class="card">
+  <div class="table-wrap">
+  <table class="table">
+    <thead><tr>
+      <th>{% translate "Name" %}</th>
+      <th class="hide-sm">{% translate "Department" %}</th>
+      <th>{% translate "Role" %}</th>
+      <th class="num">{% translate "Unfinished" %}</th>
+      <th class="num">{% translate "Overdue" %}</th>
+      <th class="num hide-sm">{% translate "Done this month" %}</th>
+      <th style="min-width:170px">{% translate "KPI so far" %}</th>
+    </tr></thead>
+    <tbody>
+    {% for m in members %}
+      <tr>
+        <td class="title-cell"><a href="{% url 'accounts:member' m.pk %}">{{ m|person }}</a><div class="meta">{{ m.profile.position|default:m.username }}{% if not m.is_active %} · {% translate "inactive" %}{% endif %}</div></td>
+        <td class="hide-sm">{{ m.profile.department|default:"—" }}</td>
+        <td><span class="chip">{{ m.profile.get_role_display }}</span></td>
+        <td class="num">{{ m.active }}</td>
+        <td class="num">{% if m.overdue %}<span class="flag critical">{% icon "alert" %}{{ m.overdue }}</span>{% else %}0{% endif %}</td>
+        <td class="num hide-sm">{{ m.done_month }}</td>
+        <td>{% include "includes/meter.html" with score=m.kpi.score %}</td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="7" class="empty">{% translate "No team members yet." %}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<div class="grid grid-2" style="margin-top:20px">
+  <div class="card">
+    <div class="card-head"><h2>{% translate "Departments" %}</h2></div>
+    <div class="card-body">
+      {% if departments %}
+        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px">
+          {% for d in departments %}<span class="chip">{{ d.name }} · {{ d.n }}</span>{% endfor %}
+        </div>
+      {% endif %}
+      <form method="post" action="{% url 'accounts:department_create' %}" style="display:flex; gap:8px">
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="{% translate 'New department name' %}" required maxlength="200" aria-label="{% translate 'New department name' %}">
+        <button class="btn">{% translate "Add" %}</button>
+      </form>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-head"><h2>{% translate "Task types" %}</h2></div>
+    <div class="card-body">
+      {% if categories %}
+        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px">
+          {% for c in categories %}<span class="chip">{{ c.name }} · {{ c.n }}</span>{% endfor %}
+        </div>
+      {% endif %}
+      <form method="post" action="{% url 'accounts:category_create' %}" style="display:flex; gap:8px">
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="{% translate 'New task type, e.g. Analytical report' %}" required maxlength="200" aria-label="{% translate 'New task type, e.g. Analytical report' %}">
+        <button class="btn">{% translate "Add" %}</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

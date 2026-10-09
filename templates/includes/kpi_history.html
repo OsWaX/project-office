@@ -1,0 +1,24 @@
+{% load i18n office %}
+<div class="chart-y">
+  <div class="columns" role="img" aria-label="{% translate 'KPI by month' %}">
+    <div class="gridline" style="bottom: 50%"><span>50</span></div>
+    <div class="gridline" style="bottom: 100%"><span>100</span></div>
+    {% for h in history %}
+      <div class="col {% if h.score is None %}empty{% endif %}" tabindex="0">
+        {% if h.score is not None %}
+          <div class="bar" style="height: {{ h.score|stringformat:'.1f' }}%"></div>
+          {% if forloop.last %}<span class="label-top" style="bottom: calc({{ h.score|stringformat:'.1f' }}% + 4px)">{{ h.score|pct }}</span>{% endif %}
+        {% endif %}
+        <span class="tip">{{ h.month|date:"F Y" }}: {% if h.score is not None %}{{ h.score|pct }} · {{ h.grade|grade_label }}{% else %}{% translate "No data" %}{% endif %}</span>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="col-labels">{% for h in history %}<span>{{ h.month|date:"M" }}</span>{% endfor %}</div>
+</div>
+<details style="margin-top:12px">
+  <summary class="small" style="cursor:pointer; color:var(--link)">{% translate "Show as table" %}</summary>
+  <table class="table" style="margin-top:8px">
+    <thead><tr><th>{% translate "Month" %}</th><th class="num">{% translate "KPI" %}</th><th>{% translate "Grade" %}</th></tr></thead>
+    <tbody>{% for h in history %}<tr><td>{{ h.month|date:"F Y" }}</td><td class="num">{{ h.score|pct }}</td><td>{% if h.grade %}{{ h.grade|grade_label }}{% else %}—{% endif %}</td></tr>{% endfor %}</tbody>
+  </table>
+</details>

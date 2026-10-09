@@ -1,0 +1,1 @@
+{% load office %}{% if value == 4 %}<span class="flag critical">{% icon "alert" %}{{ label }}</span>{% elif value == 3 %}<span class="flag serious">{% icon "arrow-up" %}{{ label }}</span>{% else %}<span class="muted small">{{ label }}</span>{% endif %}

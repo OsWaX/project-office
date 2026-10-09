@@ -1,0 +1,9 @@
+{% load i18n %}{% if page.paginator.num_pages > 1 %}
+<div class="pagination">
+  <span>{% blocktranslate with start=page.start_index end=page.end_index total=page.paginator.count %}{{ start }}–{{ end }} of {{ total }}{% endblocktranslate %}</span>
+  <span class="pages">
+    {% if page.has_previous %}<a class="btn btn-sm" href="?{% if query %}{{ query }}&amp;{% endif %}page={{ page.previous_page_number }}">← {% translate "Previous" %}</a>{% endif %}
+    {% if page.has_next %}<a class="btn btn-sm" href="?{% if query %}{{ query }}&amp;{% endif %}page={{ page.next_page_number }}">{% translate "Next" %} →</a>{% endif %}
+  </span>
+</div>
+{% endif %}

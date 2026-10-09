@@ -1,0 +1,2102 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Project Office\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-09 10:03+0500\n"
+"PO-Revision-Date: 2026-10-09 12:00+0500\n"
+"Last-Translator: Project Office team\n"
+"Language-Team: Uzbek\n"
+"Language: uz\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: accounts/forms.py:14 templates/accounts/team_list.html:21
+msgid "Role"
+msgstr "Rol"
+
+#: accounts/forms.py:16 kpi/export.py:49 tasks/forms.py:218
+#: templates/accounts/team_list.html:20
+msgid "Department"
+msgstr "Boʻlim"
+
+#: accounts/forms.py:18 kpi/export.py:48 templates/kpi/print.html:33
+msgid "Position"
+msgstr "Lavozim"
+
+#: accounts/forms.py:19 templates/accounts/member_detail.html:58
+msgid "Phone"
+msgstr "Telefon"
+
+#: accounts/forms.py:21
+msgid "Monthly workload norm, points"
+msgstr "Oylik ish hajmi meʼyori, ball"
+
+#: accounts/forms.py:24
+msgid "Leave empty to use the default from KPI settings."
+msgstr ""
+"KPI sozlamalaridagi standart qiymatdan foydalanish uchun boʻsh qoldiring."
+
+#: accounts/forms.py:27 templates/base.html:42
+#: templates/registration/login.html:24
+msgid "Password"
+msgstr "Parol"
+
+#: accounts/forms.py:36 templates/accounts/member_detail.html:57
+#: templates/registration/login.html:20
+msgid "Login"
+msgstr "Login"
+
+#: accounts/forms.py:51
+msgid "Leave empty to keep the current password."
+msgstr "Joriy parolni saqlab qolish uchun boʻsh qoldiring."
+
+#: accounts/models.py:9 tasks/models.py:17
+msgid "name"
+msgstr "nomi"
+
+#: accounts/models.py:13 accounts/models.py:37
+msgid "department"
+msgstr "boʻlim"
+
+#: accounts/models.py:14
+msgid "departments"
+msgstr "boʻlimlar"
+
+#: accounts/models.py:22
+msgid "Manager"
+msgstr "Rahbar"
+
+#: accounts/models.py:23 kpi/export.py:47 kpi/export.py:94
+#: templates/kpi/month.html:33 templates/kpi/print.html:33
+#: templates/tasks/dashboard.html:50
+msgid "Employee"
+msgstr "Xodim"
+
+#: accounts/models.py:29
+msgid "role"
+msgstr "rol"
+
+#: accounts/models.py:33
+msgid "Managers assign and review tasks and see everyone's KPI."
+msgstr ""
+"Rahbarlar topshiriq beradi, ularni qabul qiladi va barcha xodimlarning KPI "
+"koʻrsatkichlarini koʻradi."
+
+#: accounts/models.py:43
+msgid "position"
+msgstr "lavozim"
+
+#: accounts/models.py:44
+msgid "phone"
+msgstr "telefon"
+
+#: accounts/models.py:46
+msgid "monthly workload norm"
+msgstr "oylik ish hajmi meʼyori"
+
+#: accounts/models.py:50
+msgid ""
+"Complexity points this person is expected to complete per month. Leave empty"
+" to use the default from KPI settings."
+msgstr ""
+"Xodim bir oyda bajarishi kutilayotgan murakkablik ballari. KPI "
+"sozlamalaridagi standart qiymat uchun boʻsh qoldiring."
+
+#: accounts/models.py:56
+msgid "profile"
+msgstr "profil"
+
+#: accounts/models.py:57
+msgid "profiles"
+msgstr "profillar"
+
+#: accounts/views.py:97
+msgid "Team member added. Give them their login and password."
+msgstr "Xodim qoʻshildi. Unga login va parolni bering."
+
+#: accounts/views.py:110
+msgid "Changes saved."
+msgstr "Oʻzgarishlar saqlandi."
+
+#: accounts/views.py:117
+msgid "Department added."
+msgstr "Boʻlim qoʻshildi."
+
+#: accounts/views.py:122
+msgid "Task type added."
+msgstr "Topshiriq turi qoʻshildi."
+
+#: kpi/export.py:33
+#, python-format
+msgid "Employee KPI for %(month)s"
+msgstr "Xodimlarning %(month)s uchun KPI koʻrsatkichlari"
+
+#: kpi/export.py:38
+#, python-format
+msgid "Finalised on %(date)s"
+msgstr "%(date)s da yakunlangan"
+
+#: kpi/export.py:40
+msgid "Preliminary (month not finalised)"
+msgstr "Dastlabki (oy yakunlanmagan)"
+
+#: kpi/export.py:42
+#, python-format
+msgid "Generated %(date)s"
+msgstr "Shakllantirildi: %(date)s"
+
+#: kpi/export.py:50 templates/kpi/print.html:34
+msgid "Tasks assessed"
+msgstr "Baholangan topshiriqlar"
+
+#: kpi/export.py:51 tasks/models.py:49 templates/kpi/print.html:34
+msgid "Completed"
+msgstr "Bajarilgan"
+
+#: kpi/export.py:52 templates/kpi/print.html:34
+msgid "On time"
+msgstr "Oʻz vaqtida"
+
+#: kpi/export.py:53 kpi/services.py:57
+msgid "Not done by deadline"
+msgstr "Muddatida bajarilmagan"
+
+#: kpi/export.py:54 kpi/services.py:58
+msgid "Awaiting review"
+msgstr "Tekshiruv kutilmoqda"
+
+#: kpi/export.py:55
+msgid "Execution, %"
+msgstr "Bajarilish, %"
+
+#: kpi/export.py:56
+msgid "Timeliness, %"
+msgstr "Muddatga rioya, %"
+
+#: kpi/export.py:57
+msgid "Quality, %"
+msgstr "Sifat, %"
+
+#: kpi/export.py:58
+msgid "Workload, %"
+msgstr "Ish hajmi, %"
+
+#: kpi/export.py:59 templates/kpi/methodology.html:39
+msgid "Base score"
+msgstr "Asosiy ball"
+
+#: kpi/export.py:60 templates/kpi/print.html:36
+msgid "Adjustment"
+msgstr "Tuzatish"
+
+#: kpi/export.py:61 templates/base.html:25
+#: templates/includes/kpi_history.html:21 templates/kpi/employee.html:2
+#: templates/kpi/employee.html:3 templates/kpi/methodology.html:39
+#: templates/kpi/month.html:2 templates/kpi/month.html:3
+#: templates/kpi/month.html:40 templates/kpi/print.html:6
+#: templates/kpi/print.html:36
+msgid "KPI"
+msgstr "KPI"
+
+#: kpi/export.py:62 templates/includes/kpi_history.html:21
+#: templates/kpi/month.html:41 templates/kpi/print.html:36
+#: templates/tasks/dashboard.html:55
+msgid "Grade"
+msgstr "Baho"
+
+#: kpi/export.py:91 templates/kpi/month.html:34
+#: templates/tasks/task_form.html:3 templates/tasks/task_list.html:2
+#: templates/tasks/task_list.html:3
+msgid "Tasks"
+msgstr "Topshiriqlar"
+
+#: kpi/export.py:96 templates/kpi/employee.html:103
+#: templates/tasks/task_detail.html:3 templates/tasks/task_list.html:44
+msgid "Task"
+msgstr "Topshiriq"
+
+#: kpi/export.py:97 tasks/forms.py:224 templates/kpi/employee.html:104
+#: templates/tasks/task_detail.html:175 templates/tasks/task_list.html:47
+msgid "Complexity"
+msgstr "Murakkablik"
+
+#: kpi/export.py:98 templates/kpi/employee.html:105
+msgid "Points"
+msgstr "Ball"
+
+#: kpi/export.py:99 templates/kpi/employee.html:106
+#: templates/tasks/task_detail.html:176 templates/tasks/task_list.html:49
+msgid "Deadline"
+msgstr "Muddat"
+
+#: kpi/export.py:100
+msgid "Submitted"
+msgstr "Topshirilgan"
+
+#: kpi/export.py:101 templates/kpi/employee.html:108
+msgid "Result"
+msgstr "Natija"
+
+#: kpi/export.py:102 templates/tasks/task_detail.html:186
+msgid "Quality rating"
+msgstr "Sifat bahosi"
+
+#: kpi/forms.py:14
+msgid "Points (+ bonus / − penalty)"
+msgstr "Ball (+ ragʻbat / − jarima)"
+
+#: kpi/forms.py:15
+msgid "Reason"
+msgstr "Sabab"
+
+#: kpi/forms.py:27
+msgid "Enter a non-zero number of points."
+msgstr "Noldan farqli ball kiriting."
+
+#: kpi/forms.py:30
+#, python-format
+msgid "Adjustment must be between −%(max)s and +%(max)s."
+msgstr "Tuzatish −%(max)s dan +%(max)s gacha boʻlishi kerak."
+
+#: kpi/models.py:12
+msgid "weight: execution"
+msgstr "vazn: bajarilish"
+
+#: kpi/models.py:15
+msgid "weight: timeliness"
+msgstr "vazn: muddatga rioya"
+
+#: kpi/models.py:18
+msgid "weight: quality"
+msgstr "vazn: sifat"
+
+#: kpi/models.py:21
+msgid "weight: workload"
+msgstr "vazn: ish hajmi"
+
+#: kpi/models.py:25
+msgid "points: simple task"
+msgstr "ball: oddiy topshiriq"
+
+#: kpi/models.py:28
+msgid "points: medium task"
+msgstr "ball: oʻrtacha topshiriq"
+
+#: kpi/models.py:31
+msgid "points: complex task"
+msgstr "ball: murakkab topshiriq"
+
+#: kpi/models.py:34
+msgid "points: very complex task"
+msgstr "ball: oʻta murakkab topshiriq"
+
+#: kpi/models.py:38
+msgid "default monthly workload norm, points"
+msgstr "standart oylik ish hajmi meʼyori, ball"
+
+#: kpi/models.py:40
+msgid ""
+"Used for people without their own norm. 0 switches the workload component "
+"off."
+msgstr ""
+"Shaxsiy meʼyori boʻlmagan xodimlar uchun qoʻllanadi. 0 — ish hajmi "
+"koʻrsatkichini oʻchiradi."
+
+#: kpi/models.py:44
+msgid "“Excellent” from"
+msgstr "«Aʼlo» — dan boshlab"
+
+#: kpi/models.py:47
+msgid "“Good” from"
+msgstr "«Yaxshi» — dan boshlab"
+
+#: kpi/models.py:50
+msgid "“Satisfactory” from"
+msgstr "«Qoniqarli» — dan boshlab"
+
+#: kpi/models.py:54
+msgid "maximum manual adjustment, ± points"
+msgstr "qoʻlda tuzatishning eng yuqori miqdori, ± ball"
+
+#: kpi/models.py:60 kpi/models.py:61 kpi/models.py:64 templates/base.html:32
+#: templates/kpi/settings.html:2 templates/kpi/settings.html:3
+#: templates/kpi/settings.html:7
+msgid "KPI settings"
+msgstr "KPI sozlamalari"
+
+#: kpi/models.py:77
+#, python-format
+msgid "Component weights must add up to 100 (now %(total)s)."
+msgstr ""
+"Koʻrsatkichlar vaznlarining yigʻindisi 100 ga teng boʻlishi kerak (hozir "
+"%(total)s)."
+
+#: kpi/models.py:80
+msgid "Grade thresholds must decrease: Excellent > Good > Satisfactory."
+msgstr "Baho chegaralari kamayib borishi kerak: Aʼlo > Yaxshi > Qoniqarli."
+
+#: kpi/models.py:104 kpi/models.py:122
+msgid "month"
+msgstr "oy"
+
+#: kpi/models.py:104
+msgid "First day of the month."
+msgstr "Oyning birinchi kuni."
+
+#: kpi/models.py:105
+msgid "points"
+msgstr "ball"
+
+#: kpi/models.py:106
+msgid "reason"
+msgstr "sabab"
+
+#: kpi/models.py:112
+msgid "KPI adjustment"
+msgstr "KPI tuzatishi"
+
+#: kpi/models.py:113
+msgid "KPI adjustments"
+msgstr "KPI tuzatishlari"
+
+#: kpi/models.py:132
+msgid "finalised KPI month"
+msgstr "yakunlangan KPI oyi"
+
+#: kpi/models.py:133
+msgid "finalised KPI months"
+msgstr "yakunlangan KPI oylari"
+
+#: kpi/services.py:41 templates/kpi/methodology.html:32
+#: templates/kpi/methodology.html:39 templates/kpi/month.html:35
+msgid "Execution"
+msgstr "Bajarilish"
+
+#: kpi/services.py:42 templates/kpi/methodology.html:33
+#: templates/kpi/methodology.html:39 templates/kpi/month.html:36
+msgid "Timeliness"
+msgstr "Muddatga rioya"
+
+#: kpi/services.py:43 templates/kpi/employee.html:109
+#: templates/kpi/methodology.html:34 templates/kpi/methodology.html:39
+#: templates/kpi/month.html:37
+msgid "Quality"
+msgstr "Sifat"
+
+#: kpi/services.py:44 templates/kpi/methodology.html:35
+#: templates/kpi/methodology.html:39 templates/kpi/month.html:38
+msgid "Workload"
+msgstr "Ish hajmi"
+
+#: kpi/services.py:48
+msgid "Excellent"
+msgstr "Aʼlo"
+
+#: kpi/services.py:49
+msgid "Good"
+msgstr "Yaxshi"
+
+#: kpi/services.py:50
+msgid "Satisfactory"
+msgstr "Qoniqarli"
+
+#: kpi/services.py:51
+msgid "Unsatisfactory"
+msgstr "Qoniqarsiz"
+
+#: kpi/services.py:55
+msgid "Done on time"
+msgstr "Oʻz vaqtida bajarilgan"
+
+#: kpi/services.py:56
+msgid "Done late"
+msgstr "Kechikib bajarilgan"
+
+#: kpi/services.py:59
+msgid "Deadline not reached"
+msgstr "Muddati kelmagan"
+
+#: kpi/views.py:99 kpi/views.py:123
+msgid "This month is finalised. Reopen it to make changes."
+msgstr "Bu oy yakunlangan. Oʻzgartirish uchun uni qayta oching."
+
+#: kpi/views.py:110
+msgid "Adjustment saved."
+msgstr "Tuzatish saqlandi."
+
+#: kpi/views.py:126
+msgid "Adjustment removed."
+msgstr "Tuzatish oʻchirildi."
+
+#: kpi/views.py:135
+msgid "This month is already finalised."
+msgstr "Bu oy allaqachon yakunlangan."
+
+#: kpi/views.py:137
+msgid "The current month can be finalised once it is over."
+msgstr "Joriy oyni u tugagandan keyin yakunlash mumkin."
+
+#: kpi/views.py:140
+#, python-format
+msgid "KPI for %(month)s finalised."
+msgstr "%(month)s uchun KPI yakunlandi."
+
+#: kpi/views.py:150
+#, python-format
+msgid "%(month)s reopened: results are live again."
+msgstr "%(month)s qayta ochildi: natijalar yana avtomatik hisoblanadi."
+
+#: kpi/views.py:183
+msgid ""
+"KPI settings saved. Finalised months keep the settings they were calculated "
+"with."
+msgstr ""
+"KPI sozlamalari saqlandi. Yakunlangan oylar oʻz hisob-kitobidagi "
+"sozlamalarni saqlab qoladi."
+
+#: office/settings.py:130
+msgid "Uzbek"
+msgstr "Oʻzbekcha"
+
+#: office/settings.py:131
+msgid "Russian"
+msgstr "Ruscha"
+
+#: office/settings.py:132
+msgid "English"
+msgstr "Inglizcha"
+
+#: tasks/forms.py:45
+#, python-format
+msgid "File type .%(ext)s is not allowed."
+msgstr ".%(ext)s turidagi fayllarga ruxsat berilmagan."
+
+#: tasks/forms.py:49
+#, python-format
+msgid "File %(name)s is larger than %(max)s MB."
+msgstr "%(name)s fayli %(max)s MB dan katta."
+
+#: tasks/forms.py:91
+msgid ""
+"Routine work, up to one day: a short letter, a reference, a phone survey."
+msgstr ""
+"Odatiy ish, bir kungacha: qisqa xat, maʼlumotnoma, telefon orqali soʻrov."
+
+#: tasks/forms.py:92
+msgid "A few days of work: a report from available data, preparing a meeting."
+msgstr ""
+"Bir necha kunlik ish: mavjud maʼlumotlar asosida hisobot, yigʻilish "
+"tayyorlash."
+
+#: tasks/forms.py:93
+msgid ""
+"Analysis or coordination with other bodies: a draft regulation, a sector "
+"study."
+msgstr ""
+"Tahlil yoki boshqa idoralar bilan kelishuv: normativ hujjat loyihasi, tarmoq"
+" tadqiqoti."
+
+#: tasks/forms.py:94
+msgid ""
+"Multi-week strategic work: a programme, an investment project, a large "
+"inspection."
+msgstr ""
+"Bir necha haftalik strategik ish: dastur, investitsiya loyihasi, yirik "
+"oʻrganish."
+
+#: tasks/forms.py:121
+msgid "Executors"
+msgstr "Ijrochilar"
+
+#: tasks/forms.py:123
+msgid ""
+"Choose several people to give each of them their own copy of this task."
+msgstr ""
+"Bir nechta xodimni tanlasangiz, har biriga alohida topshiriq yaratiladi."
+
+#: tasks/forms.py:126
+msgid "Attachments"
+msgstr "Ilovalar"
+
+#: tasks/forms.py:138
+msgid "The deadline cannot be in the past."
+msgstr "Muddat oʻtgan sana boʻlishi mumkin emas."
+
+#: tasks/forms.py:143 tasks/forms.py:216 templates/tasks/task_detail.html:171
+#: templates/tasks/task_list.html:45
+msgid "Executor"
+msgstr "Ijrochi"
+
+#: tasks/forms.py:158
+msgid "Quality of the work"
+msgstr "Ish sifati"
+
+#: tasks/forms.py:161
+msgid "5 — excellent"
+msgstr "5 — aʼlo"
+
+#: tasks/forms.py:162
+msgid "4 — good"
+msgstr "4 — yaxshi"
+
+#: tasks/forms.py:163
+msgid "3 — acceptable"
+msgstr "3 — qoniqarli"
+
+#: tasks/forms.py:164
+msgid "2 — weak"
+msgstr "2 — sust"
+
+#: tasks/forms.py:165
+msgid "1 — poor"
+msgstr "1 — yomon"
+
+#: tasks/forms.py:171 tasks/forms.py:183
+msgid "Comment (optional)"
+msgstr "Izoh (ixtiyoriy)"
+
+#: tasks/forms.py:177
+msgid "What needs to be corrected"
+msgstr "Nimani tuzatish kerak"
+
+#: tasks/forms.py:189
+msgid "Progress, %"
+msgstr "Bajarilish darajasi, %"
+
+#: tasks/forms.py:198
+msgid "Comment"
+msgstr "Izoh"
+
+#: tasks/forms.py:199
+msgid "Write a comment…"
+msgstr "Izoh yozing…"
+
+#: tasks/forms.py:204 templates/tasks/task_detail.html:42
+msgid "Files"
+msgstr "Fayllar"
+
+#: tasks/forms.py:209 templates/tasks/dashboard.html:108
+msgid "All"
+msgstr "Barchasi"
+
+#: tasks/forms.py:210
+msgid "Not finished"
+msgstr "Tugallanmagan"
+
+#: tasks/forms.py:211 templates/accounts/member_detail.html:22
+#: templates/accounts/team_list.html:23 templates/tasks/dashboard.html:22
+#: templates/tasks/dashboard.html:52 templates/tasks/dashboard.html:81
+#: templates/tasks/dashboard.html:114 templates/tasks/task_detail.html:13
+msgid "Overdue"
+msgstr "Muddati oʻtgan"
+
+#: tasks/forms.py:214
+msgid "Search"
+msgstr "Qidiruv"
+
+#: tasks/forms.py:215 templates/tasks/task_list.html:46
+msgid "Status"
+msgstr "Holat"
+
+#: tasks/forms.py:221 templates/tasks/task_detail.html:174
+msgid "Task type"
+msgstr "Topshiriq turi"
+
+#: tasks/forms.py:225 tasks/forms.py:232
+msgid "Any"
+msgstr "Barchasi"
+
+#: tasks/forms.py:231 templates/tasks/task_list.html:48
+msgid "Priority"
+msgstr "Muhimlik"
+
+#: tasks/forms.py:237
+msgid "Deadline from"
+msgstr "Muddat (dan)"
+
+#: tasks/forms.py:238
+msgid "Deadline to"
+msgstr "Muddat (gacha)"
+
+#: tasks/models.py:18
+msgid "active"
+msgstr "faol"
+
+#: tasks/models.py:22 tasks/models.py:74
+msgid "task type"
+msgstr "topshiriq turi"
+
+#: tasks/models.py:23
+msgid "task types"
+msgstr "topshiriq turlari"
+
+#: tasks/models.py:45
+msgid "New"
+msgstr "Yangi"
+
+#: tasks/models.py:46
+msgid "In progress"
+msgstr "Bajarilmoqda"
+
+#: tasks/models.py:47 templates/tasks/dashboard.html:27
+#: templates/tasks/dashboard.html:53
+msgid "On review"
+msgstr "Tekshiruvda"
+
+#: tasks/models.py:48
+msgid "Returned for revision"
+msgstr "Qayta ishlashga qaytarilgan"
+
+#: tasks/models.py:50
+msgid "Cancelled"
+msgstr "Bekor qilingan"
+
+#: tasks/models.py:53 templates/kpi/methodology.html:23
+msgid "Simple"
+msgstr "Oddiy"
+
+#: tasks/models.py:54 templates/kpi/methodology.html:24
+msgid "Medium"
+msgstr "Oʻrtacha"
+
+#: tasks/models.py:55 templates/kpi/methodology.html:25
+msgid "Complex"
+msgstr "Murakkab"
+
+#: tasks/models.py:56 templates/kpi/methodology.html:26
+msgid "Very complex"
+msgstr "Oʻta murakkab"
+
+#: tasks/models.py:59
+msgid "Low"
+msgstr "Past"
+
+#: tasks/models.py:60
+msgid "Normal"
+msgstr "Odatiy"
+
+#: tasks/models.py:61
+msgid "High"
+msgstr "Yuqori"
+
+#: tasks/models.py:62
+msgid "Urgent"
+msgstr "Shoshilinch"
+
+#: tasks/models.py:70
+msgid "title"
+msgstr "nomi"
+
+#: tasks/models.py:71
+msgid "description"
+msgstr "tavsif"
+
+#: tasks/models.py:82
+msgid "executor"
+msgstr "ijrochi"
+
+#: tasks/models.py:88
+msgid "assigned by"
+msgstr "topshiriq bergan"
+
+#: tasks/models.py:93
+msgid "complexity"
+msgstr "murakkablik"
+
+#: tasks/models.py:96
+msgid "priority"
+msgstr "muhimlik"
+
+#: tasks/models.py:99
+msgid "status"
+msgstr "holat"
+
+#: tasks/models.py:101
+msgid "deadline"
+msgstr "muddat"
+
+#: tasks/models.py:102
+msgid "original deadline"
+msgstr "dastlabki muddat"
+
+#: tasks/models.py:104
+msgid "progress, %"
+msgstr "bajarilish darajasi, %"
+
+#: tasks/models.py:106
+msgid "started at"
+msgstr "boshlangan vaqt"
+
+#: tasks/models.py:108
+msgid "submitted at"
+msgstr "topshirilgan vaqt"
+
+#: tasks/models.py:111
+msgid "When the executor last handed the work in. Used to judge timeliness."
+msgstr ""
+"Ijrochi ishni oxirgi marta topshirgan vaqt. Muddatga rioyani baholashda "
+"qoʻllanadi."
+
+#: tasks/models.py:113
+msgid "completed at"
+msgstr "qabul qilingan vaqt"
+
+#: tasks/models.py:115
+msgid "quality rating"
+msgstr "sifat bahosi"
+
+#: tasks/models.py:120
+msgid "review comment"
+msgstr "tekshiruv izohi"
+
+#: tasks/models.py:121
+msgid "times returned"
+msgstr "qaytarilganlar soni"
+
+#: tasks/models.py:122
+msgid "created at"
+msgstr "yaratilgan"
+
+#: tasks/models.py:123
+msgid "updated at"
+msgstr "yangilangan"
+
+#: tasks/models.py:129
+msgid "task"
+msgstr "topshiriq"
+
+#: tasks/models.py:130
+msgid "tasks"
+msgstr "topshiriqlar"
+
+#: tasks/models.py:192
+msgid "file"
+msgstr "fayl"
+
+#: tasks/models.py:193
+msgid "file name"
+msgstr "fayl nomi"
+
+#: tasks/models.py:194
+msgid "size"
+msgstr "hajmi"
+
+#: tasks/models.py:195
+msgid "uploaded at"
+msgstr "yuklangan vaqt"
+
+#: tasks/models.py:199
+msgid "attachment"
+msgstr "ilova"
+
+#: tasks/models.py:200
+msgid "attachments"
+msgstr "ilovalar"
+
+#: tasks/models.py:209 tasks/models.py:214
+msgid "comment"
+msgstr "izoh"
+
+#: tasks/models.py:215
+msgid "comments"
+msgstr "izohlar"
+
+#: tasks/models.py:225
+msgid "Created"
+msgstr "Yaratildi"
+
+#: tasks/models.py:226
+msgid "Status changed"
+msgstr "Holat oʻzgardi"
+
+#: tasks/models.py:227
+msgid "Deadline changed"
+msgstr "Muddat oʻzgardi"
+
+#: tasks/models.py:228
+msgid "Executor changed"
+msgstr "Ijrochi oʻzgardi"
+
+#: tasks/models.py:229
+msgid "Progress updated"
+msgstr "Bajarilish darajasi yangilandi"
+
+#: tasks/models.py:230
+msgid "Edited"
+msgstr "Tahrirlandi"
+
+#: tasks/models.py:231
+msgid "File attached"
+msgstr "Fayl biriktirildi"
+
+#: tasks/models.py:248
+msgid "Task created"
+msgstr "Topshiriq yaratildi"
+
+#: tasks/models.py:250
+#, python-format
+msgid "Status: %(old)s → %(new)s"
+msgstr "Holat: %(old)s → %(new)s"
+
+#: tasks/models.py:255
+#, python-format
+msgid "quality %(rating)s/5"
+msgstr "sifat %(rating)s/5"
+
+#: tasks/models.py:258
+#, python-format
+msgid "Deadline: %(old)s → %(new)s"
+msgstr "Muddat: %(old)s → %(new)s"
+
+#: tasks/models.py:260
+#, python-format
+msgid "Executor: %(old)s → %(new)s"
+msgstr "Ijrochi: %(old)s → %(new)s"
+
+#: tasks/models.py:262
+#, python-format
+msgid "Progress: %(old)s%% → %(new)s%%"
+msgstr "Bajarilish: %(old)s%% → %(new)s%%"
+
+#: tasks/models.py:264
+#, python-format
+msgid "File attached: %(name)s"
+msgstr "Fayl biriktirildi: %(name)s"
+
+#: tasks/models.py:266
+msgid "Task details edited"
+msgstr "Topshiriq maʼlumotlari tahrirlandi"
+
+#: tasks/models.py:272
+msgid "assigned"
+msgstr "berildi"
+
+#: tasks/models.py:273
+msgid "submitted"
+msgstr "topshirildi"
+
+#: tasks/models.py:274
+msgid "approved"
+msgstr "qabul qilindi"
+
+#: tasks/models.py:275
+msgid "returned"
+msgstr "qaytarildi"
+
+#: tasks/models.py:276
+msgid "cancelled"
+msgstr "bekor qilindi"
+
+#: tasks/models.py:277
+msgid "reopened"
+msgstr "qayta ochildi"
+
+#: tasks/models.py:278
+msgid "commented"
+msgstr "izoh qoldirildi"
+
+#: tasks/models.py:279
+msgid "deadline changed"
+msgstr "muddat oʻzgardi"
+
+#: tasks/models.py:280
+msgid "due soon"
+msgstr "muddat yaqin"
+
+#: tasks/models.py:281
+msgid "overdue"
+msgstr "muddati oʻtgan"
+
+#: tasks/models.py:300
+#, python-format
+msgid "%(actor)s assigned you a new task"
+msgstr "%(actor)s sizga yangi topshiriq berdi"
+
+#: tasks/models.py:301
+#, python-format
+msgid "%(actor)s submitted a task for review"
+msgstr "%(actor)s topshiriqni tekshiruvga yubordi"
+
+#: tasks/models.py:302
+#, python-format
+msgid "%(actor)s accepted your task"
+msgstr "%(actor)s topshirigʻingizni qabul qildi"
+
+#: tasks/models.py:303
+#, python-format
+msgid "%(actor)s returned your task for revision"
+msgstr "%(actor)s topshirigʻingizni qayta ishlashga qaytardi"
+
+#: tasks/models.py:304
+#, python-format
+msgid "%(actor)s cancelled a task"
+msgstr "%(actor)s topshiriqni bekor qildi"
+
+#: tasks/models.py:305
+#, python-format
+msgid "%(actor)s reopened a task"
+msgstr "%(actor)s topshiriqni qayta ochdi"
+
+#: tasks/models.py:306
+#, python-format
+msgid "%(actor)s commented on a task"
+msgstr "%(actor)s topshiriqqa izoh qoldirdi"
+
+#: tasks/models.py:307
+#, python-format
+msgid "%(actor)s changed the deadline of a task"
+msgstr "%(actor)s topshiriq muddatini oʻzgartirdi"
+
+#: tasks/models.py:308
+msgid "Task deadline is tomorrow"
+msgstr "Topshiriq muddati — ertaga"
+
+#: tasks/models.py:309
+msgid "Task is overdue"
+msgstr "Topshiriq muddati oʻtdi"
+
+#: tasks/services.py:22
+msgid "Start work"
+msgstr "Ishni boshlash"
+
+#: tasks/services.py:23
+msgid "Submit for review"
+msgstr "Tekshiruvga yuborish"
+
+#: tasks/services.py:24
+msgid "Accept"
+msgstr "Qabul qilish"
+
+#: tasks/services.py:25
+msgid "Return for revision"
+msgstr "Qayta ishlashga qaytarish"
+
+#: tasks/services.py:26
+msgid "Cancel task"
+msgstr "Topshiriqni bekor qilish"
+
+#: tasks/services.py:27
+msgid "Reopen"
+msgstr "Qayta ochish"
+
+#: tasks/services.py:75
+msgid "This action is not available for the task in its current state."
+msgstr "Topshiriqning joriy holatida bu amalni bajarib boʻlmaydi."
+
+#: tasks/services.py:93
+msgid "Please rate the quality of the work from 1 to 5."
+msgstr "Iltimos, ish sifatini 1 dan 5 gacha baholang."
+
+#: tasks/services.py:106
+msgid "Please explain what needs to be corrected."
+msgstr "Iltimos, nimani tuzatish kerakligini yozing."
+
+#: tasks/services.py:142
+msgid "Only the executor can update progress."
+msgstr "Bajarilish darajasini faqat ijrochi yangilay oladi."
+
+#: tasks/services.py:144
+msgid "Progress can only be updated while the task is in work."
+msgstr ""
+"Bajarilish darajasini faqat topshiriq ijroda boʻlganda yangilash mumkin."
+
+#: tasks/templatetags/office.py:87 templates/includes/kpi_history.html:12
+#: templates/kpi/month.html:55 templates/tasks/dashboard.html:65
+msgid "No data"
+msgstr "Maʼlumot yoʻq"
+
+#: tasks/templatetags/office.py:171
+#, python-format
+msgid "%(n)s d overdue"
+msgstr "%(n)s kun kechikkan"
+
+#: tasks/templatetags/office.py:173
+msgid "today"
+msgstr "bugun"
+
+#: tasks/templatetags/office.py:175
+msgid "tomorrow"
+msgstr "ertaga"
+
+#: tasks/templatetags/office.py:176
+#, python-format
+msgid "in %(n)s d"
+msgstr "%(n)s kundan keyin"
+
+#: tasks/views.py:150
+msgid "Task created and sent to the executor."
+msgstr "Topshiriq yaratildi va ijrochiga yuborildi."
+
+#: tasks/views.py:153
+#, python-format
+msgid "%(count)s tasks created, one for each executor."
+msgstr ""
+"Har bir ijrochi uchun bittadan, jami %(count)s ta topshiriq yaratildi."
+
+#: tasks/views.py:209
+msgid "Task updated."
+msgstr "Topshiriq yangilandi."
+
+#: tasks/views.py:246
+#, python-format
+msgid "Done: %(action)s."
+msgstr "Bajarildi: %(action)s."
+
+#: tasks/views.py:258
+msgid "Progress saved."
+msgstr "Bajarilish darajasi saqlandi."
+
+#: tasks/views.py:282
+msgid "Files attached."
+msgstr "Fayllar biriktirildi."
+
+#: tasks/views.py:313
+msgid "File deleted."
+msgstr "Fayl oʻchirildi."
+
+#: templates/403.html:2
+msgid "You do not have access to this page."
+msgstr "Sizda bu sahifaga kirish huquqi yoʻq."
+
+#: templates/403.html:2 templates/404.html:2
+#: templates/registration/password_change_done.html:5
+msgid "Back to dashboard"
+msgstr "Bosh sahifaga qaytish"
+
+#: templates/404.html:2
+msgid "Page not found."
+msgstr "Sahifa topilmadi."
+
+#: templates/accounts/member_detail.html:3
+#: templates/accounts/member_form.html:3 templates/accounts/team_list.html:2
+#: templates/accounts/team_list.html:3 templates/accounts/team_list.html:7
+#: templates/base.html:24
+msgid "Team"
+msgstr "Jamoa"
+
+#: templates/accounts/member_detail.html:8
+#: templates/accounts/team_list.html:30
+msgid "inactive"
+msgstr "faol emas"
+
+#: templates/accounts/member_detail.html:11
+msgid "KPI details"
+msgstr "KPI tafsilotlari"
+
+#: templates/accounts/member_detail.html:13
+#: templates/tasks/task_detail.html:18
+msgid "Edit"
+msgstr "Tahrirlash"
+
+#: templates/accounts/member_detail.html:14 templates/base.html:23
+#: templates/tasks/dashboard.html:11 templates/tasks/task_form.html:2
+#: templates/tasks/task_form.html:7 templates/tasks/task_list.html:10
+msgid "New task"
+msgstr "Yangi topshiriq"
+
+#: templates/accounts/member_detail.html:20
+msgid "KPI this month"
+msgstr "Shu oydagi KPI"
+
+#: templates/accounts/member_detail.html:21
+#: templates/accounts/member_detail.html:29 templates/tasks/dashboard.html:17
+msgid "Unfinished tasks"
+msgstr "Tugallanmagan topshiriqlar"
+
+#: templates/accounts/member_detail.html:21
+#: templates/accounts/member_detail.html:22
+msgid "right now"
+msgstr "hozirgi holat"
+
+#: templates/accounts/member_detail.html:23
+msgid "Completed in total"
+msgstr "Jami bajarilgan"
+
+#: templates/accounts/member_detail.html:23
+#, python-format
+msgid "of %(total)s assigned"
+msgstr "berilgan %(total)s tadan"
+
+#: templates/accounts/member_detail.html:30
+#: templates/includes/active_breakdown.html:15
+msgid "No unfinished tasks."
+msgstr "Tugallanmagan topshiriqlar yoʻq."
+
+#: templates/accounts/member_detail.html:33
+msgid "Recently completed"
+msgstr "Yaqinda bajarilganlar"
+
+#: templates/accounts/member_detail.html:40
+#: templates/tasks/task_detail.html:182
+msgid "on time"
+msgstr "oʻz vaqtida"
+
+#: templates/accounts/member_detail.html:40
+msgid "late"
+msgstr "kechikib"
+
+#: templates/accounts/member_detail.html:44
+msgid "Nothing completed yet."
+msgstr "Hozircha bajarilgan topshiriqlar yoʻq."
+
+#: templates/accounts/member_detail.html:50
+msgid "KPI for the last 6 months"
+msgstr "Soʻnggi 6 oydagi KPI"
+
+#: templates/accounts/member_detail.html:54
+msgid "Contacts"
+msgstr "Aloqa maʼlumotlari"
+
+#: templates/accounts/member_detail.html:59
+msgid "Email"
+msgstr "E-pochta"
+
+#: templates/accounts/member_detail.html:60
+msgid "Monthly norm"
+msgstr "Oylik meʼyor"
+
+#: templates/accounts/member_detail.html:60
+msgid "default"
+msgstr "standart"
+
+#: templates/accounts/member_form.html:2 templates/accounts/member_form.html:5
+#: templates/accounts/team_list.html:12
+msgid "Add team member"
+msgstr "Xodim qoʻshish"
+
+#: templates/accounts/member_form.html:5
+msgid "Edit team member"
+msgstr "Xodim maʼlumotlarini tahrirlash"
+
+#: templates/accounts/member_form.html:24
+#: templates/registration/password_change_form.html:10
+#: templates/tasks/task_detail.html:121 templates/tasks/task_form.html:48
+msgid "Save"
+msgstr "Saqlash"
+
+#: templates/accounts/member_form.html:25 templates/tasks/task_form.html:49
+msgid "Cancel"
+msgstr "Bekor qilish"
+
+#: templates/accounts/team_list.html:8
+#, python-format
+msgid "Current workload and KPI for %(month)s"
+msgstr "Joriy ish yuklamasi va %(month)s uchun KPI"
+
+#: templates/accounts/team_list.html:11
+msgid "Hide inactive"
+msgstr "Faol emaslarni yashirish"
+
+#: templates/accounts/team_list.html:11
+msgid "Show inactive"
+msgstr "Faol emaslarni koʻrsatish"
+
+#: templates/accounts/team_list.html:19
+msgid "Name"
+msgstr "F.I.Sh."
+
+#: templates/accounts/team_list.html:22 templates/tasks/dashboard.html:51
+msgid "Unfinished"
+msgstr "Tugallanmagan"
+
+#: templates/accounts/team_list.html:24
+msgid "Done this month"
+msgstr "Shu oyda bajarilgan"
+
+#: templates/accounts/team_list.html:25 templates/tasks/dashboard.html:54
+msgid "KPI so far"
+msgstr "Joriy KPI"
+
+#: templates/accounts/team_list.html:39 templates/tasks/dashboard.html:71
+msgid "No team members yet."
+msgstr "Hozircha xodimlar yoʻq."
+
+#: templates/accounts/team_list.html:48
+msgid "Departments"
+msgstr "Boʻlimlar"
+
+#: templates/accounts/team_list.html:57
+msgid "New department name"
+msgstr "Yangi boʻlim nomi"
+
+#: templates/accounts/team_list.html:58 templates/accounts/team_list.html:73
+msgid "Add"
+msgstr "Qoʻshish"
+
+#: templates/accounts/team_list.html:63
+msgid "Task types"
+msgstr "Topshiriq turlari"
+
+#: templates/accounts/team_list.html:72
+msgid "New task type, e.g. Analytical report"
+msgstr "Yangi topshiriq turi, masalan: Tahliliy maʼlumotnoma"
+
+#: templates/base.html:7 templates/base.html:16
+#: templates/registration/login.html:7 templates/registration/login.html:13
+msgid "Project Office"
+msgstr "Loyiha ofisi"
+
+#: templates/base.html:20 templates/tasks/dashboard.html:2
+#: templates/tasks/dashboard.html:3
+msgid "Dashboard"
+msgstr "Bosh sahifa"
+
+#: templates/base.html:21 templates/tasks/task_list.html:7
+msgid "All tasks"
+msgstr "Barcha topshiriqlar"
+
+#: templates/base.html:21 templates/tasks/task_list.html:7
+msgid "My tasks"
+msgstr "Mening topshiriqlarim"
+
+#: templates/base.html:27
+msgid "My KPI"
+msgstr "Mening KPI koʻrsatkichim"
+
+#: templates/base.html:29
+msgid "Reference"
+msgstr "Maʼlumotnoma"
+
+#: templates/base.html:30 templates/kpi/methodology.html:2
+#: templates/kpi/methodology.html:3 templates/kpi/methodology.html:6
+#: templates/kpi/month.html:10 templates/kpi/settings.html:8
+msgid "How KPI is calculated"
+msgstr "KPI qanday hisoblanadi"
+
+#: templates/base.html:35
+msgid "Administration"
+msgstr "Maʼmuriyat paneli"
+
+#: templates/base.html:43
+msgid "Log out"
+msgstr "Chiqish"
+
+#: templates/base.html:50
+msgid "Menu"
+msgstr "Menyu"
+
+#: templates/base.html:54 templates/tasks/notifications.html:2
+#: templates/tasks/notifications.html:3 templates/tasks/notifications.html:6
+msgid "Notifications"
+msgstr "Bildirishnomalar"
+
+#: templates/includes/active_breakdown.html:3
+#: templates/includes/active_breakdown.html:6
+msgid "Work in progress by status"
+msgstr "Ijrodagi ishlar holati boʻyicha"
+
+#: templates/includes/active_breakdown.html:3
+#, python-format
+msgid "%(n)s unfinished task"
+msgid_plural "%(n)s unfinished tasks"
+msgstr[0] "%(n)s ta tugallanmagan topshiriq"
+
+#: templates/includes/kpi_history.html:3
+msgid "KPI by month"
+msgstr "Oylar boʻyicha KPI"
+
+#: templates/includes/kpi_history.html:19
+msgid "Show as table"
+msgstr "Jadval koʻrinishida"
+
+#: templates/includes/kpi_history.html:21 templates/includes/month_nav.html:2
+msgid "Month"
+msgstr "Oy"
+
+#: templates/includes/lang_switch.html:2
+msgid "Language"
+msgstr "Til"
+
+#: templates/includes/month_nav.html:3
+msgid "Previous month"
+msgstr "Oldingi oy"
+
+#: templates/includes/month_nav.html:5
+msgid "Next month"
+msgstr "Keyingi oy"
+
+#: templates/includes/pagination.html:3
+#, python-format
+msgid "%(start)s–%(end)s of %(total)s"
+msgstr "%(total)s tadan %(start)s–%(end)s"
+
+#: templates/includes/pagination.html:5
+msgid "Previous"
+msgstr "Oldingi"
+
+#: templates/includes/pagination.html:6
+msgid "Next"
+msgstr "Keyingi"
+
+#: templates/includes/period_notice.html:4
+#, python-format
+msgid ""
+"Finalised on %(date)s by %(who)s. Results are frozen and no longer change."
+msgstr ""
+"%(date)s da %(who)s tomonidan yakunlangan. Natijalar qayd etilgan va endi "
+"oʻzgarmaydi."
+
+#: templates/includes/period_notice.html:6
+msgid "Reopen month"
+msgstr "Oyni qayta ochish"
+
+#: templates/includes/period_notice.html:12
+msgid ""
+"Preliminary: the month is still running and results update as tasks are "
+"completed."
+msgstr ""
+"Dastlabki natijalar: oy davom etmoqda, topshiriqlar bajarilishi bilan "
+"natijalar yangilanadi."
+
+#: templates/includes/period_notice.html:12
+msgid ""
+"Not finalised yet: results still change if tasks of this month are edited."
+msgstr ""
+"Hali yakunlanmagan: shu oy topshiriqlari oʻzgarsa, natijalar ham oʻzgaradi."
+
+#: templates/includes/period_notice.html:13
+#, python-format
+msgid "%(n)s task of this month is awaiting review and is not counted yet."
+msgid_plural ""
+"%(n)s tasks of this month are awaiting review and are not counted yet."
+msgstr[0] ""
+"Shu oydagi %(n)s ta topshiriq tekshiruvni kutmoqda va hali hisobga "
+"olinmagan."
+
+#: templates/includes/period_notice.html:16
+msgid "Finalise month"
+msgstr "Oyni yakunlash"
+
+#: templates/kpi/employee.html:7
+msgid "Team KPI"
+msgstr "Jamoa KPI koʻrsatkichlari"
+
+#: templates/kpi/employee.html:18
+#, python-format
+msgid "KPI for %(month_label)s"
+msgstr "%(month_label)s uchun KPI"
+
+#: templates/kpi/employee.html:23
+msgid "No assessed tasks in this month"
+msgstr "Bu oyda baholangan topshiriqlar yoʻq"
+
+#: templates/kpi/employee.html:25
+#, python-format
+msgid "Base score %(base)s, manager adjustment %(adj)s"
+msgstr "Asosiy ball %(base)s, rahbar tuzatishi %(adj)s"
+
+#: templates/kpi/employee.html:27
+#, python-format
+msgid ""
+"%(total)s tasks this month: %(assessed)s assessed, %(done)s completed, "
+"%(pending)s awaiting review, %(upcoming)s not yet due"
+msgstr ""
+"Shu oyda %(total)s ta topshiriq: %(assessed)s ta baholangan, %(done)s ta "
+"bajarilgan, %(pending)s ta tekshiruvda, %(upcoming)s ta muddati kelmagan"
+
+#: templates/kpi/employee.html:31
+msgid "Manager adjustments"
+msgstr "Rahbar tuzatishlari"
+
+#: templates/kpi/employee.html:38
+msgid "Remove"
+msgstr "Oʻchirish"
+
+#: templates/kpi/employee.html:44
+msgid "No adjustments this month."
+msgstr "Bu oyda tuzatishlar yoʻq."
+
+#: templates/kpi/employee.html:52
+msgid ""
+"Use for work outside the portal (initiative, extra assignments) or "
+"discipline issues. The reason is visible to the employee."
+msgstr ""
+"Portalda aks etmagan ishlar (tashabbus, qoʻshimcha topshiriqlar) yoki "
+"intizom masalalari uchun qoʻllang. Sabab xodimga koʻrinadi."
+
+#: templates/kpi/employee.html:53
+msgid "Add adjustment"
+msgstr "Tuzatish qoʻshish"
+
+#: templates/kpi/employee.html:60
+msgid "Last 6 months"
+msgstr "Soʻnggi 6 oy"
+
+#: templates/kpi/employee.html:70
+#, python-format
+msgid "%(a)s of %(b)s points completed"
+msgstr "%(b)s balldan %(a)s ball bajarilgan"
+
+#: templates/kpi/employee.html:71 templates/kpi/employee.html:78
+#: templates/kpi/employee.html:85 templates/kpi/employee.html:92
+#, python-format
+msgid "weight %(w)s%%"
+msgstr "vazni %(w)s%%"
+
+#: templates/kpi/employee.html:77
+#, python-format
+msgid "%(a)s of %(b)s points handed in on time"
+msgstr "%(b)s balldan %(a)s ball oʻz vaqtida topshirilgan"
+
+#: templates/kpi/employee.html:84
+#, python-format
+msgid "average rating %(a)s of 5"
+msgstr "oʻrtacha baho 5 dan %(a)s"
+
+#: templates/kpi/employee.html:84
+msgid "no rated tasks"
+msgstr "baholangan topshiriqlar yoʻq"
+
+#: templates/kpi/employee.html:91
+#, python-format
+msgid "%(a)s points completed of a norm of %(n)s"
+msgstr "%(n)s ball meʼyordan %(a)s ball bajarilgan"
+
+#: templates/kpi/employee.html:91
+msgid "no workload norm"
+msgstr "ish hajmi meʼyori belgilanmagan"
+
+#: templates/kpi/employee.html:98
+msgid "Tasks of the month"
+msgstr "Oy topshiriqlari"
+
+#: templates/kpi/employee.html:98
+msgid "by deadline"
+msgstr "muddat boʻyicha"
+
+#: templates/kpi/employee.html:107 templates/tasks/task_detail.html:180
+msgid "Handed in"
+msgstr "Topshirilgan"
+
+#: templates/kpi/employee.html:132
+msgid "No tasks with a deadline in this month."
+msgstr "Bu oyda muddati tugaydigan topshiriqlar yoʻq."
+
+#: templates/kpi/methodology.html:8
+msgid ""
+"Every employee's KPI is calculated once a month from the tasks in this "
+"portal. The rules are the same for everyone and every number can be checked "
+"on the employee's KPI page."
+msgstr ""
+"Har bir xodimning KPI koʻrsatkichi oyiga bir marta ushbu portaldagi "
+"topshiriqlar asosida hisoblanadi. Qoidalar hamma uchun bir xil, har bir "
+"raqamni xodimning KPI sahifasida tekshirish mumkin."
+
+#: templates/kpi/methodology.html:10
+msgid "Which tasks count"
+msgstr "Qaysi topshiriqlar hisobga olinadi"
+
+#: templates/kpi/methodology.html:12
+msgid "A task belongs to the month in which its deadline falls."
+msgstr "Topshiriq muddati tugaydigan oyga tegishli hisoblanadi."
+
+#: templates/kpi/methodology.html:13
+msgid "Cancelled tasks are not counted."
+msgstr "Bekor qilingan topshiriqlar hisobga olinmaydi."
+
+#: templates/kpi/methodology.html:14
+msgid ""
+"A task is assessed when it has been accepted by the manager, or when its "
+"deadline has passed and it has not been handed in (then it counts as not "
+"done)."
+msgstr ""
+"Topshiriq rahbar tomonidan qabul qilinganda yoki muddati oʻtib, "
+"topshirilmagan boʻlsa baholanadi (bu holda bajarilmagan hisoblanadi)."
+
+#: templates/kpi/methodology.html:15
+msgid ""
+"Tasks handed in and waiting for the manager's review are not counted until "
+"they are reviewed, so a slow review never lowers the employee's score."
+msgstr ""
+"Topshirilgan va rahbar tekshiruvini kutayotgan topshiriqlar "
+"tekshirilmaguncha hisobga olinmaydi — shu sababli tekshiruvning kechikishi "
+"xodim bahosini pasaytirmaydi."
+
+#: templates/kpi/methodology.html:16
+msgid ""
+"Timeliness is judged by the date the executor handed the work in, not by the"
+" date the manager accepted it."
+msgstr ""
+"Muddatga rioya rahbar qabul qilgan sana boʻyicha emas, ijrochi ishni "
+"topshirgan sana boʻyicha baholanadi."
+
+#: templates/kpi/methodology.html:19
+msgid "Task weight by complexity"
+msgstr "Murakkablik boʻyicha topshiriq vazni"
+
+#: templates/kpi/methodology.html:20
+msgid "Harder tasks weigh more in every component:"
+msgstr "Murakkabroq topshiriqlar barcha koʻrsatkichlarda koʻproq vaznga ega:"
+
+#: templates/kpi/methodology.html:30
+msgid "Four components (each from 0 to 100)"
+msgstr "Toʻrt koʻrsatkich (har biri 0 dan 100 gacha)"
+
+#: templates/kpi/methodology.html:32
+msgid "points of completed tasks ÷ points of all assessed tasks."
+msgstr ""
+"bajarilgan topshiriqlar ballari ÷ barcha baholangan topshiriqlar ballari."
+
+#: templates/kpi/methodology.html:33
+msgid ""
+"points of tasks handed in by the deadline ÷ points of all assessed tasks."
+msgstr ""
+"muddatida topshirilgan topshiriqlar ballari ÷ barcha baholangan topshiriqlar"
+" ballari."
+
+#: templates/kpi/methodology.html:34
+msgid ""
+"the manager's average rating (1–5) of completed tasks, weighted by points, "
+"as a share of 5."
+msgstr ""
+"bajarilgan topshiriqlar boʻyicha rahbarning oʻrtacha bahosi (1–5), ballar "
+"boʻyicha tortilgan, 5 ga nisbatan ulushi."
+
+#: templates/kpi/methodology.html:35
+#, python-format
+msgid ""
+"points of completed tasks ÷ monthly norm (default %(norm)s points, can be "
+"set per person), at most 100. During the current month the norm is reduced "
+"in proportion to the days that have passed."
+msgstr ""
+"bajarilgan topshiriqlar ballari ÷ oylik meʼyor (standart %(norm)s ball, har "
+"bir xodim uchun alohida belgilanishi mumkin), koʻpi bilan 100. Joriy oyda "
+"meʼyor oʻtgan kunlarga mutanosib ravishda kamaytiriladi."
+
+#: templates/kpi/methodology.html:38
+msgid "Final score"
+msgstr "Yakuniy ball"
+
+#: templates/kpi/methodology.html:39
+msgid "manager adjustments"
+msgstr "rahbar tuzatishlari"
+
+#: templates/kpi/methodology.html:39
+msgid "from 0 to 100"
+msgstr "0 dan 100 gacha"
+
+#: templates/kpi/methodology.html:40
+#, python-format
+msgid ""
+"A manager may add a bonus or penalty of up to ±%(m)s points per entry with a"
+" written reason, for work that is not in the portal or for discipline "
+"issues. The reason is visible to the employee."
+msgstr ""
+"Rahbar portalda aks etmagan ishlar yoki intizom masalalari uchun sababini "
+"yozgan holda har bir yozuvga ±%(m)s ballgacha ragʻbat yoki jarima qoʻllashi "
+"mumkin. Sabab xodimga koʻrinadi."
+
+#: templates/kpi/methodology.html:41
+msgid ""
+"If a component cannot be measured (for example, nothing was completed, so "
+"there is nothing to rate), its weight is shared among the other components."
+msgstr ""
+"Agar koʻrsatkichni oʻlchab boʻlmasa (masalan, hech narsa bajarilmagani uchun"
+" baholanadigan ish yoʻq), uning vazni boshqa koʻrsatkichlar oʻrtasida "
+"taqsimlanadi."
+
+#: templates/kpi/methodology.html:43
+msgid "Grades"
+msgstr "Baholar"
+
+#: templates/kpi/methodology.html:45 templates/kpi/methodology.html:46
+#: templates/kpi/methodology.html:47
+#, python-format
+msgid "%(t)s and above"
+msgstr "%(t)s va undan yuqori"
+
+#: templates/kpi/methodology.html:48
+#, python-format
+msgid "below %(t)s"
+msgstr "%(t)s dan past"
+
+#: templates/kpi/methodology.html:51
+msgid "Closing the month"
+msgstr "Oyni yakunlash"
+
+#: templates/kpi/methodology.html:52
+msgid ""
+"After the month ends the manager reviews the remaining tasks and finalises "
+"the month. Finalised results are frozen: later edits to tasks or settings do"
+" not change them. A finalised month can be reopened if a correction is "
+"needed."
+msgstr ""
+"Oy tugagach, rahbar qolgan topshiriqlarni koʻrib chiqadi va oyni yakunlaydi."
+" Yakunlangan natijalar qayd etiladi: keyinchalik topshiriqlar yoki "
+"sozlamalar oʻzgarsa ham ular oʻzgarmaydi. Tuzatish zarur boʻlsa, yakunlangan"
+" oyni qayta ochish mumkin."
+
+#: templates/kpi/methodology.html:54
+msgid "Example"
+msgstr "Misol"
+
+#: templates/kpi/methodology.html:55
+msgid ""
+"An employee had 4 tasks due in the month: two medium (2 points each), one "
+"complex (3) and one simple (1) — 8 points in total. The complex task was "
+"handed in a day late, the simple one was not done. Ratings: 5, 4 and 4."
+msgstr ""
+"Xodimning oy davomida muddati tugaydigan 4 ta topshirigʻi bor edi: ikkita "
+"oʻrtacha (har biri 2 ball), bitta murakkab (3) va bitta oddiy (1) — jami 8 "
+"ball. Murakkab topshiriq bir kun kechikib topshirildi, oddiysi bajarilmadi. "
+"Baholar: 5, 4 va 4."
+
+#: templates/kpi/methodology.html:57
+msgid "Execution = 7 ÷ 8 = 87.5"
+msgstr "Bajarilish = 7 ÷ 8 = 87,5"
+
+#: templates/kpi/methodology.html:58
+msgid "Timeliness = 4 ÷ 8 = 50"
+msgstr "Muddatga rioya = 4 ÷ 8 = 50"
+
+#: templates/kpi/methodology.html:59
+msgid "Quality = (2×5 + 2×4 + 3×4) ÷ 7 = 4.29 of 5 = 85.7"
+msgstr "Sifat = (2×5 + 2×4 + 3×4) ÷ 7 = 5 dan 4,29 = 85,7"
+
+#: templates/kpi/methodology.html:60
+msgid "Workload with a norm of 20 = 7 ÷ 20 = 35"
+msgstr "Ish hajmi (meʼyor 20) = 7 ÷ 20 = 35"
+
+#: templates/kpi/methodology.html:61
+msgid ""
+"KPI = 0.35×87.5 + 0.25×50 + 0.25×85.7 + 0.15×35 = 69.8 (Satisfactory) with "
+"the default weights"
+msgstr ""
+"KPI = 0,35×87,5 + 0,25×50 + 0,25×85,7 + 0,15×35 = 69,8 (Qoniqarli) — "
+"standart vaznlarda"
+
+#: templates/kpi/month.html:5
+msgid "Reopen this month? Results will be recalculated from current data."
+msgstr ""
+"Oyni qayta ochasizmi? Natijalar joriy maʼlumotlar asosida qayta hisoblanadi."
+
+#: templates/kpi/month.html:6
+msgid "Finalise this month? Results will be frozen."
+msgstr "Oyni yakunlaysizmi? Natijalar qayd etiladi."
+
+#: templates/kpi/month.html:9
+#, python-format
+msgid "Team KPI — %(month_label)s"
+msgstr "Jamoa KPI — %(month_label)s"
+
+#: templates/kpi/month.html:10
+msgid "Tasks are counted in the month of their deadline."
+msgstr "Topshiriqlar muddati tugaydigan oyda hisobga olinadi."
+
+#: templates/kpi/month.html:15 templates/kpi/print.html:24
+msgid "Print"
+msgstr "Chop etish"
+
+#: templates/kpi/month.html:22
+msgid "Team average KPI"
+msgstr "Jamoaning oʻrtacha KPI koʻrsatkichi"
+
+#: templates/kpi/month.html:22
+#, python-format
+msgid "%(n)s employee assessed"
+msgid_plural "%(n)s employees assessed"
+msgstr[0] "%(n)s nafar xodim baholandi"
+
+#: templates/kpi/month.html:23
+#, python-format
+msgid "KPI ≥ %(t)s"
+msgstr "KPI ≥ %(t)s"
+
+#: templates/kpi/month.html:24
+#, python-format
+msgid "KPI ≥ %(g)s / ≥ %(s)s"
+msgstr "KPI ≥ %(g)s / ≥ %(s)s"
+
+#: templates/kpi/month.html:25
+#, python-format
+msgid "KPI below %(s)s"
+msgstr "KPI %(s)s dan past"
+
+#: templates/kpi/month.html:34
+msgid "Completed / assessed tasks"
+msgstr "Bajarilgan / baholangan topshiriqlar"
+
+#: templates/kpi/month.html:39
+msgid "Adj."
+msgstr "Tuz."
+
+#: templates/kpi/month.html:48
+msgid "on review"
+msgstr "tekshiruvda"
+
+#: templates/kpi/month.html:58
+msgid "No employees or tasks for this month."
+msgstr "Bu oy uchun xodimlar yoki topshiriqlar yoʻq."
+
+#: templates/kpi/month.html:64
+#, python-format
+msgid ""
+"Weights: execution %(c)s%%, timeliness %(t)s%%, quality %(q)s%%, workload "
+"%(w)s%%."
+msgstr ""
+"Vaznlar: bajarilish %(c)s%%, muddatga rioya %(t)s%%, sifat %(q)s%%, ish "
+"hajmi %(w)s%%."
+
+#: templates/kpi/month.html:64
+msgid ""
+"This finalised month uses the settings that applied when it was finalised."
+msgstr ""
+"Bu yakunlangan oy u yakunlangan paytdagi sozlamalar asosida hisoblangan."
+
+#: templates/kpi/print.html:26
+#, python-format
+msgid "Employee performance (KPI) for %(month_label)s"
+msgstr "Xodimlarning %(month_label)s uchun samaradorlik koʻrsatkichlari (KPI)"
+
+#: templates/kpi/print.html:28
+#, python-format
+msgid "Final results, approved %(date)s"
+msgstr "Yakuniy natijalar, %(date)s da tasdiqlangan"
+
+#: templates/kpi/print.html:28
+msgid "Preliminary results"
+msgstr "Dastlabki natijalar"
+
+#: templates/kpi/print.html:29
+#, python-format
+msgid "team average %(avg)s"
+msgstr "jamoa boʻyicha oʻrtacha %(avg)s"
+
+#: templates/kpi/print.html:35
+#, python-format
+msgid "Execution, %%"
+msgstr "Bajarilish, %%"
+
+#: templates/kpi/print.html:35
+#, python-format
+msgid "Timeliness, %%"
+msgstr "Muddatga rioya, %%"
+
+#: templates/kpi/print.html:35
+#, python-format
+msgid "Quality, %%"
+msgstr "Sifat, %%"
+
+#: templates/kpi/print.html:35
+#, python-format
+msgid "Workload, %%"
+msgstr "Ish hajmi, %%"
+
+#: templates/kpi/print.html:50
+msgid "Prepared by"
+msgstr "Tayyorladi"
+
+#: templates/kpi/print.html:51
+msgid "Approved by"
+msgstr "Tasdiqladi"
+
+#: templates/kpi/settings.html:8
+msgid "Changes apply to all months that are not finalised."
+msgstr "Oʻzgarishlar yakunlanmagan barcha oylarga taalluqli."
+
+#: templates/kpi/settings.html:15
+msgid "Component weights"
+msgstr "Koʻrsatkichlar vazni"
+
+#: templates/kpi/settings.html:15
+msgid "must add up to 100"
+msgstr "yigʻindisi 100 boʻlishi kerak"
+
+#: templates/kpi/settings.html:24
+msgid "Points by complexity"
+msgstr "Murakkablik boʻyicha ballar"
+
+#: templates/kpi/settings.html:34
+msgid "Grades and adjustments"
+msgstr "Baholar va tuzatishlar"
+
+#: templates/kpi/settings.html:42
+msgid "Save settings"
+msgstr "Sozlamalarni saqlash"
+
+#: templates/registration/login.html:7 templates/registration/login.html:27
+msgid "Log in"
+msgstr "Kirish"
+
+#: templates/registration/login.html:14
+msgid "Task and KPI management portal"
+msgstr "Topshiriqlar va KPI boshqaruvi portali"
+
+#: templates/registration/password_change_done.html:2
+#: templates/registration/password_change_form.html:2
+#: templates/registration/password_change_form.html:4
+msgid "Change password"
+msgstr "Parolni oʻzgartirish"
+
+#: templates/registration/password_change_done.html:4
+msgid "Password changed"
+msgstr "Parol oʻzgartirildi"
+
+#: templates/registration/password_change_done.html:5
+msgid "Your password has been changed."
+msgstr "Parolingiz oʻzgartirildi."
+
+#: templates/tasks/dashboard.html:7
+#, python-format
+msgid "Welcome, %(name)s"
+msgstr "Xush kelibsiz, %(name)s"
+
+#: templates/tasks/dashboard.html:17 templates/tasks/dashboard.html:108
+msgid "My unfinished tasks"
+msgstr "Tugallanmagan topshiriqlarim"
+
+#: templates/tasks/dashboard.html:19
+msgid "new, in progress, on review, returned"
+msgstr "yangi, ijroda, tekshiruvda, qaytarilgan"
+
+#: templates/tasks/dashboard.html:24
+msgid "deadline passed, not handed in"
+msgstr "muddati oʻtgan, topshirilmagan"
+
+#: templates/tasks/dashboard.html:27 templates/tasks/dashboard.html:77
+msgid "Awaiting your review"
+msgstr "Tekshiruvingizni kutmoqda"
+
+#: templates/tasks/dashboard.html:29
+msgid "handed in by executors"
+msgstr "ijrochilar topshirgan"
+
+#: templates/tasks/dashboard.html:29
+msgid "waiting for the manager's decision"
+msgstr "rahbar qarorini kutmoqda"
+
+#: templates/tasks/dashboard.html:32
+msgid "Completed this month"
+msgstr "Shu oyda bajarilgan"
+
+#: templates/tasks/dashboard.html:43
+#, python-format
+msgid "Team KPI — %(month)s"
+msgstr "Jamoa KPI — %(month)s"
+
+#: templates/tasks/dashboard.html:44
+msgid "Full KPI report"
+msgstr "Toʻliq KPI hisoboti"
+
+#: templates/tasks/dashboard.html:71
+msgid "Add a team member"
+msgstr "Xodim qoʻshing"
+
+#: templates/tasks/dashboard.html:78
+msgid "Nothing is waiting for review."
+msgstr "Tekshiruvni kutayotgan topshiriqlar yoʻq."
+
+#: templates/tasks/dashboard.html:82 templates/tasks/dashboard.html:115
+msgid "No overdue tasks."
+msgstr "Muddati oʻtgan topshiriqlar yoʻq."
+
+#: templates/tasks/dashboard.html:85 templates/tasks/dashboard.html:118
+msgid "Due in the next 7 days"
+msgstr "Keyingi 7 kunda muddati tugaydi"
+
+#: templates/tasks/dashboard.html:86 templates/tasks/dashboard.html:119
+msgid "No deadlines this week."
+msgstr "Bu hafta muddati tugaydigan topshiriqlar yoʻq."
+
+#: templates/tasks/dashboard.html:95
+#, python-format
+msgid "My KPI — %(month)s"
+msgstr "Mening KPI koʻrsatkichim — %(month)s"
+
+#: templates/tasks/dashboard.html:95 templates/tasks/task_detail.html:168
+msgid "Details"
+msgstr "Batafsil"
+
+#: templates/tasks/dashboard.html:100
+msgid "No assessed tasks yet this month"
+msgstr "Bu oyda hali baholangan topshiriqlar yoʻq"
+
+#: templates/tasks/dashboard.html:101
+#, python-format
+msgid ""
+"%(done)s of %(assessed)s assessed tasks completed · %(pending)s awaiting "
+"review"
+msgstr ""
+"Baholangan %(assessed)s ta topshiriqdan %(done)s tasi bajarilgan · "
+"%(pending)s ta tekshiruvda"
+
+#: templates/tasks/dashboard.html:109
+msgid "You have no unfinished tasks."
+msgstr "Sizda tugallanmagan topshiriqlar yoʻq."
+
+#: templates/tasks/notifications.html:9
+msgid "Mark all as read"
+msgstr "Barchasini oʻqilgan deb belgilash"
+
+#: templates/tasks/notifications.html:19
+msgid "Unread"
+msgstr "Oʻqilmagan"
+
+#: templates/tasks/notifications.html:30
+msgid "No notifications yet."
+msgstr "Hozircha bildirishnomalar yoʻq."
+
+#: templates/tasks/task_detail.html:5
+msgid "Delete this file?"
+msgstr "Ushbu fayl oʻchirilsinmi?"
+
+#: templates/tasks/task_detail.html:5
+msgid "Reopen this task? Its quality rating will be cleared."
+msgstr "Topshiriq qayta ochilsinmi? Uning sifat bahosi oʻchiriladi."
+
+#: templates/tasks/task_detail.html:27
+msgid "Returned for revision:"
+msgstr "Qayta ishlashga qaytarildi:"
+
+#: templates/tasks/task_detail.html:32
+msgid "No description."
+msgstr "Tavsif yoʻq."
+
+#: templates/tasks/task_detail.html:35 templates/tasks/task_list.html:50
+msgid "Progress"
+msgstr "Bajarilish darajasi"
+
+#: templates/tasks/task_detail.html:50
+msgid "Delete"
+msgstr "Oʻchirish"
+
+#: templates/tasks/task_detail.html:56
+msgid "No files yet."
+msgstr "Hozircha fayllar yoʻq."
+
+#: templates/tasks/task_detail.html:62
+msgid "Upload"
+msgstr "Yuklash"
+
+#: templates/tasks/task_detail.html:69
+msgid "Comments"
+msgstr "Izohlar"
+
+#: templates/tasks/task_detail.html:81
+msgid "No comments yet."
+msgstr "Hozircha izohlar yoʻq."
+
+#: templates/tasks/task_detail.html:87
+msgid "Send"
+msgstr "Yuborish"
+
+#: templates/tasks/task_detail.html:96
+msgid "Actions"
+msgstr "Amallar"
+
+#: templates/tasks/task_detail.html:107
+msgid "Report on the work done (optional)"
+msgstr "Bajarilgan ish boʻyicha hisobot (ixtiyoriy)"
+
+#: templates/tasks/task_detail.html:108
+msgid "Attach the result files above before submitting."
+msgstr "Yuborishdan oldin natija fayllarini yuqorida biriktiring."
+
+#: templates/tasks/task_detail.html:115
+msgid "Update progress"
+msgstr "Bajarilish darajasini yangilash"
+
+#: templates/tasks/task_detail.html:133
+msgid ""
+"The task was not submitted through the portal; it will be recorded as handed"
+" in today."
+msgstr ""
+"Topshiriq portal orqali topshirilmagan; u bugun topshirilgan deb qayd "
+"etiladi."
+
+#: templates/tasks/task_detail.html:152
+msgid "Cancelled tasks are not counted in KPI."
+msgstr "Bekor qilingan topshiriqlar KPIda hisobga olinmaydi."
+
+#: templates/tasks/task_detail.html:153
+msgid "Reason (optional)"
+msgstr "Sabab (ixtiyoriy)"
+
+#: templates/tasks/task_detail.html:173
+msgid "Assigned by"
+msgstr "Topshiriq bergan"
+
+#: templates/tasks/task_detail.html:175
+#, python-format
+msgid "%(points)s point"
+msgid_plural "%(points)s points"
+msgstr[0] "%(points)s ball"
+
+#: templates/tasks/task_detail.html:177
+#, python-format
+msgid "originally %(date)s"
+msgstr "dastlab %(date)s"
+
+#: templates/tasks/task_detail.html:178
+msgid "Assigned"
+msgstr "Berilgan sana"
+
+#: templates/tasks/task_detail.html:182
+msgid "after the deadline"
+msgstr "muddatdan keyin"
+
+#: templates/tasks/task_detail.html:185
+msgid "Accepted"
+msgstr "Qabul qilingan"
+
+#: templates/tasks/task_detail.html:187
+msgid "Returned"
+msgstr "Qaytarilgan"
+
+#: templates/tasks/task_detail.html:187
+#, python-format
+msgid "%(n)s time"
+msgid_plural "%(n)s times"
+msgstr[0] "%(n)s marta"
+
+#: templates/tasks/task_detail.html:193
+msgid "History"
+msgstr "Tarix"
+
+#: templates/tasks/task_form.html:2 templates/tasks/task_form.html:7
+msgid "Edit task"
+msgstr "Topshiriqni tahrirlash"
+
+#: templates/tasks/task_form.html:8
+msgid "The executor is notified as soon as you save."
+msgstr "Saqlashingiz bilan ijrochiga bildirishnoma yuboriladi."
+
+#: templates/tasks/task_form.html:33
+#, python-format
+msgid "%(points)s KPI point"
+msgid_plural "%(points)s KPI points"
+msgstr[0] "%(points)s KPI ball"
+
+#: templates/tasks/task_form.html:48
+msgid "Assign task"
+msgstr "Topshiriq berish"
+
+#: templates/tasks/task_list.html:8
+#, python-format
+msgid "%(n)s task found"
+msgid_plural "%(n)s tasks found"
+msgstr[0] "%(n)s ta topshiriq topildi"
+
+#: templates/tasks/task_list.html:21
+msgid "Apply"
+msgstr "Qoʻllash"
+
+#: templates/tasks/task_list.html:22
+msgid "Reset"
+msgstr "Tozalash"
+
+#: templates/tasks/task_list.html:25
+msgid "More filters"
+msgstr "Qoʻshimcha filtrlar"
+
+#: templates/tasks/task_list.html:73
+msgid "No tasks match the filters."
+msgstr "Filtrlarga mos topshiriqlar topilmadi."

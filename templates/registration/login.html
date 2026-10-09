@@ -1,0 +1,33 @@
+{% load i18n static %}<!doctype html>
+{% get_current_language as LANG %}
+<html lang="{{ LANG }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% translate "Log in" %} · {% translate "Project Office" %}</title>
+  <link rel="stylesheet" href="{% static 'css/app.css' %}">
+</head>
+<body>
+<div class="login-page">
+  <div class="card login-card">
+    <div class="brand-name"><span class="brand-mark">✓</span>{% translate "Project Office" %}</div>
+    <div class="org">{% if ORGANIZATION_NAME %}{{ ORGANIZATION_NAME }}{% else %}{% translate "Task and KPI management portal" %}{% endif %}</div>
+    {% if form.non_field_errors %}<ul class="errorlist nonfield">{% for e in form.non_field_errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+    <form method="post">
+      {% csrf_token %}
+      <input type="hidden" name="next" value="{{ next }}">
+      <div class="field">
+        <label for="id_username">{% translate "Login" %}</label>
+        <input type="text" name="username" id="id_username" autocomplete="username" autofocus required value="{{ form.username.value|default:'' }}">
+      </div>
+      <div class="field">
+        <label for="id_password">{% translate "Password" %}</label>
+        <input type="password" name="password" id="id_password" autocomplete="current-password" required>
+      </div>
+      <button class="btn btn-primary" type="submit">{% translate "Log in" %}</button>
+    </form>
+    {% include "includes/lang_switch.html" %}
+  </div>
+</div>
+</body>
+</html>
